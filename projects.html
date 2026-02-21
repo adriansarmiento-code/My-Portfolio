@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Adrian Sarmiento</title>
+  <meta name="description" content="Explore the projects built by Adrian Sarmiento — from e-commerce platforms to service marketplaces and full-stack web applications." />
+  <meta property="og:title" content="Projects — Adrian Sarmiento" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .projects-hero {
+      padding: 10rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .projects-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 70%;
+      background: radial-gradient(ellipse 60% 70% at 50% 0%, var(--accent-glow), transparent);
+      pointer-events: none;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .pcard {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition);
+    }
+
+    .pcard:hover {
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-glow);
+      transform: translateY(-6px);
+    }
+
+    .pcard-thumb {
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pcard-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-hero);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .pcard:hover .pcard-thumb::after { opacity: 0.05; }
+
+    .pcard-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
+    .pcard-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .pcard-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .pcard-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .pcard-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+      gap: 1rem;
+    }
+
+    .pcard-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: gap var(--transition);
+    }
+    .pcard-link:hover { gap: 0.7rem; }
+
+    .pcard-type {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Adrian Sarmiento Home">
+      <div class="nav-logo-mark" aria-hidden="true">AS</div>
+      Adrian Sarmiento
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
+
+<header class="projects-hero" role="banner">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Portfolio</span>
+      <h1 style="margin-bottom:1.25rem;">All <span style="background:var(--gradient-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Projects</span></h1>
+      <p style="color:var(--text-secondary);max-width:55ch;font-size:clamp(1rem,1.8vw,1.15rem);">
+        From e-commerce platforms to service marketplaces — each project represents a real problem solved with thoughtful engineering and clean design.
+      </p>
+    </div>
+  </div>
+</header>
+
+<section class="section" aria-labelledby="projects-list-heading">
+  <div class="container">
+    <h2 id="projects-list-heading" class="sr-only">Projects List</h2>
+    <div class="projects-grid" role="list">
+
+      <!-- Fixify -->
+      <article class="pcard reveal" role="listitem">
+        <div class="pcard-thumb" role="img" aria-label="Fixify project thumbnail placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          [PROJECT THUMBNAIL IMAGE]
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-tags">
+            <span class="tag">Vue.js 3</span>
+            <span class="tag-purple tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">JWT</span>
+          </div>
+          <h3 class="pcard-title">Fixify</h3>
+          <p class="pcard-desc">A service marketplace connecting customers with verified local providers in Angeles City. Features booking, real-time in-app notifications, messaging, and role-based JWT authentication across three service categories.</p>
+          <div class="pcard-footer">
+            <a href="project-fixify.html" class="pcard-link" aria-label="View Fixify case study">
+              Case Study
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span class="pcard-type">Full-Stack · Web App</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Velasquez -->
+      <article class="pcard reveal reveal-delay-1" role="listitem">
+        <div class="pcard-thumb" role="img" aria-label="Velasquez Funeral Chapel project thumbnail placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          [PROJECT THUMBNAIL IMAGE]
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-tags">
+            <span class="tag">Vue.js 3</span>
+            <span class="tag-purple tag">Express</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Cloudinary</span>
+          </div>
+          <h3 class="pcard-title">Velasquez Funeral &amp; Chapel</h3>
+          <p class="pcard-desc">A comprehensive funeral home website with service packages, casket gallery, blog, and a full admin panel with TinyMCE, image uploads, and dynamic pricing — deployed on Hostinger + Render.com.</p>
+          <div class="pcard-footer">
+            <a href="project-velasquez.html" class="pcard-link" aria-label="View Velasquez Funeral Chapel case study">
+              Case Study
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span class="pcard-type">Full-Stack · Business Site</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- FurnishHaven -->
+      <article class="pcard reveal reveal-delay-2" role="listitem">
+        <div class="pcard-thumb" role="img" aria-label="FurnishHaven project thumbnail placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          [PROJECT THUMBNAIL IMAGE]
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-tags">
+            <span class="tag">PHP</span>
+            <span class="tag-purple tag">JavaScript</span>
+            <span class="tag">CSS</span>
+          </div>
+          <h3 class="pcard-title">FurnishHaven</h3>
+          <p class="pcard-desc">An e-commerce platform bridging customers and furniture retailers. Offers a seamless shopping experience with competitive pricing, wide product range, and excellent customer service features.</p>
+          <div class="pcard-footer">
+            <a href="project-furnishhaven.html" class="pcard-link" aria-label="View FurnishHaven case study">
+              Case Study
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span class="pcard-type">E-Commerce · PHP</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Burgify -->
+      <article class="pcard reveal reveal-delay-3" role="listitem">
+        <div class="pcard-thumb" role="img" aria-label="Burgify project thumbnail placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          [PROJECT THUMBNAIL IMAGE]
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-tags">
+            <span class="tag">HTML</span>
+            <span class="tag-purple tag">CSS</span>
+          </div>
+          <h3 class="pcard-title">Burgify</h3>
+          <p class="pcard-desc">A static e-commerce website dedicated to burgers. Built with clean HTML and CSS, showcasing strong front-end fundamentals and thoughtful layout design.</p>
+          <div class="pcard-footer">
+            <a href="project-burgify.html" class="pcard-link" aria-label="View Burgify case study">
+              Case Study
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span class="pcard-type">Front-End · Static</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- The Hustle Flow -->
+      <article class="pcard reveal reveal-delay-1" role="listitem">
+        <div class="pcard-thumb" role="img" aria-label="The Hustle Flow blog project thumbnail placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          [PROJECT THUMBNAIL IMAGE]
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-tags">
+            <span class="tag">WordPress</span>
+          </div>
+          <h3 class="pcard-title">The Hustle Flow</h3>
+          <p class="pcard-desc">A WordPress blog focused on growth, perspective, and self-improvement. Features deep-dive articles, quick tips, motivation content, and life hacks to help readers think bigger and do better.</p>
+          <div class="pcard-footer">
+            <a href="project-hustleflow.html" class="pcard-link" aria-label="View The Hustle Flow case study">
+              Case Study
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span class="pcard-type">Blog · WordPress</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+    <span>© 2025 Adrian Sarmiento. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="main.js"></script>
+</body>
+</html>

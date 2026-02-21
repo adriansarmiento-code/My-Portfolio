@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burgify — Adrian Sarmiento</title>
+  <meta name="description" content="Burgify: A static HTML and CSS e-commerce website for burgers, showcasing front-end fundamentals and clean layout design." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .project-detail-hero { padding: 10rem 0 5rem; position: relative; overflow: hidden; }
+    .project-detail-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 70%; background: radial-gradient(ellipse 60% 70% at 50% 0%, var(--accent-2-glow), transparent); pointer-events: none; }
+    .project-meta { display: flex; flex-wrap: wrap; gap: 2.5rem; margin: 3rem 0; padding: 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .meta-item-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .meta-item-value { font-size: 0.9rem; font-weight: 500; }
+    .screenshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 2rem 0; }
+    .screenshot-grid .wide { grid-column: 1 / -1; }
+    .screenshot { border-radius: var(--radius-md); aspect-ratio: 16/9; background: var(--bg-secondary); border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.78rem; gap: 0.5rem; }
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0; }
+    .tech-pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); }
+    .action-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .prose p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+    .prose h3 { font-size: 1.2rem; margin: 2.5rem 0 1rem; }
+    @media (max-width: 768px) { .screenshot-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Adrian Sarmiento Home">
+      <div class="nav-logo-mark" aria-hidden="true">AS</div>Adrian Sarmiento
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul>
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
+
+<main>
+  <section class="project-detail-hero">
+    <div class="container">
+      <a href="projects.html" class="back-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All Projects</a>
+      <div class="reveal" style="max-width:760px;">
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+          <span class="tag">HTML</span><span class="tag-purple tag">CSS</span>
+        </div>
+        <h1 style="margin-bottom:1rem;">Burgify</h1>
+        <p style="color:var(--text-secondary);font-size:clamp(1rem,1.8vw,1.2rem);max-width:60ch;line-height:1.8;">
+          A static e-commerce website dedicated to burgers — built with clean, semantic HTML and CSS. Demonstrates strong front-end fundamentals, thoughtful layout design, and attention to visual detail.
+        </p>
+      </div>
+      <div class="project-meta reveal reveal-delay-1">
+        <div class="meta-item"><div class="meta-item-label">Type</div><div class="meta-item-value">Static E-Commerce Site</div></div>
+        <div class="meta-item"><div class="meta-item-label">Stack</div><div class="meta-item-value">HTML &amp; CSS</div></div>
+        <div class="meta-item"><div class="meta-item-label">Focus</div><div class="meta-item-value">Front-End Fundamentals</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="screenshot-grid reveal">
+        <div class="screenshot wide" role="img" aria-label="Burgify homepage screenshot placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          [PROJECT SCREENSHOT 1 — Homepage]
+        </div>
+        <div class="screenshot" role="img" aria-label="Burgify menu page screenshot placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          [PROJECT SCREENSHOT 2 — Menu Page]
+        </div>
+        <div class="screenshot" role="img" aria-label="Burgify product detail screenshot placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          [PROJECT SCREENSHOT 3 — Product Detail]
+        </div>
+      </div>
+
+      <div class="prose reveal">
+        <h2 style="margin-bottom:1rem;">Project Overview</h2>
+        <p>Burgify was one of the foundational projects in Adrian's web development journey. Focusing purely on HTML and CSS, it demonstrates mastery of the building blocks of the web — semantic markup, layout systems, visual hierarchy, and responsive design.</p>
+        <h3>Purpose</h3>
+        <p>Built as an e-commerce concept site for a burger restaurant, Burgify shows how compelling, conversion-focused layouts can be created without any JavaScript or frameworks. The project prioritized clean code structure and visual polish.</p>
+        <h3>Learning Outcomes</h3>
+        <p>This project solidified understanding of CSS Flexbox and Grid for page layout, CSS custom properties for design consistency, and semantic HTML for accessibility and structure — all foundational skills that underpin every subsequent project.</p>
+      </div>
+
+      <div class="reveal">
+        <h2 style="margin:2.5rem 0 1rem;">Technology Stack</h2>
+        <div class="tech-stack" role="list" aria-label="Technologies used in Burgify">
+          <span class="tech-pill" role="listitem">🌐 HTML5</span>
+          <span class="tech-pill" role="listitem">🎨 CSS3</span>
+          <span class="tech-pill" role="listitem">📐 Flexbox &amp; Grid</span>
+          <span class="tech-pill" role="listitem">📱 Responsive Design</span>
+        </div>
+      </div>
+
+      <div class="action-bar reveal">
+        <a href="#" class="btn btn-primary" aria-label="View Burgify GitHub repository (link placeholder)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub Files
+        </a>
+        <a href="projects.html" class="btn btn-ghost">← Back to Projects</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+    <span>© 2025 Adrian Sarmiento. All rights reserved.</span>
+    <div class="footer-links"><a href="about.html">About</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a></div>
+  </div>
+</footer>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+<script src="main.js"></script>
+</body>
+</html>

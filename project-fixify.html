@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fixify — Adrian Sarmiento</title>
+  <meta name="description" content="Fixify: A web-based service marketplace platform connecting customers with verified local service providers in Angeles City. Built with Vue.js, Node.js, and MongoDB." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .project-detail-hero {
+      padding: 10rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-detail-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 70%;
+      background: radial-gradient(ellipse 60% 70% at 50% 0%, var(--accent-glow), transparent);
+      pointer-events: none;
+    }
+
+    .project-header { max-width: 760px; }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin: 3rem 0;
+      padding: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+
+    .meta-item-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .meta-item-value {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .screenshot-grid .wide {
+      grid-column: 1 / -1;
+    }
+
+    .screenshot {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      gap: 0.5rem;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1.25rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .feature-icon {
+      width: 36px; height: 36px;
+      background: var(--accent-glow);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .feature-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-desc { font-size: 0.82rem; color: var(--text-secondary); }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+
+    .tech-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+
+    .tech-pill:hover {
+      border-color: var(--border-accent);
+      color: var(--accent);
+    }
+
+    .action-bar {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .prose h3 {
+      font-size: 1.2rem;
+      margin: 2.5rem 0 1rem;
+    }
+
+    .prose p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .screenshot-grid { grid-template-columns: 1fr; }
+      .feature-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Adrian Sarmiento Home">
+      <div class="nav-logo-mark" aria-hidden="true">AS</div>
+      Adrian Sarmiento
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
+
+<main>
+  <section class="project-detail-hero">
+    <div class="container">
+
+      <a href="projects.html" class="back-btn" aria-label="Back to all projects">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        All Projects
+      </a>
+
+      <div class="project-header reveal">
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+          <span class="tag">Vue.js 3</span>
+          <span class="tag-purple tag">Node.js</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">JWT</span>
+          <span class="tag-purple tag">Express.js</span>
+        </div>
+        <h1 style="margin-bottom:1rem;">Fixify</h1>
+        <p style="color:var(--text-secondary);font-size:clamp(1rem,1.8vw,1.2rem);max-width:64ch;line-height:1.8;">
+          A web-based service marketplace platform that assists customers in identifying and connecting to verified local service providers in Angeles City, Pampanga.
+        </p>
+      </div>
+
+      <!-- Meta bar -->
+      <div class="project-meta reveal reveal-delay-1" aria-label="Project details">
+        <div class="meta-item">
+          <div class="meta-item-label">Type</div>
+          <div class="meta-item-value">Full-Stack Web App</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-item-label">Frontend</div>
+          <div class="meta-item-value">Vue.js 3</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-item-label">Backend</div>
+          <div class="meta-item-value">Node.js + Express</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-item-label">Database</div>
+          <div class="meta-item-value">MongoDB Atlas</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-item-label">Auth</div>
+          <div class="meta-item-value">JWT + Role-Based</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+
+      <div class="screenshot-grid reveal">
+        <div class="screenshot wide" role="img" aria-label="Fixify main dashboard screenshot placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          [PROJECT SCREENSHOT 1 — Dashboard / Home]
+        </div>
+        <div class="screenshot" role="img" aria-label="Fixify service booking screenshot placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          [PROJECT SCREENSHOT 2 — Service Booking]
+        </div>
+        <div class="screenshot" role="img" aria-label="Fixify provider profile screenshot placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          [PROJECT SCREENSHOT 3 — Provider Profile]
+        </div>
+      </div>
+
+      <!-- Overview -->
+      <div class="prose reveal">
+        <h2 style="margin-bottom:1rem;">Project Overview</h2>
+        <p>Fixify was built to solve a real problem: customers in Angeles City struggling to find trusted, verified professionals for home services. The platform creates a centralized location to browse, book, and review service providers across three core categories.</p>
+
+        <h3>The Problem</h3>
+        <p>Local homeowners often rely on word-of-mouth or untrusted online listings when searching for plumbers, electricians, or cleaning services. This results in wasted time, scams, and inconsistent service quality. Fixify addresses this by building a structured, review-driven marketplace with verified provider onboarding.</p>
+
+        <h3>Solution &amp; Approach</h3>
+        <p>The platform was designed around three user roles: customers, service providers, and admins — each with their own dashboard and authorization level. JWT authentication with role-based authorization ensures each user only accesses what they're permitted to.</p>
+      </div>
+
+      <!-- Features -->
+      <div class="reveal">
+        <h2 style="margin:2.5rem 0 1.5rem;">Key Features</h2>
+        <div class="feature-list" role="list" aria-label="Key features of Fixify">
+
+          <div class="feature-item" role="listitem">
+            <div class="feature-icon" aria-hidden="true">🔍</div>
+            <div>
+              <div class="feature-title">Service Discovery</div>
+              <div class="feature-desc">Browse verified providers across Plumbing, Electrical, and Cleaning categories.</div>
+            </div>
+          </div>
+
+          <div class="feature-item" role="listitem">
+            <div class="feature-icon" aria-hidden="true">📅</div>
+            <div>
+              <div class="feature-title">Booking System</div>
+              <div class="feature-desc">Customers can schedule and manage bookings with preferred service providers.</div>
+            </div>
+          </div>
+
+          <div class="feature-item" role="listitem">
+            <div class="feature-icon" aria-hidden="true">🔔</div>
+            <div>
+              <div class="feature-title">Real-Time Notifications</div>
+              <div class="feature-desc">In-app alerts for booking status changes and messaging updates.</div>
+            </div>
+          </div>
+
+          <div class="feature-item" role="listitem">
+            <div class="feature-icon" aria-hidden="true">🔐</div>
+            <div>
+              <div class="feature-title">JWT Authentication</div>
+              <div class="feature-desc">Secure role-based access control for customers, providers, and admins.</div>
+            </div>
+          </div>
+
+          <div class="feature-item" role="listitem">
+            <div class="feature-icon" aria-hidden="true">⭐</div>
+            <div>
+              <div class="feature-title">Review System</div>
+              <div class="feature-desc">Customers can leave ratings and reviews after completed service appointments.</div>
+            </div>
+          </div>
+
+          <div class="feature-item" role="listitem">
+            <div class="feature-icon" aria-hidden="true">📱</div>
+            <div>
+              <div class="feature-title">Responsive UI</div>
+              <div class="feature-desc">Fully responsive interface designed for seamless use on any device.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="reveal">
+        <h2 style="margin:2.5rem 0 1rem;">Technology Stack</h2>
+        <div class="tech-stack" role="list" aria-label="Technologies used in Fixify">
+          <span class="tech-pill" role="listitem">💚 Vue.js 3</span>
+          <span class="tech-pill" role="listitem">🟢 Node.js</span>
+          <span class="tech-pill" role="listitem">⚡ Express.js</span>
+          <span class="tech-pill" role="listitem">🍃 MongoDB Atlas</span>
+          <span class="tech-pill" role="listitem">🔐 JWT Auth</span>
+          <span class="tech-pill" role="listitem">🌐 RESTful API</span>
+          <span class="tech-pill" role="listitem">🎨 CSS / Tailwind</span>
+          <span class="tech-pill" role="listitem">🐙 GitHub</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="action-bar reveal">
+        <a href="#" class="btn btn-primary" aria-label="View Fixify live demo (link placeholder)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live Demo
+        </a>
+        <a href="#" class="btn btn-outline" aria-label="View Fixify GitHub repository (link placeholder)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub Repo
+        </a>
+        <a href="projects.html" class="btn btn-ghost">← Back to Projects</a>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+    <span>© 2025 Adrian Sarmiento. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="main.js"></script>
+</body>
+</html>
