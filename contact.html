@@ -1,514 +1,272 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact — Adrian Sarmiento</title>
-  <meta name="description" content="Get in touch with Adrian Sarmiento — web developer and IT student available for collaborations, freelance projects, and opportunities." />
-  <meta property="og:title" content="Contact Adrian Sarmiento" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Get in touch with Adrian Sarmiento — web developer available for collaborations, freelance, and full-time opportunities."/>
+  <link rel="stylesheet" href="style.css"/>
   <style>
-    .contact-hero {
-      padding: 10rem 0 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .contact-hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 70%;
-      background: radial-gradient(ellipse 60% 70% at 50% 0%, var(--accent-glow), transparent);
-      pointer-events: none;
-    }
-
     .contact-layout {
       display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 5rem;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - var(--nav-h) - 60px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-left {
+      padding: calc(var(--nav-h) + var(--gap-lg)) clamp(1.5rem, 5vw, 5rem) var(--gap-md);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-headline {
+      font-family: var(--display);
+      font-size: var(--size-3xl);
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .contact-headline em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ash);
+      font-size: 0.55em;
+      text-transform: none;
+      display: block;
+      letter-spacing: 0;
+    }
+
+    .contact-info-block {
+      margin-top: var(--gap-md);
+    }
+
+    .contact-info-row {
+      padding: var(--gap-xs) 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1rem;
       align-items: start;
     }
 
-    /* ── Form ─────────────────────────────────────────────── */
-    .contact-form {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: 2.5rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      margin-bottom: 0.6rem;
-    }
-
-    .form-input,
-    .form-textarea {
-      width: 100%;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 0.85rem 1.1rem;
-      color: var(--text-primary);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      transition: border-color var(--transition), box-shadow var(--transition);
-      outline: none;
-      resize: none;
-    }
-
-    .form-input:focus,
-    .form-textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
-    }
-
-    .form-input.error,
-    .form-textarea.error {
-      border-color: #ff6b6b;
-      box-shadow: 0 0 0 3px rgba(255,107,107,0.15);
-    }
-
-    .form-textarea { min-height: 140px; }
-
-    .form-error {
-      display: none;
-      font-size: 0.78rem;
-      color: #ff6b6b;
-      margin-top: 0.4rem;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .form-error.visible {
-      display: flex;
-    }
-
-    .form-submit {
-      width: 100%;
-      padding: 1rem;
-      background: var(--gradient-hero);
-      color: #fff;
-      border-radius: var(--radius-md);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      border: none;
-      transition: all var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .form-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(99,179,255,0.3);
-    }
-
-    .form-submit:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .form-success {
-      display: none;
-      padding: 1rem 1.25rem;
-      background: rgba(74,222,128,0.1);
-      border: 1px solid rgba(74,222,128,0.25);
-      border-radius: var(--radius-md);
-      color: #4ade80;
-      font-size: 0.9rem;
-      margin-top: 1rem;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .form-success.visible { display: flex; }
-
-    /* ── Contact Info ─────────────────────────────────────── */
-    .contact-info-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.1rem;
-      padding: 1.5rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      margin-bottom: 1rem;
-      transition: all var(--transition);
-    }
-
-    .contact-info-item:hover {
-      border-color: var(--border-accent);
-      background: var(--bg-card-hover);
-    }
-
-    .contact-info-icon {
-      width: 44px; height: 44px;
-      background: var(--accent-glow);
-      border: 1px solid var(--border-accent);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    .contact-info-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+    .ci-label {
+      font-family: var(--mono);
+      font-size: var(--size-2xs);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.25rem;
+      color: var(--ash);
+      padding-top: 0.15em;
     }
 
-    .contact-info-value {
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: var(--text-primary);
+    .ci-value {
+      font-family: var(--serif);
+      font-size: var(--size-md);
+      font-style: italic;
     }
 
-    .contact-info-value a {
-      color: var(--accent);
-      transition: color var(--transition);
+    .ci-value a {
+      transition: color var(--dur-fast);
     }
 
-    .contact-info-value a:hover { color: var(--text-primary); }
+    .ci-value a:hover { color: var(--ash); }
 
-    /* ── Social ───────────────────────────────────────────── */
-    .social-section { margin-top: 2.5rem; }
-
-    .social-section-title {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-
-    .social-row {
+    .social-row-contact {
       display: flex;
-      gap: 0.75rem;
+      gap: 1rem;
       flex-wrap: wrap;
+      margin-top: var(--gap-sm);
     }
 
-    .social-card {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.7rem 1.1rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      transition: all var(--transition);
+    .soc-link {
+      font-family: var(--mono);
+      font-size: var(--size-2xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ash);
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      transition: all var(--dur-mid);
     }
 
-    .social-card:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-glow);
-      transform: translateY(-2px);
+    .soc-link:hover {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
     }
+
+    /* ── Right side: form ─────────────────────────────────── */
+    .contact-right {
+      padding: calc(var(--nav-h) + var(--gap-lg)) clamp(1.5rem, 5vw, 5rem) var(--gap-md);
+    }
+
+    .form-title {
+      font-family: var(--display);
+      font-size: var(--size-xl);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: var(--gap-md);
+    }
+
+    .submit-btn {
+      margin-top: var(--gap-sm);
+      font-family: var(--mono);
+      font-size: var(--size-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      background: var(--ink);
+      color: var(--paper);
+      cursor: none;
+      transition: all var(--dur-mid) var(--ease-out);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--dur-mid) var(--ease-out);
+    }
+
+    .submit-btn:hover { color: var(--ink); }
+    .submit-btn:hover::before { transform: scaleX(1); }
+    .submit-btn span { position: relative; z-index: 1; }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
     @media (max-width: 900px) {
       .contact-layout { grid-template-columns: 1fr; }
+      .contact-left { border-right: none; border-bottom: 1px solid var(--line); padding-top: calc(var(--nav-h) + var(--gap-md)); }
+      .contact-headline { font-size: var(--size-2xl); }
     }
   </style>
 </head>
 <body>
 
+<div class="cursor cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="page-overlay" aria-hidden="true"></div>
+<div class="progress-bar" aria-hidden="true"></div>
+
 <nav class="nav" role="navigation" aria-label="Main navigation">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="Adrian Sarmiento Home">
-      <div class="nav-logo-mark" aria-hidden="true">AS</div>
-      Adrian Sarmiento
-    </a>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">A<span>.</span>SARMIENTO</a>
     <ul class="nav-links" role="list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="index.html"    class="nav-link">Home</a></li>
+      <li><a href="about.html"    class="nav-link">About</a></li>
+      <li><a href="projects.html" class="nav-link">Work</a></li>
+      <li><a href="contact.html"  class="nav-link">Contact</a></li>
     </ul>
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
-      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <a href="contact.html" class="nav-cta">Let's Talk</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileDrawer">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Work</a>
+  <a href="contact.html">Contact</a>
 </div>
 
-<header class="contact-hero" role="banner">
-  <div class="container">
-    <div class="reveal" style="max-width:640px;">
-      <span class="section-label">Let's Connect</span>
-      <h1 style="margin-bottom:1.25rem;">Get In <span style="background:var(--gradient-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Touch</span></h1>
-      <p style="color:var(--text-secondary);font-size:clamp(1rem,1.8vw,1.15rem);line-height:1.8;">
-        Whether you have a project idea, a collaboration opportunity, or just want to say hello — I'd love to hear from you. I typically respond within 24–48 hours.
-      </p>
+<main class="contact-layout">
+
+  <!-- Left panel -->
+  <div class="contact-left">
+    <div>
+      <p class="mono-label reveal-up">Let's Connect</p>
+      <h1 class="contact-headline reveal-up d1">
+        Get In<br>Touch
+        <em>I respond within 48hrs</em>
+      </h1>
     </div>
-  </div>
-</header>
 
-<section class="section" style="padding-top:2rem;" aria-labelledby="contact-form-heading">
-  <div class="container">
-    <div class="contact-layout">
-
-      <!-- Info Panel -->
-      <div>
-        <div class="contact-info-item reveal">
-          <div class="contact-info-icon" aria-hidden="true">📧</div>
-          <div>
-            <div class="contact-info-label">Email</div>
-            <div class="contact-info-value">
-              <a href="mailto:adriansarmiento@email.com" aria-label="Send email to Adrian Sarmiento">adriansarmiento@email.com</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-info-item reveal reveal-delay-1">
-          <div class="contact-info-icon" aria-hidden="true">📍</div>
-          <div>
-            <div class="contact-info-label">Location</div>
-            <div class="contact-info-value">Angeles City, Pampanga, Philippines</div>
-          </div>
-        </div>
-
-        <div class="contact-info-item reveal reveal-delay-2">
-          <div class="contact-info-icon" aria-hidden="true">🎓</div>
-          <div>
-            <div class="contact-info-label">Currently</div>
-            <div class="contact-info-value">BS Information Technology · Holy Angel University</div>
-          </div>
-        </div>
-
-        <div class="contact-info-item reveal reveal-delay-3">
-          <div class="contact-info-icon" aria-hidden="true">✅</div>
-          <div>
-            <div class="contact-info-label">Status</div>
-            <div class="contact-info-value" style="color:#4ade80;">Available for opportunities</div>
-          </div>
-        </div>
-
-        <!-- Social Links -->
-        <div class="social-section reveal">
-          <div class="social-section-title">Find me on</div>
-          <div class="social-row" role="list" aria-label="Social media links">
-            <a href="#" class="social-card" role="listitem" aria-label="Visit Adrian's GitHub profile (link placeholder)" target="_blank" rel="noopener noreferrer">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              GitHub
-            </a>
-            <a href="#" class="social-card" role="listitem" aria-label="Visit Adrian's LinkedIn profile (link placeholder)" target="_blank" rel="noopener noreferrer">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
-            </a>
-            <a href="#" class="social-card" role="listitem" aria-label="Visit Adrian's Facebook profile (link placeholder)" target="_blank" rel="noopener noreferrer">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              Facebook
-            </a>
-          </div>
-        </div>
+    <div class="contact-info-block">
+      <div class="contact-info-row reveal-up">
+        <span class="ci-label">Email</span>
+        <span class="ci-value"><a href="mailto:adriansarmiento@email.com" aria-label="Email Adrian Sarmiento">adriansarmiento@email.com</a></span>
+      </div>
+      <div class="contact-info-row reveal-up d1">
+        <span class="ci-label">Location</span>
+        <span class="ci-value">Angeles City, Pampanga, Philippines</span>
+      </div>
+      <div class="contact-info-row reveal-up d2">
+        <span class="ci-label">Status</span>
+        <span class="ci-value" style="color:#00c853;font-style:normal;font-family:var(--mono);font-size:var(--size-xs);">● Available</span>
+      </div>
+      <div class="contact-info-row reveal-up d3">
+        <span class="ci-label">Currently</span>
+        <span class="ci-value">BS IT · Holy Angel University</span>
       </div>
 
-      <!-- Contact Form -->
-      <div class="reveal reveal-delay-1">
-        <div class="contact-form">
-          <h2 id="contact-form-heading" style="font-size:1.5rem;margin-bottom:0.5rem;">Send a Message</h2>
-          <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:2rem;">Fill out the form below and I'll get back to you as soon as possible.</p>
-
-          <form id="contactForm" novalidate aria-label="Contact form">
-
-            <div class="form-group">
-              <label for="name" class="form-label">Full Name <span aria-hidden="true" style="color:#ff6b6b;">*</span></label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="form-input"
-                placeholder="Your full name"
-                autocomplete="name"
-                aria-required="true"
-                aria-describedby="name-error"
-              />
-              <div class="form-error" id="name-error" role="alert" aria-live="polite">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                Please enter your full name.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="email" class="form-label">Email Address <span aria-hidden="true" style="color:#ff6b6b;">*</span></label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="form-input"
-                placeholder="your@email.com"
-                autocomplete="email"
-                aria-required="true"
-                aria-describedby="email-error"
-              />
-              <div class="form-error" id="email-error" role="alert" aria-live="polite">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                Please enter a valid email address.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="subject" class="form-label">Subject</label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                class="form-input"
-                placeholder="What's this about?"
-                autocomplete="off"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="message" class="form-label">Message <span aria-hidden="true" style="color:#ff6b6b;">*</span></label>
-              <textarea
-                id="message"
-                name="message"
-                class="form-textarea"
-                placeholder="Tell me about your project, idea, or opportunity..."
-                aria-required="true"
-                aria-describedby="message-error"
-              ></textarea>
-              <div class="form-error" id="message-error" role="alert" aria-live="polite">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                Please enter your message (minimum 20 characters).
-              </div>
-            </div>
-
-            <button type="submit" class="form-submit" id="submitBtn" aria-label="Send message">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              Send Message
-            </button>
-
-            <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Message sent successfully! I'll get back to you soon.
-            </div>
-
-          </form>
-        </div>
+      <div class="social-row-contact reveal-up d4" role="list" aria-label="Social media links">
+        <a href="#" class="soc-link" role="listitem" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub</a>
+        <a href="#" class="soc-link" role="listitem" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">LinkedIn</a>
+        <a href="#" class="soc-link" role="listitem" target="_blank" rel="noopener noreferrer" aria-label="Facebook profile">Facebook</a>
       </div>
-
     </div>
   </div>
-</section>
 
-<footer class="footer" role="contentinfo">
-  <div class="container footer-inner">
-    <span>© 2025 Adrian Sarmiento. All rights reserved.</span>
-    <div class="footer-links">
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
+  <!-- Right panel: form -->
+  <div class="contact-right">
+    <h2 class="form-title reveal-up">Send a<br>Message</h2>
+
+    <form id="contactForm" novalidate aria-label="Contact form">
+
+      <div class="field reveal-up d1">
+        <label class="field-label" for="cName">Full Name <span aria-hidden="true">*</span></label>
+        <input type="text" id="cName" name="name" class="field-input" placeholder="Your full name" autocomplete="name" aria-required="true" aria-describedby="cNameErr"/>
+        <span class="field-error" id="cNameErr" role="alert" aria-live="polite">Please enter your name.</span>
+      </div>
+
+      <div class="field reveal-up d2">
+        <label class="field-label" for="cEmail">Email Address <span aria-hidden="true">*</span></label>
+        <input type="email" id="cEmail" name="email" class="field-input" placeholder="your@email.com" autocomplete="email" aria-required="true" aria-describedby="cEmailErr"/>
+        <span class="field-error" id="cEmailErr" role="alert" aria-live="polite">Please enter a valid email.</span>
+      </div>
+
+      <div class="field reveal-up d3">
+        <label class="field-label" for="cSubject">Subject</label>
+        <input type="text" id="cSubject" name="subject" class="field-input" placeholder="What's this about?" autocomplete="off"/>
+      </div>
+
+      <div class="field reveal-up d4">
+        <label class="field-label" for="cMsg">Message <span aria-hidden="true">*</span></label>
+        <textarea id="cMsg" name="message" class="field-textarea" rows="5" placeholder="Tell me about your project or opportunity..." aria-required="true" aria-describedby="cMsgErr"></textarea>
+        <span class="field-error" id="cMsgErr" role="alert" aria-live="polite">Please enter a message (min. 10 characters).</span>
+      </div>
+
+      <button type="submit" class="submit-btn reveal-up d5" id="submitBtn" aria-label="Send message">
+        <span>Send Message →</span>
+      </button>
+
+      <div class="form-success-msg" id="formSuccess" role="status" aria-live="polite">
+        ✓ Message sent — I'll get back to you soon.
+      </div>
+
+    </form>
+  </div>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <span class="footer-copy">© 2025 Adrian Sarmiento</span>
+  <div class="footer-links">
+    <a href="about.html"    class="footer-link">About</a>
+    <a href="projects.html" class="footer-link">Work</a>
+    <a href="contact.html"  class="footer-link">Contact</a>
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
-</button>
+<button class="back-top" id="backTop" aria-label="Scroll to top">↑ Top</button>
 
 <script src="main.js"></script>
-<script>
-  // ── Form Validation ───────────────────────────────────────
-  const form = document.getElementById('contactForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const formSuccess = document.getElementById('formSuccess');
-
-  function showError(inputId, errorId, show) {
-    const input = document.getElementById(inputId);
-    const error = document.getElementById(errorId);
-    if (show) {
-      input.classList.add('error');
-      error.classList.add('visible');
-      input.setAttribute('aria-invalid', 'true');
-    } else {
-      input.classList.remove('error');
-      error.classList.remove('visible');
-      input.setAttribute('aria-invalid', 'false');
-    }
-  }
-
-  function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
-
-  // Live validation
-  document.getElementById('name').addEventListener('blur', function() {
-    showError('name', 'name-error', this.value.trim().length < 2);
-  });
-
-  document.getElementById('email').addEventListener('blur', function() {
-    showError('email', 'email-error', !validateEmail(this.value.trim()));
-  });
-
-  document.getElementById('message').addEventListener('blur', function() {
-    showError('message', 'message-error', this.value.trim().length < 20);
-  });
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    let valid = true;
-
-    if (name.length < 2) { showError('name', 'name-error', true); valid = false; }
-    else { showError('name', 'name-error', false); }
-
-    if (!validateEmail(email)) { showError('email', 'email-error', true); valid = false; }
-    else { showError('email', 'email-error', false); }
-
-    if (message.length < 20) { showError('message', 'message-error', true); valid = false; }
-    else { showError('message', 'message-error', false); }
-
-    if (!valid) return;
-
-    // Simulate send
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending...`;
-
-    setTimeout(() => {
-      formSuccess.classList.add('visible');
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message`;
-      form.reset();
-      setTimeout(() => formSuccess.classList.remove('visible'), 5000);
-    }, 1500);
-  });
-</script>
 </body>
 </html>

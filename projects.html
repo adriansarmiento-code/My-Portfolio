@@ -1,303 +1,251 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects — Adrian Sarmiento</title>
-  <meta name="description" content="Explore the projects built by Adrian Sarmiento — from e-commerce platforms to service marketplaces and full-stack web applications." />
-  <meta property="og:title" content="Projects — Adrian Sarmiento" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Work — Adrian Sarmiento</title>
+  <meta name="description" content="Projects by Adrian Sarmiento — full-stack web applications, e-commerce platforms, service marketplaces, and more."/>
+  <link rel="stylesheet" href="style.css"/>
   <style>
-    .projects-hero {
-      padding: 10rem 0 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .projects-hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 70%;
-      background: radial-gradient(ellipse 60% 70% at 50% 0%, var(--accent-glow), transparent);
-      pointer-events: none;
+    .work-hero {
+      padding: calc(var(--nav-h) + var(--gap-lg)) clamp(1.5rem,5vw,5rem) var(--gap-md);
+      border-bottom: 1px solid var(--line);
     }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 2rem;
+    .work-hero h1 {
+      font-family: var(--display);
+      font-size: var(--size-3xl);
+      line-height: 0.9;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
     }
 
-    .pcard {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: all var(--transition);
-    }
-
-    .pcard:hover {
-      border-color: var(--border-accent);
-      box-shadow: var(--shadow-glow);
-      transform: translateY(-6px);
-    }
-
-    .pcard-thumb {
-      height: 220px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
-      color: var(--text-muted);
-      font-size: 0.78rem;
-      gap: 0.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pcard-thumb::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--gradient-hero);
-      opacity: 0;
-      transition: opacity var(--transition);
-    }
-
-    .pcard:hover .pcard-thumb::after { opacity: 0.05; }
-
-    .pcard-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
-    .pcard-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
-    .pcard-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-    .pcard-desc {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
+    .work-hero-sub {
+      font-family: var(--mono);
+      font-size: var(--size-xs);
+      color: var(--ash);
+      margin-top: var(--gap-xs);
+      max-width: 52ch;
       line-height: 1.7;
-      flex: 1;
-      margin-bottom: 1.5rem;
     }
 
-    .pcard-footer {
-      display: flex;
+    .all-projects { padding: 0; }
+
+    .proj-strip-full {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
       align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid var(--border);
-      padding-top: 1.25rem;
-      gap: 1rem;
+      padding: var(--gap-sm) clamp(1.5rem, 5vw, 5rem);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+      transition: background var(--dur-mid) var(--ease-out), color var(--dur-mid);
+      text-decoration: none;
+      color: var(--ink);
     }
 
-    .pcard-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--accent);
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: gap var(--transition);
+    .proj-strip-full::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 0;
+      background: var(--ink);
+      z-index: 0;
+      transition: height var(--dur-mid) var(--ease-out);
     }
-    .pcard-link:hover { gap: 0.7rem; }
 
-    .pcard-type {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
+    .proj-strip-full:hover { color: var(--paper); }
+    .proj-strip-full:hover::before { height: 100%; }
+    .proj-strip-full:hover .pn { color: var(--accent); }
+    .proj-strip-full:hover .tag { border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.4); }
+    .proj-strip-full:hover .pa { transform: translate(5px, -5px); }
+
+    .pn {
+      font-family: var(--display);
+      font-size: var(--size-xl);
+      color: var(--cream);
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+      transition: color var(--dur-mid);
+    }
+
+    .pb {
+      position: relative;
+      z-index: 1;
+    }
+
+    .pt {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .pt-sub {
+      font-family: var(--mono);
+      font-size: var(--size-2xs);
+      color: var(--ash);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+
+    .pa {
+      font-size: 1.5rem;
+      position: relative;
+      z-index: 1;
+      transition: transform var(--dur-mid) var(--ease-spring);
+    }
+
+    .proj-type-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: var(--size-2xs);
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      color: var(--ash);
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .proj-strip-full { grid-template-columns: 60px 1fr; }
+      .pa { display: none; }
     }
   </style>
 </head>
 <body>
 
+<div class="cursor cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="page-overlay" aria-hidden="true"></div>
+<div class="progress-bar" aria-hidden="true"></div>
+
 <nav class="nav" role="navigation" aria-label="Main navigation">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="Adrian Sarmiento Home">
-      <div class="nav-logo-mark" aria-hidden="true">AS</div>
-      Adrian Sarmiento
-    </a>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">A<span>.</span>SARMIENTO</a>
     <ul class="nav-links" role="list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="index.html"    class="nav-link">Home</a></li>
+      <li><a href="about.html"    class="nav-link">About</a></li>
+      <li><a href="projects.html" class="nav-link">Work</a></li>
+      <li><a href="contact.html"  class="nav-link">Contact</a></li>
     </ul>
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
-      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <a href="contact.html" class="nav-cta">Let's Talk</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileDrawer">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Work</a>
+  <a href="contact.html">Contact</a>
 </div>
 
-<header class="projects-hero" role="banner">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">Portfolio</span>
-      <h1 style="margin-bottom:1.25rem;">All <span style="background:var(--gradient-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Projects</span></h1>
-      <p style="color:var(--text-secondary);max-width:55ch;font-size:clamp(1rem,1.8vw,1.15rem);">
-        From e-commerce platforms to service marketplaces — each project represents a real problem solved with thoughtful engineering and clean design.
-      </p>
-    </div>
-  </div>
+<header class="work-hero" role="banner">
+  <p class="mono-label reveal-up">Portfolio</p>
+  <h1 class="reveal-up d1">Selected<br>Work</h1>
+  <p class="work-hero-sub reveal-up d2">Five projects that demonstrate full-stack capability — from service marketplaces and e-commerce platforms to funeral home management systems and personal blogs.</p>
 </header>
 
-<section class="section" aria-labelledby="projects-list-heading">
-  <div class="container">
-    <h2 id="projects-list-heading" class="sr-only">Projects List</h2>
-    <div class="projects-grid" role="list">
+<section class="all-projects" aria-label="All projects">
 
-      <!-- Fixify -->
-      <article class="pcard reveal" role="listitem">
-        <div class="pcard-thumb" role="img" aria-label="Fixify project thumbnail placeholder">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          [PROJECT THUMBNAIL IMAGE]
-        </div>
-        <div class="pcard-body">
-          <div class="pcard-tags">
-            <span class="tag">Vue.js 3</span>
-            <span class="tag-purple tag">Node.js</span>
-            <span class="tag">MongoDB</span>
-            <span class="tag">JWT</span>
-          </div>
-          <h3 class="pcard-title">Fixify</h3>
-          <p class="pcard-desc">A service marketplace connecting customers with verified local providers in Angeles City. Features booking, real-time in-app notifications, messaging, and role-based JWT authentication across three service categories.</p>
-          <div class="pcard-footer">
-            <a href="project-fixify.html" class="pcard-link" aria-label="View Fixify case study">
-              Case Study
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <span class="pcard-type">Full-Stack · Web App</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Velasquez -->
-      <article class="pcard reveal reveal-delay-1" role="listitem">
-        <div class="pcard-thumb" role="img" aria-label="Velasquez Funeral Chapel project thumbnail placeholder">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          [PROJECT THUMBNAIL IMAGE]
-        </div>
-        <div class="pcard-body">
-          <div class="pcard-tags">
-            <span class="tag">Vue.js 3</span>
-            <span class="tag-purple tag">Express</span>
-            <span class="tag">MongoDB</span>
-            <span class="tag">Cloudinary</span>
-          </div>
-          <h3 class="pcard-title">Velasquez Funeral &amp; Chapel</h3>
-          <p class="pcard-desc">A comprehensive funeral home website with service packages, casket gallery, blog, and a full admin panel with TinyMCE, image uploads, and dynamic pricing — deployed on Hostinger + Render.com.</p>
-          <div class="pcard-footer">
-            <a href="project-velasquez.html" class="pcard-link" aria-label="View Velasquez Funeral Chapel case study">
-              Case Study
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <span class="pcard-type">Full-Stack · Business Site</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- FurnishHaven -->
-      <article class="pcard reveal reveal-delay-2" role="listitem">
-        <div class="pcard-thumb" role="img" aria-label="FurnishHaven project thumbnail placeholder">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          [PROJECT THUMBNAIL IMAGE]
-        </div>
-        <div class="pcard-body">
-          <div class="pcard-tags">
-            <span class="tag">PHP</span>
-            <span class="tag-purple tag">JavaScript</span>
-            <span class="tag">CSS</span>
-          </div>
-          <h3 class="pcard-title">FurnishHaven</h3>
-          <p class="pcard-desc">An e-commerce platform bridging customers and furniture retailers. Offers a seamless shopping experience with competitive pricing, wide product range, and excellent customer service features.</p>
-          <div class="pcard-footer">
-            <a href="project-furnishhaven.html" class="pcard-link" aria-label="View FurnishHaven case study">
-              Case Study
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <span class="pcard-type">E-Commerce · PHP</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Burgify -->
-      <article class="pcard reveal reveal-delay-3" role="listitem">
-        <div class="pcard-thumb" role="img" aria-label="Burgify project thumbnail placeholder">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          [PROJECT THUMBNAIL IMAGE]
-        </div>
-        <div class="pcard-body">
-          <div class="pcard-tags">
-            <span class="tag">HTML</span>
-            <span class="tag-purple tag">CSS</span>
-          </div>
-          <h3 class="pcard-title">Burgify</h3>
-          <p class="pcard-desc">A static e-commerce website dedicated to burgers. Built with clean HTML and CSS, showcasing strong front-end fundamentals and thoughtful layout design.</p>
-          <div class="pcard-footer">
-            <a href="project-burgify.html" class="pcard-link" aria-label="View Burgify case study">
-              Case Study
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <span class="pcard-type">Front-End · Static</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- The Hustle Flow -->
-      <article class="pcard reveal reveal-delay-1" role="listitem">
-        <div class="pcard-thumb" role="img" aria-label="The Hustle Flow blog project thumbnail placeholder">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.25" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          [PROJECT THUMBNAIL IMAGE]
-        </div>
-        <div class="pcard-body">
-          <div class="pcard-tags">
-            <span class="tag">WordPress</span>
-          </div>
-          <h3 class="pcard-title">The Hustle Flow</h3>
-          <p class="pcard-desc">A WordPress blog focused on growth, perspective, and self-improvement. Features deep-dive articles, quick tips, motivation content, and life hacks to help readers think bigger and do better.</p>
-          <div class="pcard-footer">
-            <a href="project-hustleflow.html" class="pcard-link" aria-label="View The Hustle Flow case study">
-              Case Study
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <span class="pcard-type">Blog · WordPress</span>
-          </div>
-        </div>
-      </article>
-
+  <a href="project-fixify.html" class="proj-strip-full reveal-up" aria-label="Fixify — Service Marketplace">
+    <div class="pn" aria-hidden="true">01</div>
+    <div class="pb">
+      <div class="proj-type-badge">Full-Stack · Web App</div>
+      <div class="pt">Fixify</div>
+      <p class="pt-sub">Service marketplace · Vue.js · Node.js · MongoDB · JWT</p>
+      <div class="proj-tags">
+        <span class="tag">Vue.js 3</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">JWT Auth</span>
+        <span class="tag">Express.js</span>
+      </div>
     </div>
-  </div>
+    <div class="pa" aria-hidden="true">↗</div>
+  </a>
+
+  <a href="project-velasquez.html" class="proj-strip-full reveal-up d1" aria-label="Velasquez Funeral and Chapel — Business Website">
+    <div class="pn" aria-hidden="true">02</div>
+    <div class="pb">
+      <div class="proj-type-badge">Full-Stack · Business Website</div>
+      <div class="pt">Velasquez Funeral &amp; Chapel</div>
+      <p class="pt-sub">Funeral home platform · Vue.js · Express · Cloudinary · velasquezfuneral.com</p>
+      <div class="proj-tags">
+        <span class="tag">Vue.js 3</span>
+        <span class="tag">Express</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">Cloudinary</span>
+        <span class="tag">TinyMCE</span>
+      </div>
+    </div>
+    <div class="pa" aria-hidden="true">↗</div>
+  </a>
+
+  <a href="project-furnishhaven.html" class="proj-strip-full reveal-up d2" aria-label="FurnishHaven — E-Commerce Platform">
+    <div class="pn" aria-hidden="true">03</div>
+    <div class="pb">
+      <div class="proj-type-badge">E-Commerce · PHP</div>
+      <div class="pt">FurnishHaven</div>
+      <p class="pt-sub">Furniture retail platform · PHP · JavaScript · CSS</p>
+      <div class="proj-tags">
+        <span class="tag">PHP</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">CSS</span>
+        <span class="tag">MySQL</span>
+      </div>
+    </div>
+    <div class="pa" aria-hidden="true">↗</div>
+  </a>
+
+  <a href="project-burgify.html" class="proj-strip-full reveal-up d3" aria-label="Burgify — Static E-Commerce">
+    <div class="pn" aria-hidden="true">04</div>
+    <div class="pb">
+      <div class="proj-type-badge">Front-End · Static</div>
+      <div class="pt">Burgify</div>
+      <p class="pt-sub">Burger e-commerce · HTML · CSS</p>
+      <div class="proj-tags">
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">Responsive Design</span>
+      </div>
+    </div>
+    <div class="pa" aria-hidden="true">↗</div>
+  </a>
+
+  <a href="project-hustleflow.html" class="proj-strip-full reveal-up d4" aria-label="The Hustle Flow — WordPress Blog">
+    <div class="pn" aria-hidden="true">05</div>
+    <div class="pb">
+      <div class="proj-type-badge">Blog · WordPress</div>
+      <div class="pt">The Hustle Flow</div>
+      <p class="pt-sub">Self-improvement blog · WordPress · SEO · Content Strategy</p>
+      <div class="proj-tags">
+        <span class="tag">WordPress</span>
+        <span class="tag">SEO</span>
+        <span class="tag">Content Strategy</span>
+      </div>
+    </div>
+    <div class="pa" aria-hidden="true">↗</div>
+  </a>
+
 </section>
 
-<footer class="footer" role="contentinfo">
-  <div class="container footer-inner">
-    <span>© 2025 Adrian Sarmiento. All rights reserved.</span>
-    <div class="footer-links">
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </div>
+<footer class="site-footer" role="contentinfo">
+  <span class="footer-copy">© 2025 Adrian Sarmiento</span>
+  <div class="footer-links">
+    <a href="about.html"    class="footer-link">About</a>
+    <a href="projects.html" class="footer-link">Work</a>
+    <a href="contact.html"  class="footer-link">Contact</a>
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
-</button>
-
+<button class="back-top" id="backTop" aria-label="Scroll to top">↑ Top</button>
 <script src="main.js"></script>
 </body>
 </html>

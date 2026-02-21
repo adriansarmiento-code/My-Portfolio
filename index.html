@@ -1,603 +1,589 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Adrian Sarmiento — Full-Stack Web Developer</title>
-  <meta name="description" content="Adrian Sarmiento is an IT student and full-stack web developer from Angeles City, Pampanga, specializing in responsive, user-centered web applications." />
-  <meta name="keywords" content="Adrian Sarmiento, web developer, full-stack, React, Vue, Node.js, Philippines" />
-  <meta property="og:title" content="Adrian Sarmiento — Full-Stack Web Developer" />
-  <meta property="og:description" content="IT student specializing in web development. Building responsive, high-performance web applications." />
-  <meta property="og:type" content="website" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Adrian Sarmiento is an IT student and full-stack web developer from Angeles City, Pampanga, crafting responsive, high-performance web applications."/>
+  <meta property="og:title" content="Adrian Sarmiento — Full-Stack Web Developer"/>
+  <meta property="og:description" content="IT student specializing in web development. Building the web of tomorrow."/>
+  <meta property="og:type" content="website"/>
+  <link rel="stylesheet" href="style.css"/>
   <style>
     /* ── Hero ─────────────────────────────────────────────── */
     .hero {
+      position: relative;
       min-height: 100vh;
       display: flex;
-      align-items: center;
-      padding-top: 68px;
-      position: relative;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 clamp(1.5rem, 5vw, 5rem);
+      padding-bottom: var(--gap-md);
       overflow: hidden;
+      border-bottom: 1px solid var(--line);
     }
 
-    .hero-bg {
+    .hero-bg-text {
       position: absolute;
-      inset: 0;
+      top: 50%;
+      left: -0.02em;
+      transform: translateY(-50%);
+      font-family: var(--display);
+      font-size: clamp(22vw, 28vw, 32vw);
+      line-height: 0.85;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--line);
       pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+      z-index: 0;
     }
 
-    .hero-orb {
+    .hero-top {
       position: absolute;
+      top: calc(var(--nav-h) + var(--gap-xs));
+      left: clamp(1.5rem, 5vw, 5rem);
+      right: clamp(1.5rem, 5vw, 5rem);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      z-index: 2;
+    }
+
+    .hero-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: var(--size-2xs);
+      letter-spacing: 0.1em;
+      color: var(--ash);
+    }
+
+    .status-dot {
+      width: 6px; height: 6px;
+      background: #00c853;
       border-radius: 50%;
-      filter: blur(80px);
-      animation: pulse-glow 4s ease-in-out infinite;
+      animation: pulse-status 2s ease-in-out infinite;
     }
 
-    .hero-orb-1 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(99,179,255,0.12), transparent 70%);
-      top: -100px; right: -100px;
-      animation-delay: 0s;
+    @keyframes pulse-status {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.7); }
     }
 
-    .hero-orb-2 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(167,139,250,0.1), transparent 70%);
-      bottom: 0; left: -100px;
-      animation-delay: 2s;
+    .hero-coords {
+      font-family: var(--mono);
+      font-size: var(--size-2xs);
+      color: var(--ash);
+      text-align: right;
+      letter-spacing: 0.06em;
     }
 
-    .hero-grid-lines {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
-      opacity: 0.3;
-    }
-
-    .hero-content {
+    .hero-main {
       position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 4rem;
-      width: 100%;
+      z-index: 2;
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.45rem 1rem;
-      background: var(--accent-glow);
-      border: 1px solid var(--border-accent);
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--accent);
-      margin-bottom: 1.75rem;
-      animation: fadeIn 0.6s ease both;
-    }
-
-    .hero-badge .dot {
-      width: 7px; height: 7px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse-glow 2s ease-in-out infinite;
-    }
-
-    .hero-title {
-      animation: fadeUp 0.7s ease 0.1s both;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-title .gradient-text {
-      background: var(--gradient-hero);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-desc {
-      color: var(--text-secondary);
-      font-size: clamp(1rem, 1.8vw, 1.15rem);
-      line-height: 1.75;
-      max-width: 48ch;
-      margin-bottom: 2.5rem;
-      animation: fadeUp 0.7s ease 0.2s both;
-    }
-
-    .hero-cta {
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: var(--size-2xs);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-bottom: var(--gap-xs);
       display: flex;
       align-items: center;
       gap: 1rem;
-      flex-wrap: wrap;
-      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--ash);
+    }
+
+    .hero-name {
+      font-family: var(--display);
+      font-size: var(--size-4xl);
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: var(--gap-xs);
+    }
+
+    .hero-name em {
+      font-style: italic;
+      font-family: var(--serif);
+      color: var(--ash);
+      font-size: 0.7em;
+      vertical-align: baseline;
+      text-transform: none;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--gap-sm);
+      position: relative;
+      z-index: 2;
+      margin-top: var(--gap-sm);
+    }
+
+    .hero-desc {
+      font-family: var(--mono);
+      font-size: var(--size-xs);
+      color: var(--ash);
+      max-width: 36ch;
+      line-height: 1.75;
     }
 
     .hero-stats {
       display: flex;
-      gap: 2.5rem;
-      margin-top: 3rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid var(--border);
-      animation: fadeUp 0.7s ease 0.4s both;
+      gap: var(--gap-sm);
+      align-items: flex-end;
     }
 
-    .stat-value {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 800;
-      background: var(--gradient-hero);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .stat-val {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1;
+      display: block;
     }
 
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .stat-lbl {
+      font-family: var(--mono);
+      font-size: var(--size-2xs);
+      color: var(--ash);
+      letter-spacing: 0.08em;
+      display: block;
       margin-top: 0.2rem;
     }
 
-    .hero-visual {
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: var(--gap-sm);
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      animation: fadeIn 0.8s ease 0.3s both;
-      position: relative;
+      gap: 0.0rem;
+      z-index: 2;
     }
 
-    .profile-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: 2rem;
-      width: 300px;
-      text-align: center;
-      position: relative;
-      animation: float 6s ease-in-out infinite;
-      box-shadow: var(--shadow-card);
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--ash), transparent);
+      animation: scroll-drop 2s ease-in-out infinite;
     }
 
-    .profile-img-wrap {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: var(--gradient-hero);
-      padding: 3px;
-      margin: 0 auto 1.25rem;
+    @keyframes scroll-drop {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
     }
 
-    .profile-img-inner {
+    .scroll-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ash);
+      writing-mode: horizontal-tb;
+    }
+
+    /* ── Ticker ───────────────────────────────────────────── */
+    /* (uses global .ticker-wrap styles) */
+
+    /* ── Projects Section ─────────────────────────────────── */
+    .projects-section {
+      padding: var(--gap-lg) 0;
+    }
+
+    .projects-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 5rem);
+      margin-bottom: var(--gap-sm);
+    }
+
+    .projects-header h2 {
+      font-family: var(--display);
+      font-size: var(--size-2xl);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .view-all-link {
+      font-family: var(--mono);
+      font-size: var(--size-2xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ash);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color var(--dur-fast);
+    }
+
+    .view-all-link:hover { color: var(--ink); }
+
+    /* ── About teaser ─────────────────────────────────────── */
+    .about-teaser {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+    }
+
+    .about-left {
+      padding: var(--gap-lg) clamp(1.5rem, 5vw, 5rem);
+      border-right: 1px solid var(--line);
+    }
+
+    .about-right {
+      padding: var(--gap-lg) clamp(1.5rem, 5vw, 5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .about-photo {
       width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: var(--bg-card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      font-size: 0.7rem;
-      text-align: center;
+      aspect-ratio: 4/5;
+      background: var(--cream);
+      margin-bottom: var(--gap-sm);
+      position: relative;
       overflow: hidden;
     }
 
-    .profile-name {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 0.25rem;
+    .about-photo-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      font-family: var(--mono);
+      font-size: var(--size-2xs);
+      color: var(--ash);
+      letter-spacing: 0.08em;
     }
 
-    .profile-role {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: 1.25rem;
+    .about-big-text {
+      font-family: var(--display);
+      font-size: var(--size-2xl);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: var(--gap-sm);
     }
 
-    .profile-tags {
+    .about-body {
+      font-family: var(--mono);
+      font-size: var(--size-xs);
+      color: var(--ash);
+      line-height: 1.85;
+      max-width: 48ch;
+      margin-bottom: var(--gap-sm);
+    }
+
+    /* ── Awards row ───────────────────────────────────────── */
+    .awards-row {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      justify-content: center;
-    }
-
-    .floating-badge {
-      position: absolute;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 0.6rem 0.9rem;
-      font-size: 0.78rem;
-      font-weight: 500;
-      display: flex;
+      padding: var(--gap-sm) clamp(1.5rem, 5vw, 5rem);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
       align-items: center;
-      gap: 0.4rem;
-      white-space: nowrap;
-      box-shadow: var(--shadow-card);
     }
 
-    .floating-badge.top-left { top: -20px; left: -40px; animation: float 5s ease-in-out 1s infinite; }
-    .floating-badge.bottom-right { bottom: -15px; right: -30px; animation: float 5s ease-in-out 2s infinite; }
-
-    /* ── Featured Projects ────────────────────────────────── */
-    .featured-section { background: var(--bg-secondary); }
-
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: all var(--transition);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      border-color: var(--border-accent);
-      box-shadow: var(--shadow-glow);
-      transform: translateY(-6px);
-    }
-
-    .project-thumb {
-      height: 220px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-thumb-img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform var(--transition-slow);
-    }
-
-    .project-card:hover .project-thumb-img { transform: scale(1.05); }
-
-    .project-thumb-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
-      color: var(--text-muted);
-      gap: 0.5rem;
-      font-size: 0.78rem;
-    }
-
-    .project-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
-    .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-
-    .project-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-
-    .project-desc {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.7;
-      flex: 1;
-      margin-bottom: 1.5rem;
-    }
-
-    .project-link {
-      align-self: flex-start;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: gap var(--transition);
-    }
-
-    .project-link:hover { gap: 0.7rem; }
-
-    /* ── Skills Teaser ────────────────────────────────────── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-      gap: 1rem;
-    }
-
-    .skill-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.1rem;
-      text-align: center;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      transition: all var(--transition);
-    }
-
-    .skill-item:hover {
-      border-color: var(--border-accent);
-      color: var(--accent);
-      background: var(--accent-glow);
-      transform: translateY(-3px);
-    }
-
-    .skill-icon {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    @media (max-width: 900px) {
-      .hero-content { grid-template-columns: 1fr; gap: 3rem; }
-      .hero-visual { display: none; }
+    .awards-label {
+      font-family: var(--mono);
+      font-size: var(--size-2xs);
+      color: var(--ash);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-right: 1rem;
     }
 
     @media (max-width: 768px) {
-      .hero-stats { gap: 1.5rem; }
+      .hero-name { font-size: clamp(4rem, 18vw, 8rem); }
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .about-teaser { grid-template-columns: 1fr; }
+      .about-left { border-right: none; border-bottom: 1px solid var(--line); }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
     }
   </style>
 </head>
 <body>
 
+<!-- Cursor -->
+<div class="cursor cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+<!-- Page transition overlay -->
+<div class="page-overlay" aria-hidden="true"></div>
+
+<!-- Scroll progress -->
+<div class="progress-bar" aria-hidden="true"></div>
+
 <!-- ── Navigation ─────────────────────────────────────────── -->
 <nav class="nav" role="navigation" aria-label="Main navigation">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="Adrian Sarmiento Home">
-      <div class="nav-logo-mark" aria-hidden="true">AS</div>
-      Adrian Sarmiento
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Adrian Sarmiento — Home">
+      A<span>.</span>SARMIENTO
     </a>
 
     <ul class="nav-links" role="list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="index.html"   class="nav-link">Home</a></li>
+      <li><a href="about.html"   class="nav-link">About</a></li>
+      <li><a href="projects.html" class="nav-link">Work</a></li>
+      <li><a href="contact.html"  class="nav-link">Contact</a></li>
     </ul>
 
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <!-- Icon injected by JS -->
-      </button>
-      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <a href="contact.html" class="nav-cta">Let's Talk</a>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileDrawer">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+<!-- Mobile drawer -->
+<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Work</a>
+  <a href="contact.html">Contact</a>
 </div>
 
 <!-- ── Hero ───────────────────────────────────────────────── -->
 <section class="hero" aria-label="Introduction">
-  <div class="hero-bg">
-    <div class="hero-grid-lines" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+
+  <div class="hero-bg-text" aria-hidden="true" data-parallax="0.15">WEB</div>
+
+  <!-- Top row -->
+  <div class="hero-top" aria-hidden="true">
+    <div class="hero-status">
+      <span class="status-dot"></span>
+      Available for opportunities
+    </div>
+    <div class="hero-coords">
+      15°8′N 120°35′E<br>
+      Angeles City, PH
+    </div>
   </div>
 
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-left">
-        <div class="hero-badge" aria-label="Status: Available for opportunities">
-          <span class="dot" aria-hidden="true"></span>
-          Available for opportunities
-        </div>
+  <!-- Name block -->
+  <div class="hero-main">
+    <p class="hero-eyebrow">Full-Stack Web Developer · Est. 2023</p>
+    <h1 class="hero-name" aria-label="Adrian Sarmiento">
+      Adrian
+      <br>Sarmiento
+    </h1>
+  </div>
 
-        <h1 class="hero-title">
-          Building the
-          <span class="gradient-text">Web of<br>Tomorrow</span>
-        </h1>
+  <!-- Bottom row -->
+  <div class="hero-bottom">
+    <p class="hero-desc reveal-up">
+      IT student at Holy Angel University crafting responsive, user-centered, high-performance web applications — front to back.
+    </p>
 
-        <p class="hero-desc">
-          I'm <strong>Adrian Sarmiento</strong>, an IT student from Angeles City, Pampanga, specializing in full-stack web development. I craft responsive, user-centered applications that blend clean design with high performance.
-        </p>
-
-        <div class="hero-cta">
-          <a href="projects.html" class="btn btn-primary" aria-label="View my projects">
-            View Projects
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="contact.html" class="btn btn-outline">Get In Touch</a>
-        </div>
-
-        <div class="hero-stats" aria-label="Quick statistics">
-          <div>
-            <div class="stat-value" aria-label="2 plus years of experience">2+</div>
-            <div class="stat-label">Years Coding</div>
-          </div>
-          <div>
-            <div class="stat-value" aria-label="5 projects">5+</div>
-            <div class="stat-label">Projects Built</div>
-          </div>
-          <div>
-            <div class="stat-value" aria-label="9 certifications">9</div>
-            <div class="stat-label">Certifications</div>
-          </div>
-        </div>
+    <div class="hero-stats reveal-up d2" aria-label="Quick statistics">
+      <div>
+        <span class="stat-val">2+</span>
+        <span class="stat-lbl">Years coding</span>
       </div>
-
-      <!-- Hero visual card -->
-      <div class="hero-visual" aria-hidden="true">
-        <div class="floating-badge top-left">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          Full-Stack Dev
-        </div>
-
-        <div class="profile-card">
-          <div class="profile-img-wrap">
-            <div class="profile-img-inner">
-              [PROFILE IMAGE]
-            </div>
-          </div>
-          <div class="profile-name">Adrian Sarmiento</div>
-          <div class="profile-role">IT Student · Web Developer</div>
-          <div class="profile-tags">
-            <span class="tag">Vue.js</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">React</span>
-            <span class="tag-purple tag">MongoDB</span>
-          </div>
-        </div>
-
-        <div class="floating-badge bottom-right">
-          🎓 Dean's List · President's List
-        </div>
+      <div>
+        <span class="stat-val">5+</span>
+        <span class="stat-lbl">Projects shipped</span>
+      </div>
+      <div>
+        <span class="stat-val">12</span>
+        <span class="stat-lbl">Certifications</span>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ── Featured Projects ─────────────────────────────────── -->
-<section class="section featured-section" aria-labelledby="featured-title">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">Selected Work</span>
-      <h2 class="section-title" id="featured-title">Featured Projects</h2>
-      <p class="section-subtitle">A selection of projects that demonstrate my full-stack capabilities, from e-commerce platforms to service marketplace applications.</p>
-    </div>
-
-    <div class="grid-3" role="list">
-
-      <!-- Project 1 -->
-      <article class="project-card reveal reveal-delay-1" role="listitem">
-        <div class="project-thumb">
-          <div class="project-thumb-placeholder" role="img" aria-label="Fixify project thumbnail placeholder">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            [PROJECT THUMBNAIL IMAGE]
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag">Vue.js</span>
-            <span class="tag-purple tag">Node.js</span>
-            <span class="tag">MongoDB</span>
-          </div>
-          <h3 class="project-title">Fixify</h3>
-          <p class="project-desc">A web-based service marketplace connecting customers with verified local service providers in Angeles City. Features booking, real-time notifications, and JWT authentication.</p>
-          <a href="project-fixify.html" class="project-link" aria-label="View Fixify project details">
-            View Case Study
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <!-- Project 2 -->
-      <article class="project-card reveal reveal-delay-2" role="listitem">
-        <div class="project-thumb">
-          <div class="project-thumb-placeholder" role="img" aria-label="Velasquez Funeral Chapel project thumbnail placeholder">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            [PROJECT THUMBNAIL IMAGE]
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag">Vue.js</span>
-            <span class="tag-purple tag">Express</span>
-            <span class="tag">Cloudinary</span>
-          </div>
-          <h3 class="project-title">Velasquez Funeral &amp; Chapel</h3>
-          <p class="project-desc">A full-stack funeral home website for a family business serving since 1970. Includes service packages, casket gallery, admin panel with rich text editing, and SEO optimization.</p>
-          <a href="project-velasquez.html" class="project-link" aria-label="View Velasquez Funeral Chapel project details">
-            View Case Study
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <!-- Project 3 -->
-      <article class="project-card reveal reveal-delay-3" role="listitem">
-        <div class="project-thumb">
-          <div class="project-thumb-placeholder" role="img" aria-label="FurnishHaven project thumbnail placeholder">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            [PROJECT THUMBNAIL IMAGE]
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="tag">PHP</span>
-            <span class="tag-purple tag">JavaScript</span>
-            <span class="tag">CSS</span>
-          </div>
-          <h3 class="project-title">FurnishHaven</h3>
-          <p class="project-desc">An e-commerce platform bridging customers and furniture retailers, offering a wide product range, competitive pricing, and excellent customer service experience.</p>
-          <a href="project-furnishhaven.html" class="project-link" aria-label="View FurnishHaven project details">
-            View Case Study
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </article>
-
-    </div>
-
-    <div class="reveal" style="text-align:center;margin-top:3rem;">
-      <a href="projects.html" class="btn btn-outline">View All Projects</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── Skills Teaser ─────────────────────────────────────── -->
-<section class="section" aria-labelledby="skills-title">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">Expertise</span>
-      <h2 class="section-title" id="skills-title">Technical Skills</h2>
-      <p class="section-subtitle">Comfortable across the full stack — from designing interfaces to architecting APIs and managing databases.</p>
-    </div>
-
-    <div class="skills-grid" role="list" aria-label="Technical skills">
-      <div class="skill-item reveal reveal-delay-1" role="listitem"><div class="skill-icon" aria-hidden="true">⚡</div>JavaScript</div>
-      <div class="skill-item reveal reveal-delay-1" role="listitem"><div class="skill-icon" aria-hidden="true">💚</div>Vue.js</div>
-      <div class="skill-item reveal reveal-delay-2" role="listitem"><div class="skill-icon" aria-hidden="true">⚛️</div>React</div>
-      <div class="skill-item reveal reveal-delay-2" role="listitem"><div class="skill-icon" aria-hidden="true">🟢</div>Node.js</div>
-      <div class="skill-item reveal reveal-delay-3" role="listitem"><div class="skill-icon" aria-hidden="true">🐘</div>PHP</div>
-      <div class="skill-item reveal reveal-delay-3" role="listitem"><div class="skill-icon" aria-hidden="true">🐍</div>Python</div>
-      <div class="skill-item reveal reveal-delay-1" role="listitem"><div class="skill-icon" aria-hidden="true">🍃</div>MongoDB</div>
-      <div class="skill-item reveal reveal-delay-2" role="listitem"><div class="skill-icon" aria-hidden="true">🗄️</div>MySQL</div>
-      <div class="skill-item reveal reveal-delay-3" role="listitem"><div class="skill-icon" aria-hidden="true">🎨</div>Figma</div>
-      <div class="skill-item reveal reveal-delay-1" role="listitem"><div class="skill-icon" aria-hidden="true">🌊</div>Tailwind</div>
-      <div class="skill-item reveal reveal-delay-2" role="listitem"><div class="skill-icon" aria-hidden="true">🔷</div>Angular</div>
-      <div class="skill-item reveal reveal-delay-3" role="listitem"><div class="skill-icon" aria-hidden="true">☕</div>Java</div>
-    </div>
-
-    <div class="reveal" style="text-align:center;margin-top:2.5rem;">
-      <a href="about.html" class="btn btn-ghost" aria-label="See full skills breakdown on About page">
-        See Full Breakdown
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <div class="reveal-up d3">
+      <a href="projects.html" class="mag-btn mag-btn-dark" aria-label="View projects">
+        <span>View Work</span>
+        <svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
       </a>
     </div>
   </div>
+
+  <!-- Scroll hint -->
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span class="scroll-label">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
 </section>
 
-<!-- ── Footer ─────────────────────────────────────────────── -->
-<footer class="footer" role="contentinfo">
-  <div class="container footer-inner">
-    <span>© 2025 Adrian Sarmiento. All rights reserved.</span>
-    <div class="footer-links">
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
+<!-- ── Ticker ──────────────────────────────────────────────── -->
+<div class="ticker-wrap" aria-hidden="true" role="presentation">
+  <div class="ticker-track">
+    <!-- items duplicated for infinite scroll -->
+    <span class="ticker-item"><span class="ticker-dot"></span>Vue.js</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Node.js</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>React</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>MongoDB</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Express</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>PHP</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>JavaScript</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Figma</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Tailwind</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>MySQL</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>JWT Auth</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>REST APIs</span>
+    <!-- duplicate -->
+    <span class="ticker-item"><span class="ticker-dot"></span>Vue.js</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Node.js</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>React</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>MongoDB</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Express</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>PHP</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>JavaScript</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Figma</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Tailwind</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>MySQL</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>JWT Auth</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>REST APIs</span>
+  </div>
+</div>
+
+<!-- ── Projects ────────────────────────────────────────────── -->
+<section class="projects-section" aria-labelledby="featured-heading">
+  <div class="projects-header">
+    <div>
+      <p class="mono-label reveal-up">Selected Work</p>
+      <h2 id="featured-heading" class="reveal-up d1">Featured<br>Projects</h2>
     </div>
+    <a href="projects.html" class="view-all-link reveal-up d2" aria-label="View all projects">
+      All Projects
+      <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
+    </a>
+  </div>
+
+  <div class="section-line" style="margin:0"></div>
+
+  <!-- Project strips -->
+  <a href="project-fixify.html" class="proj-strip reveal-up" role="article" aria-label="Fixify project">
+    <div class="proj-num" aria-hidden="true">01</div>
+    <div class="proj-body">
+      <div class="proj-title">Fixify</div>
+      <div class="proj-tags">
+        <span class="tag">Vue.js 3</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">JWT</span>
+      </div>
+    </div>
+    <div class="proj-arrow" aria-hidden="true">↗</div>
+  </a>
+
+  <a href="project-velasquez.html" class="proj-strip reveal-up d1" role="article" aria-label="Velasquez Funeral and Chapel project">
+    <div class="proj-num" aria-hidden="true">02</div>
+    <div class="proj-body">
+      <div class="proj-title">Velasquez Funeral &amp; Chapel</div>
+      <div class="proj-tags">
+        <span class="tag">Vue.js 3</span>
+        <span class="tag">Express</span>
+        <span class="tag">Cloudinary</span>
+        <span class="tag">MongoDB</span>
+      </div>
+    </div>
+    <div class="proj-arrow" aria-hidden="true">↗</div>
+  </a>
+
+  <a href="project-furnishhaven.html" class="proj-strip reveal-up d2" role="article" aria-label="FurnishHaven e-commerce project">
+    <div class="proj-num" aria-hidden="true">03</div>
+    <div class="proj-body">
+      <div class="proj-title">FurnishHaven</div>
+      <div class="proj-tags">
+        <span class="tag">PHP</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">CSS</span>
+      </div>
+    </div>
+    <div class="proj-arrow" aria-hidden="true">↗</div>
+  </a>
+
+  <a href="projects.html" class="proj-strip reveal-up d3" role="article" aria-label="View all projects">
+    <div class="proj-num" aria-hidden="true" style="color:var(--ash);font-size:var(--size-lg);">+ more</div>
+    <div class="proj-body">
+      <div class="proj-title" style="color:var(--ash);">Burgify &amp; The Hustle Flow</div>
+      <div class="proj-tags">
+        <span class="tag">HTML/CSS</span>
+        <span class="tag">WordPress</span>
+      </div>
+    </div>
+    <div class="proj-arrow" aria-hidden="true" style="color:var(--ash);">↗</div>
+  </a>
+
+</section>
+
+<!-- ── About Teaser ────────────────────────────────────────── -->
+<section class="about-teaser" aria-labelledby="about-teaser-heading">
+
+  <div class="about-left">
+    <div class="about-photo parallax-wrap" aria-label="Profile photo placeholder">
+      <div class="img-ph" style="position:absolute;inset:0;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M3 21a9 9 0 0 1 18 0"/></svg>
+        [PROFILE IMAGE]
+      </div>
+      <span class="about-photo-label">Adrian Sarmiento · 2024</span>
+    </div>
+  </div>
+
+  <div class="about-right">
+    <div>
+      <p class="mono-label reveal-up">About</p>
+      <h2 id="about-teaser-heading" class="about-big-text reveal-up d1">
+        Building with<br>
+        <span class="serif-italic">intention.</span>
+      </h2>
+    </div>
+
+    <div>
+      <p class="about-body reveal-up d2">
+        IT student at Holy Angel University, majoring in Web Development. Consistent Dean's List awardee — President's List 1st Year 2nd Sem. I build full-stack applications that prioritize clean design, seamless functionality, and real-world impact.
+      </p>
+      <a href="about.html" class="mag-btn mag-btn-outline reveal-up d3" aria-label="Learn more about Adrian">
+        <span>More About Me</span>
+        <svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ── Awards strip ────────────────────────────────────────── -->
+<div class="awards-row" aria-label="Academic awards">
+  <span class="awards-label">Awards</span>
+  <span class="award-tag award-tag-accent">🥇 President's List — AY 2023-24 S2</span>
+  <span class="award-tag">🏆 Dean's List — AY 2023-24 S1</span>
+  <span class="award-tag">🏆 Dean's List — AY 2024-25 S1</span>
+  <span class="award-tag">🏆 Dean's List — AY 2024-25 S2</span>
+</div>
+
+<!-- ── Footer ──────────────────────────────────────────────── -->
+<footer class="site-footer" role="contentinfo">
+  <span class="footer-copy">© 2025 Adrian Sarmiento</span>
+  <div class="footer-links">
+    <a href="about.html"   class="footer-link">About</a>
+    <a href="projects.html" class="footer-link">Work</a>
+    <a href="contact.html"  class="footer-link">Contact</a>
   </div>
 </footer>
 
-<!-- Scroll to top -->
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
-</button>
+<button class="back-top" id="backTop" aria-label="Scroll to top">↑ Top</button>
 
 <script src="main.js"></script>
 </body>

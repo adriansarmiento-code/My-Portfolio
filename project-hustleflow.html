@@ -1,125 +1,67 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Hustle Flow — Adrian Sarmiento</title>
-  <meta name="description" content="The Hustle Flow: A WordPress blog focused on growth, self-improvement, motivation, and practical life advice." />
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .project-detail-hero { padding: 10rem 0 5rem; position: relative; overflow: hidden; }
-    .project-detail-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 70%; background: radial-gradient(ellipse 60% 70% at 50% 0%, var(--accent-glow), transparent); pointer-events: none; }
-    .project-meta { display: flex; flex-wrap: wrap; gap: 2.5rem; margin: 3rem 0; padding: 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); }
-    .meta-item-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem; }
-    .meta-item-value { font-size: 0.9rem; font-weight: 500; }
-    .screenshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 2rem 0; }
-    .screenshot-grid .wide { grid-column: 1 / -1; }
-    .screenshot { border-radius: var(--radius-md); aspect-ratio: 16/9; background: var(--bg-secondary); border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.78rem; gap: 0.5rem; }
-    .tech-stack { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0; }
-    .tech-pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); }
-    .action-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
-    .prose p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
-    .prose h3 { font-size: 1.2rem; margin: 2.5rem 0 1rem; }
-    @media (max-width: 768px) { .screenshot-grid { grid-template-columns: 1fr; } }
-  </style>
+  <meta name="description" content="The Hustle Flow: A WordPress blog focused on growth, self-improvement, and motivation."/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+<div class="cursor cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="page-overlay" aria-hidden="true"></div>
+<div class="progress-bar" aria-hidden="true"></div>
 <nav class="nav" role="navigation" aria-label="Main navigation">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="Adrian Sarmiento Home"><div class="nav-logo-mark" aria-hidden="true">AS</div>Adrian Sarmiento</a>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">A<span>.</span>SARMIENTO</a>
     <ul class="nav-links" role="list">
-      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li>
+      <li><a href="index.html" class="nav-link">Home</a></li><li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="projects.html" class="nav-link">Work</a></li><li><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
-      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
-    </div>
+    <a href="contact.html" class="nav-cta">Let's Talk</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileDrawer"><span></span><span></span><span></span></button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
-  <ul>
-    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
-    <li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li>
-  </ul>
+<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-label="Mobile navigation">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Work</a><a href="contact.html">Contact</a>
 </div>
-
 <main>
-  <section class="project-detail-hero">
-    <div class="container">
-      <a href="projects.html" class="back-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All Projects</a>
-      <div class="reveal" style="max-width:760px;">
-        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.25rem;"><span class="tag">WordPress</span><span class="tag-purple tag">Blog</span></div>
-        <h1 style="margin-bottom:1rem;">The Hustle Flow</h1>
-        <p style="color:var(--text-secondary);font-size:clamp(1rem,1.8vw,1.2rem);max-width:64ch;line-height:1.8;">
-          A blog all about growth, perspective, and making things happen — combining deep-dive articles, quick tips, and real, relatable content on self-improvement, motivation, and life hacks.
-        </p>
-      </div>
-      <div class="project-meta reveal reveal-delay-1">
-        <div class="meta-item"><div class="meta-item-label">Platform</div><div class="meta-item-value">WordPress</div></div>
-        <div class="meta-item"><div class="meta-item-label">Type</div><div class="meta-item-value">Personal Blog</div></div>
-        <div class="meta-item"><div class="meta-item-label">Focus</div><div class="meta-item-value">Content Creation &amp; CMS</div></div>
+  <div class="proj-hero-split">
+    <div class="proj-hero-meta">
+      <a href="projects.html" class="back-link"><svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 3L3 15M3 15h8M3 15V7"/></svg>All Work</a>
+      <div>
+        <p class="mono-label" style="margin-bottom:0.75rem;">Project 05 · Blog / WordPress</p>
+        <h1 class="display reveal-up" style="font-size:var(--size-xl);line-height:1;margin-bottom:var(--gap-xs);">The Hustle Flow</h1>
+        <p class="reveal-up d1" style="font-family:var(--mono);font-size:var(--size-xs);color:var(--ash);line-height:1.8;max-width:48ch;margin-bottom:var(--gap-sm);">A self-improvement and motivation blog built on WordPress — deep-dive articles, quick tips, and real, relatable content to help readers think bigger, do better, and live smarter.</p>
+        <div class="proj-tags" style="margin-bottom:var(--gap-sm);"><span class="tag">WordPress</span><span class="tag">SEO</span><span class="tag">Content Strategy</span><span class="tag">Yoast</span></div>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;" class="reveal-up d2">
+          <a href="#" class="mag-btn mag-btn-dark" aria-label="Visit The Hustle Flow blog"><span>Visit Blog</span><svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg></a>
+        </div>
       </div>
     </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <div class="screenshot-grid reveal">
-        <div class="screenshot wide" role="img" aria-label="The Hustle Flow homepage screenshot placeholder">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          [PROJECT SCREENSHOT 1 — Blog Homepage]
-        </div>
-        <div class="screenshot" role="img" aria-label="The Hustle Flow article page screenshot placeholder">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          [PROJECT SCREENSHOT 2 — Article Page]
-        </div>
-        <div class="screenshot" role="img" aria-label="The Hustle Flow category page screenshot placeholder">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          [PROJECT SCREENSHOT 3 — Category / Archive]
-        </div>
-      </div>
-
-      <div class="prose reveal">
-        <h2 style="margin-bottom:1rem;">Project Overview</h2>
-        <p>The Hustle Flow is a personal blog and content platform that Adrian built and managed using WordPress. Beyond technical skills, this project demonstrates content strategy, CMS management, and an understanding of what drives online readership and engagement.</p>
-        <h3>Content Focus</h3>
-        <p>The blog covers a range of topics centered on personal development — from productivity hacks and mindset shifts to career advice and motivational storytelling. The goal was to create a space where readers feel understood and leave with actionable insights.</p>
-        <h3>WordPress Skills Demonstrated</h3>
-        <p>Building this project involved theme customization, plugin management, SEO optimization via Yoast, category and tag taxonomy management, and optimizing for page load speed — practical skills that complement Adrian's broader web development expertise.</p>
-      </div>
-
-      <div class="reveal">
-        <h2 style="margin:2.5rem 0 1rem;">Technology Stack</h2>
-        <div class="tech-stack" role="list" aria-label="Technologies used in The Hustle Flow">
-          <span class="tech-pill" role="listitem">🔷 WordPress</span>
-          <span class="tech-pill" role="listitem">🔍 Yoast SEO</span>
-          <span class="tech-pill" role="listitem">🎨 Theme Customization</span>
-          <span class="tech-pill" role="listitem">📝 Content Strategy</span>
-          <span class="tech-pill" role="listitem">📊 Analytics</span>
-        </div>
-      </div>
-
-      <div class="action-bar reveal">
-        <a href="#" class="btn btn-primary" aria-label="Visit The Hustle Flow live site (link placeholder)">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Visit Blog
-        </a>
-        <a href="projects.html" class="btn btn-ghost">← Back to Projects</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer" role="contentinfo">
-  <div class="container footer-inner">
-    <span>© 2025 Adrian Sarmiento. All rights reserved.</span>
-    <div class="footer-links"><a href="about.html">About</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a></div>
+    <div class="proj-hero-img"><div class="img-ph" role="img" aria-label="The Hustle Flow screenshot placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.15" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>[PROJECT SCREENSHOT 1]</div></div>
   </div>
+  <div class="proj-content">
+    <div class="screenshots-grid reveal-up">
+      <div class="img-ph wide" role="img" aria-label="Blog homepage placeholder" style="aspect-ratio:16/7;">[PROJECT SCREENSHOT 2 — Blog Home]</div>
+      <div class="img-ph" role="img" aria-label="Article page placeholder">[PROJECT SCREENSHOT 3 — Article]</div>
+      <div class="img-ph" role="img" aria-label="Category page placeholder">[PROJECT SCREENSHOT 4 — Category]</div>
+    </div>
+    <h2 class="reveal-up">Overview</h2>
+    <p class="reveal-up d1">The Hustle Flow is a personal blog and content platform built and managed on WordPress. Beyond technical skills, this project demonstrates content strategy, CMS management, and an understanding of what drives online readership and engagement. The site covers growth mindset, productivity, career development, and motivation.</p>
+    <h2 class="reveal-up">Skills Demonstrated</h2>
+    <p class="reveal-up d1">WordPress theme customization, Yoast SEO configuration, category taxonomy management, plugin selection and management, page speed optimization, and content creation strategy — practical skills that complement Adrian's broader full-stack engineering expertise.</p>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:var(--gap-md);padding-top:var(--gap-sm);border-top:1px solid var(--line);" class="reveal-up">
+      <a href="#" class="mag-btn mag-btn-dark"><span>Visit Blog</span><svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg></a>
+      <a href="projects.html" class="mag-btn mag-btn-outline"><span>← All Work</span></a>
+    </div>
+  </div>
+</main>
+<footer class="site-footer" role="contentinfo">
+  <span class="footer-copy">© 2025 Adrian Sarmiento</span>
+  <div class="footer-links"><a href="about.html" class="footer-link">About</a><a href="projects.html" class="footer-link">Work</a><a href="contact.html" class="footer-link">Contact</a></div>
 </footer>
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
-</button>
+<button class="back-top" id="backTop" aria-label="Scroll to top">↑ Top</button>
 <script src="main.js"></script>
 </body>
 </html>
