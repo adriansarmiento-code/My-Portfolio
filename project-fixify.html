@@ -1,204 +1,97 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fixify — Adrian Sarmiento</title>
-  <meta name="description" content="Fixify: A web-based service marketplace platform connecting customers with verified local service providers in Angeles City. Vue.js, Node.js, MongoDB."/>
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-
-<div class="cursor cursor-dot" aria-hidden="true"></div>
-<div class="cursor-ring" aria-hidden="true"></div>
-<div class="page-overlay" aria-hidden="true"></div>
-<div class="progress-bar" aria-hidden="true"></div>
-
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fixify — Adrian Sarmiento</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="cursor" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<nav class="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">A<span>.</span>SARMIENTO</a>
     <ul class="nav-links" role="list">
-      <li><a href="index.html"    class="nav-link">Home</a></li>
-      <li><a href="about.html"    class="nav-link">About</a></li>
-      <li><a href="projects.html" class="nav-link">Work</a></li>
-      <li><a href="contact.html"  class="nav-link">Contact</a></li>
+      <li><a href="index.html"    class="nav-a">Home</a></li>
+      <li><a href="about.html"    class="nav-a">About</a></li>
+      <li><a href="projects.html" class="nav-a">Work</a></li>
+      <li><a href="contact.html"  class="nav-a">Contact</a></li>
     </ul>
     <a href="contact.html" class="nav-cta">Let's Talk</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileDrawer">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hbg" id="hbg" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
-<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-label="Mobile navigation">
+<div class="drawer" id="drw" role="dialog" aria-label="Mobile menu">
   <a href="index.html">Home</a><a href="about.html">About</a>
   <a href="projects.html">Work</a><a href="contact.html">Contact</a>
 </div>
-
-<main>
-
-  <!-- Split hero -->
-  <div class="proj-hero-split">
-    <div class="proj-hero-meta">
-      <a href="projects.html" class="back-link" aria-label="Back to all projects">
-        <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 3L3 15M3 15h8M3 15V7"/></svg>
-        All Work
-      </a>
-
-      <div>
-        <p class="mono-label" style="margin-bottom:0.75rem;">Project 01 · Service Marketplace</p>
-        <h1 class="display reveal-up" style="font-size:var(--size-2xl);margin-bottom:var(--gap-xs);">Fixify</h1>
-        <p class="reveal-up d1" style="font-family:var(--mono);font-size:var(--size-xs);color:var(--ash);line-height:1.8;max-width:48ch;margin-bottom:var(--gap-sm);">
-          A web-based service marketplace connecting customers with verified local service providers in Angeles City — covering plumbing, electrical, and cleaning services.
-        </p>
-        <div class="proj-tags" style="margin-bottom:var(--gap-sm);">
-          <span class="tag">Vue.js 3</span><span class="tag">Node.js</span>
-          <span class="tag">Express.js</span><span class="tag">MongoDB</span>
-          <span class="tag">JWT Auth</span>
-        </div>
-        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;" class="reveal-up d2">
-          <a href="#" class="mag-btn mag-btn-dark" aria-label="View Fixify live demo">
-            <span>Live Demo</span>
-            <svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
-          </a>
-          <a href="#" class="mag-btn mag-btn-outline" aria-label="View Fixify GitHub repository">
-            <span>GitHub</span>
-            <svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
-          </a>
-        </div>
-      </div>
+<!-- HERO -->
+<header class="s-page ruled-b"><div class="c">
+  <a href="projects.html" style="display:inline-flex;align-items:center;gap:.4rem;font-family:var(--f-mono);font-size:var(--t-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--ash2);margin-bottom:var(--sp-2);transition:color var(--t1)" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ash2)'">
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2L2 14M2 14h8M2 14V6"/></svg> All Work
+  </a>
+  <div class="g2" style="align-items:end">
+    <div>
+      <p class="lbl rv" style="margin-bottom:.5rem">Project 01 · Service Marketplace</p>
+      <h1 class="d2 rv d-1" style="margin-bottom:var(--sp-2)">Fixify</h1>
+      <p class="body rv d-2" style="margin-bottom:var(--sp-2)">A web-based service marketplace connecting customers with verified local service providers in Angeles City — covering plumbing, electrical, and cleaning services.</p>
+      <div class="tags rv d-3"><span class="tag">Vue.js 3</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">MongoDB Atlas</span><span class="tag">JWT Auth</span></div>
     </div>
+    <div class="rv d-2 g-end" style="display:flex;gap:.75rem;flex-wrap:wrap"><a href="#" class="btn btn-k"><span>Live Demo</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a><a href="#" class="btn btn-o"><span>GitHub</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a></div>
+  </div>
+</div></header>
 
-    <div class="proj-hero-img">
-      <div class="img-ph" role="img" aria-label="Fixify main screenshot placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.15" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        [PROJECT SCREENSHOT 1]
-      </div>
+<!-- BANNER -->
+<div style="padding:var(--sp-4) 0 0"><div class="c">
+  <div class="shot-wide rv">
+  <img src="images/fixify-banner.jpg" alt="Fixify main view"
+       style="width:100%;height:100%;object-fit:cover;">
+</div>
+</div></div>
+
+<!-- META BAR -->
+<div style="padding:1px 0 var(--sp-4)"><div class="c">
+  <div class="meta rv d-1"><div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">Full-Stack App</div></div><div class="meta-c"><div class="meta-l">Frontend</div><div class="meta-v">Vue.js 3</div></div><div class="meta-c"><div class="meta-l">Backend</div><div class="meta-v">Node + Express</div></div><div class="meta-c"><div class="meta-l">Database</div><div class="meta-v">MongoDB Atlas</div></div><div class="meta-c"><div class="meta-l">Auth</div><div class="meta-v">JWT + Role-Based</div></div><div class="meta-c"><div class="meta-l">Location</div><div class="meta-v">Angeles City, PH</div></div></div>
+</div></div>
+
+<!-- CONTENT -->
+<section class="s ruled ruled-b"><div class="c">
+  <div class="g2">
+    <div>
+      <h2 class="d1 rv" style="margin-bottom:var(--sp-2)">Overview</h2>
+      <p class="body rv d-1" style="margin-bottom:var(--sp-3)">Fixify was built to solve a real, local problem: homeowners in Angeles City struggling to find trusted, verified professionals for essential home services. The platform creates a centralized solution to browse, book, and review service providers.</p>
+      <h2 class="d1 rv" style="margin-bottom:var(--sp-2)">The Problem</h2>
+      <p class="body rv d-1" style="margin-bottom:var(--sp-3)">Local homeowners relied on word-of-mouth or unverified listings — leading to wasted time and inconsistent service quality. There was no structured platform dedicated to local home services.</p>
+      <h2 class="d1 rv" style="margin-bottom:var(--sp-2)">My Role</h2>
+      <p class="body rv d-1">Designed and developed the full application — database schema, REST API, Vue.js component architecture, JWT authentication, role-based routing, and real-time notification logic end-to-end.</p>
+    </div>
+    <div>
+      <h2 class="d1 rv" style="margin-bottom:var(--sp-2)">Key Features</h2>
+      <div class="rv d-1"><div class="feat-item"><span class="feat-n">01</span><div><span class="feat-ttl">Service Discovery</span><p class="feat-txt">Browse verified providers across Plumbing, Electrical, and Cleaning with ratings and reviews.</p></div></div><div class="feat-item"><span class="feat-n">02</span><div><span class="feat-ttl">Booking System</span><p class="feat-txt">Customers can schedule and manage appointments with service providers in real time.</p></div></div><div class="feat-item"><span class="feat-n">03</span><div><span class="feat-ttl">Real-Time Notifications</span><p class="feat-txt">In-app alerts for booking status changes — keeping both parties informed.</p></div></div><div class="feat-item"><span class="feat-n">04</span><div><span class="feat-ttl">JWT + Role-Based Auth</span><p class="feat-txt">Secure authentication with distinct roles: customer, provider, and admin.</p></div></div><div class="feat-item"><span class="feat-n">05</span><div><span class="feat-ttl">RESTful API</span><p class="feat-txt">Well-structured API with proper HTTP methods, status codes, and error handling.</p></div></div><div class="feat-item"><span class="feat-n">06</span><div><span class="feat-ttl">Responsive UI</span><p class="feat-txt">Fully responsive Vue.js interface — seamless across mobile, tablet, and desktop.</p></div></div></div>
     </div>
   </div>
 
-  <!-- Content -->
-  <div class="proj-content">
-
-    <!-- Meta grid -->
-    <div class="proj-meta-grid reveal-up">
-      <div class="proj-meta-cell">
-        <div class="proj-meta-label">Type</div>
-        <div class="proj-meta-val">Full-Stack Web App</div>
-      </div>
-      <div class="proj-meta-cell">
-        <div class="proj-meta-label">Frontend</div>
-        <div class="proj-meta-val">Vue.js 3</div>
-      </div>
-      <div class="proj-meta-cell">
-        <div class="proj-meta-label">Backend</div>
-        <div class="proj-meta-val">Node + Express</div>
-      </div>
-      <div class="proj-meta-cell">
-        <div class="proj-meta-label">Database</div>
-        <div class="proj-meta-val">MongoDB Atlas</div>
-      </div>
-      <div class="proj-meta-cell">
-        <div class="proj-meta-label">Auth</div>
-        <div class="proj-meta-val">JWT + Role-Based</div>
-      </div>
-      <div class="proj-meta-cell">
-        <div class="proj-meta-label">Location</div>
-        <div class="proj-meta-val">Angeles City, PH</div>
-      </div>
-    </div>
-
-    <!-- Screenshots -->
-    <div class="screenshots-grid reveal-up d1">
-      <div class="img-ph wide" role="img" aria-label="Fixify dashboard screenshot placeholder" style="aspect-ratio:16/7;">
-        [PROJECT SCREENSHOT 2 — Dashboard]
-      </div>
-      <div class="img-ph" role="img" aria-label="Fixify booking flow screenshot placeholder">
-        [PROJECT SCREENSHOT 3 — Booking]
-      </div>
-      <div class="img-ph" role="img" aria-label="Fixify provider profile screenshot placeholder">
-        [PROJECT SCREENSHOT — Provider Profile]
-      </div>
-    </div>
-
-    <h2 class="reveal-up">Overview</h2>
-    <p class="reveal-up d1">Fixify was built to solve a real, local problem: homeowners in Angeles City struggling to find trusted, verified professionals for essential home services. The platform creates a centralized solution to browse, book, and review service providers.</p>
-
-    <h2 class="reveal-up">The Problem</h2>
-    <p class="reveal-up d1">Local homeowners relied entirely on word-of-mouth or unverified online listings — leading to wasted time, inconsistent service quality, and potential scams. There was no structured, trustworthy platform dedicated to local home services.</p>
-
-    <h2 class="reveal-up">Key Features</h2>
-    <div class="feature-list-proj reveal-up d1" role="list" aria-label="Fixify features">
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num" aria-hidden="true">01</div>
-        <div class="feature-text">
-          <strong>Service Discovery</strong>
-          <p>Browse verified providers across Plumbing, Electrical, and Cleaning with ratings and reviews.</p>
-        </div>
-      </div>
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num" aria-hidden="true">02</div>
-        <div class="feature-text">
-          <strong>Booking System</strong>
-          <p>Customers can schedule and manage appointments with preferred service providers.</p>
-        </div>
-      </div>
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num" aria-hidden="true">03</div>
-        <div class="feature-text">
-          <strong>Real-Time Notifications</strong>
-          <p>In-app alerts for booking status changes and messaging updates in real time.</p>
-        </div>
-      </div>
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num" aria-hidden="true">04</div>
-        <div class="feature-text">
-          <strong>JWT Authentication</strong>
-          <p>Secure role-based access control across customer, provider, and admin roles.</p>
-        </div>
-      </div>
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num" aria-hidden="true">05</div>
-        <div class="feature-text">
-          <strong>RESTful API Design</strong>
-          <p>Well-structured API with proper HTTP methods, status codes, and error handling.</p>
-        </div>
-      </div>
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num" aria-hidden="true">06</div>
-        <div class="feature-text">
-          <strong>Responsive Interface</strong>
-          <p>Fully responsive design built for seamless use across mobile, tablet, and desktop.</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:var(--gap-md);padding-top:var(--gap-sm);border-top:1px solid var(--line);" class="reveal-up">
-      <a href="#" class="mag-btn mag-btn-dark">
-        <span>Live Demo</span>
-        <svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
-      </a>
-      <a href="#" class="mag-btn mag-btn-outline">
-        <span>GitHub</span>
-        <svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
-      </a>
-      <a href="projects.html" class="mag-btn mag-btn-outline">
-        <span>← All Work</span>
-      </a>
-    </div>
-
+  <div class="shot-grid rv" style="margin-top:var(--sp-4)">
+  <div class="shot-full">
+    <img src="images/fixify-1.jpg" alt="Fixify dashboard"
+         style="width:100%;height:100%;object-fit:cover;">
   </div>
-</main>
+  <div>
+    <img src="images/fixify-2.jpg" alt="Fixify service view"
+         style="width:100%;height:100%;object-fit:cover;">
+  </div>
+  <div>
+    <img src="images/fixify-3.jpg" alt="Fixify booking flow"
+         style="width:100%;height:100%;object-fit:cover;">
+  </div>
+</div>
 
-<footer class="site-footer" role="contentinfo">
+  <div style="display:flex;gap:.75rem;flex-wrap:wrap;padding-top:var(--sp-4);border-top:1px solid var(--line);margin-top:var(--sp-4)" class="rv">
+    <a href="https://github.com/adriansarmiento-code/6WCSERVER-Final-Project.git" class="btn btn-o"><span>GitHub</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
+    <a href="projects.html" class="btn btn-o"><span>← All Work</span></a>
+  </div>
+</div></section>
+<footer class="footer"><div class="c"><div class="footer-r">
   <span class="footer-copy">© 2025 Adrian Sarmiento</span>
   <div class="footer-links">
-    <a href="about.html"    class="footer-link">About</a>
-    <a href="projects.html" class="footer-link">Work</a>
-    <a href="contact.html"  class="footer-link">Contact</a>
+    <a href="about.html"    class="footer-a">About</a>
+    <a href="projects.html" class="footer-a">Work</a>
+    <a href="contact.html"  class="footer-a">Contact</a>
   </div>
-</footer>
-
-<button class="back-top" id="backTop" aria-label="Scroll to top">↑ Top</button>
+</div></div></footer>
+<button class="btt" id="btt" aria-label="Back to top">↑ Top</button>
 <script src="main.js"></script>
-</body>
-</html>
+</body></html>

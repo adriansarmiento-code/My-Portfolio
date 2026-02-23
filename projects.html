@@ -1,251 +1,44 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Work — Adrian Sarmiento</title>
-  <meta name="description" content="Projects by Adrian Sarmiento — full-stack web applications, e-commerce platforms, service marketplaces, and more."/>
-  <link rel="stylesheet" href="style.css"/>
-  <style>
-    .work-hero {
-      padding: calc(var(--nav-h) + var(--gap-lg)) clamp(1.5rem,5vw,5rem) var(--gap-md);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .work-hero h1 {
-      font-family: var(--display);
-      font-size: var(--size-3xl);
-      line-height: 0.9;
-      letter-spacing: 0.01em;
-      text-transform: uppercase;
-    }
-
-    .work-hero-sub {
-      font-family: var(--mono);
-      font-size: var(--size-xs);
-      color: var(--ash);
-      margin-top: var(--gap-xs);
-      max-width: 52ch;
-      line-height: 1.7;
-    }
-
-    .all-projects { padding: 0; }
-
-    .proj-strip-full {
-      display: grid;
-      grid-template-columns: 100px 1fr auto;
-      align-items: center;
-      padding: var(--gap-sm) clamp(1.5rem, 5vw, 5rem);
-      border-bottom: 1px solid var(--line);
-      position: relative;
-      overflow: hidden;
-      cursor: none;
-      transition: background var(--dur-mid) var(--ease-out), color var(--dur-mid);
-      text-decoration: none;
-      color: var(--ink);
-    }
-
-    .proj-strip-full::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 0;
-      background: var(--ink);
-      z-index: 0;
-      transition: height var(--dur-mid) var(--ease-out);
-    }
-
-    .proj-strip-full:hover { color: var(--paper); }
-    .proj-strip-full:hover::before { height: 100%; }
-    .proj-strip-full:hover .pn { color: var(--accent); }
-    .proj-strip-full:hover .tag { border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.4); }
-    .proj-strip-full:hover .pa { transform: translate(5px, -5px); }
-
-    .pn {
-      font-family: var(--display);
-      font-size: var(--size-xl);
-      color: var(--cream);
-      line-height: 1;
-      position: relative;
-      z-index: 1;
-      transition: color var(--dur-mid);
-    }
-
-    .pb {
-      position: relative;
-      z-index: 1;
-    }
-
-    .pt {
-      font-family: var(--display);
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      line-height: 1;
-      letter-spacing: 0.02em;
-      margin-bottom: 0.5rem;
-    }
-
-    .pt-sub {
-      font-family: var(--mono);
-      font-size: var(--size-2xs);
-      color: var(--ash);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.6rem;
-    }
-
-    .pa {
-      font-size: 1.5rem;
-      position: relative;
-      z-index: 1;
-      transition: transform var(--dur-mid) var(--ease-spring);
-    }
-
-    .proj-type-badge {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: var(--size-2xs);
-      letter-spacing: 0.08em;
-      padding: 0.2rem 0.6rem;
-      border: 1px solid var(--line);
-      border-radius: 100px;
-      color: var(--ash);
-      margin-bottom: 0.5rem;
-    }
-
-    @media (max-width: 600px) {
-      .proj-strip-full { grid-template-columns: 60px 1fr; }
-      .pa { display: none; }
-    }
-  </style>
-</head>
-<body>
-
-<div class="cursor cursor-dot" aria-hidden="true"></div>
-<div class="cursor-ring" aria-hidden="true"></div>
-<div class="page-overlay" aria-hidden="true"></div>
-<div class="progress-bar" aria-hidden="true"></div>
-
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Work — Adrian Sarmiento</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="cursor" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<nav class="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">A<span>.</span>SARMIENTO</a>
     <ul class="nav-links" role="list">
-      <li><a href="index.html"    class="nav-link">Home</a></li>
-      <li><a href="about.html"    class="nav-link">About</a></li>
-      <li><a href="projects.html" class="nav-link">Work</a></li>
-      <li><a href="contact.html"  class="nav-link">Contact</a></li>
+      <li><a href="index.html"    class="nav-a">Home</a></li>
+      <li><a href="about.html"    class="nav-a">About</a></li>
+      <li><a href="projects.html" class="nav-a">Work</a></li>
+      <li><a href="contact.html"  class="nav-a">Contact</a></li>
     </ul>
     <a href="contact.html" class="nav-cta">Let's Talk</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileDrawer">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hbg" id="hbg" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
-<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-label="Mobile navigation">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="projects.html">Work</a>
-  <a href="contact.html">Contact</a>
+<div class="drawer" id="drw" role="dialog" aria-label="Mobile menu">
+  <a href="index.html">Home</a><a href="about.html">About</a>
+  <a href="projects.html">Work</a><a href="contact.html">Contact</a>
 </div>
+<header class="s-page ruled-b"><div class="c">
+  <p class="lbl rv" style="margin-bottom:.6rem">Portfolio</p>
+  <h1 class="d3 rv d-1" style="margin-bottom:var(--sp-2)">Selected<br>Work</h1>
+  <p class="body rv d-2" style="max-width:68ch">Five projects spanning full-stack web apps, e-commerce platforms, business websites, and content — each built to solve a real problem.</p>
+</div></header>
 
-<header class="work-hero" role="banner">
-  <p class="mono-label reveal-up">Portfolio</p>
-  <h1 class="reveal-up d1">Selected<br>Work</h1>
-  <p class="work-hero-sub reveal-up d2">Five projects that demonstrate full-stack capability — from service marketplaces and e-commerce platforms to funeral home management systems and personal blogs.</p>
-</header>
-
-<section class="all-projects" aria-label="All projects">
-
-  <a href="project-fixify.html" class="proj-strip-full reveal-up" aria-label="Fixify — Service Marketplace">
-    <div class="pn" aria-hidden="true">01</div>
-    <div class="pb">
-      <div class="proj-type-badge">Full-Stack · Web App</div>
-      <div class="pt">Fixify</div>
-      <p class="pt-sub">Service marketplace · Vue.js · Node.js · MongoDB · JWT</p>
-      <div class="proj-tags">
-        <span class="tag">Vue.js 3</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">MongoDB</span>
-        <span class="tag">JWT Auth</span>
-        <span class="tag">Express.js</span>
-      </div>
-    </div>
-    <div class="pa" aria-hidden="true">↗</div>
-  </a>
-
-  <a href="project-velasquez.html" class="proj-strip-full reveal-up d1" aria-label="Velasquez Funeral and Chapel — Business Website">
-    <div class="pn" aria-hidden="true">02</div>
-    <div class="pb">
-      <div class="proj-type-badge">Full-Stack · Business Website</div>
-      <div class="pt">Velasquez Funeral &amp; Chapel</div>
-      <p class="pt-sub">Funeral home platform · Vue.js · Express · Cloudinary · velasquezfuneral.com</p>
-      <div class="proj-tags">
-        <span class="tag">Vue.js 3</span>
-        <span class="tag">Express</span>
-        <span class="tag">MongoDB</span>
-        <span class="tag">Cloudinary</span>
-        <span class="tag">TinyMCE</span>
-      </div>
-    </div>
-    <div class="pa" aria-hidden="true">↗</div>
-  </a>
-
-  <a href="project-furnishhaven.html" class="proj-strip-full reveal-up d2" aria-label="FurnishHaven — E-Commerce Platform">
-    <div class="pn" aria-hidden="true">03</div>
-    <div class="pb">
-      <div class="proj-type-badge">E-Commerce · PHP</div>
-      <div class="pt">FurnishHaven</div>
-      <p class="pt-sub">Furniture retail platform · PHP · JavaScript · CSS</p>
-      <div class="proj-tags">
-        <span class="tag">PHP</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">CSS</span>
-        <span class="tag">MySQL</span>
-      </div>
-    </div>
-    <div class="pa" aria-hidden="true">↗</div>
-  </a>
-
-  <a href="project-burgify.html" class="proj-strip-full reveal-up d3" aria-label="Burgify — Static E-Commerce">
-    <div class="pn" aria-hidden="true">04</div>
-    <div class="pb">
-      <div class="proj-type-badge">Front-End · Static</div>
-      <div class="pt">Burgify</div>
-      <p class="pt-sub">Burger e-commerce · HTML · CSS</p>
-      <div class="proj-tags">
-        <span class="tag">HTML5</span>
-        <span class="tag">CSS3</span>
-        <span class="tag">Responsive Design</span>
-      </div>
-    </div>
-    <div class="pa" aria-hidden="true">↗</div>
-  </a>
-
-  <a href="project-hustleflow.html" class="proj-strip-full reveal-up d4" aria-label="The Hustle Flow — WordPress Blog">
-    <div class="pn" aria-hidden="true">05</div>
-    <div class="pb">
-      <div class="proj-type-badge">Blog · WordPress</div>
-      <div class="pt">The Hustle Flow</div>
-      <p class="pt-sub">Self-improvement blog · WordPress · SEO · Content Strategy</p>
-      <div class="proj-tags">
-        <span class="tag">WordPress</span>
-        <span class="tag">SEO</span>
-        <span class="tag">Content Strategy</span>
-      </div>
-    </div>
-    <div class="pa" aria-hidden="true">↗</div>
-  </a>
-
-</section>
-
-<footer class="site-footer" role="contentinfo">
+<section style="padding-bottom:var(--sp-5)"><div class="c">
+  <a href="project-fixify.html" class="prow rv"><span class="pn">01</span><div class="ptmb"><div class="ph">[IMG]</div></div><div class="pi"><p class="lbl" style="margin-bottom:.3rem">Service Marketplace · Full-Stack</p><div class="ptitle">Fixify</div><p class="pdesc">Web-based marketplace connecting customers with verified local providers — real-time booking, role-based JWT auth, and in-app notifications.</p><div class="tags"><span class="tag">Vue.js 3</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">JWT</span></div></div><span class="parr">↗</span></a>
+  <a href="project-velasquez.html" class="prow rv d-1"><span class="pn">02</span><div class="ptmb"><div class="ph">[IMG]</div></div><div class="pi"><p class="lbl" style="margin-bottom:.3rem">Business Website · Live</p><div class="ptitle">Velasquez Funeral &amp; Chapel</div><p class="pdesc">Full-stack funeral home website with service packages, casket gallery, blog, and full admin CMS — deployed at velasquezfuneral.com.</p><div class="tags"><span class="tag">Vue.js 3</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">Cloudinary</span><span class="tag">TinyMCE</span></div></div><span class="parr">↗</span></a>
+  <a href="project-furnishhaven.html" class="prow rv d-2"><span class="pn">03</span><div class="ptmb"><div class="ph">[IMG]</div></div><div class="pi"><p class="lbl" style="margin-bottom:.3rem">E-Commerce Platform · PHP</p><div class="ptitle">FurnishHaven</div><p class="pdesc">Furniture e-commerce platform — product catalog, cart management, and clean checkout flow with MySQL as the data backbone.</p><div class="tags"><span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag">CSS</span><span class="tag">MySQL</span></div></div><span class="parr">↗</span></a>
+  <a href="project-burgify.html" class="prow rv d-3"><span class="pn">04</span><div class="ptmb"><div class="ph">[IMG]</div></div><div class="pi"><p class="lbl" style="margin-bottom:.3rem">Front-End Static · HTML &amp; CSS</p><div class="ptitle">Burgify</div><p class="pdesc">Burger e-commerce site built from scratch — pure HTML5 and CSS3, demonstrating mastery of semantic markup, Flexbox, Grid, and responsive design.</p><div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Flexbox</span><span class="tag">CSS Grid</span></div></div><span class="parr">↗</span></a>
+  <a href="project-hustleflow.html" class="prow rv d-4"><span class="pn">05</span><div class="ptmb"><div class="ph">[IMG]</div></div><div class="pi"><p class="lbl" style="margin-bottom:.3rem">Blog · WordPress · Content</p><div class="ptitle">The Hustle Flow</div><p class="pdesc">Self-improvement and growth blog — built on WordPress with Yoast SEO, analytics, and a content strategy focused on productivity and mindset.</p><div class="tags"><span class="tag">WordPress</span><span class="tag">Yoast SEO</span><span class="tag">Content Strategy</span><span class="tag">Analytics</span></div></div><span class="parr">↗</span></a>
+</div></section>
+<footer class="footer"><div class="c"><div class="footer-r">
   <span class="footer-copy">© 2025 Adrian Sarmiento</span>
   <div class="footer-links">
-    <a href="about.html"    class="footer-link">About</a>
-    <a href="projects.html" class="footer-link">Work</a>
-    <a href="contact.html"  class="footer-link">Contact</a>
+    <a href="about.html"    class="footer-a">About</a>
+    <a href="projects.html" class="footer-a">Work</a>
+    <a href="contact.html"  class="footer-a">Contact</a>
   </div>
-</footer>
-
-<button class="back-top" id="backTop" aria-label="Scroll to top">↑ Top</button>
+</div></div></footer>
+<button class="btt" id="btt" aria-label="Back to top">↑ Top</button>
 <script src="main.js"></script>
-</body>
-</html>
+</body></html>

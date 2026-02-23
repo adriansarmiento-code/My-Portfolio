@@ -1,130 +1,94 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Velasquez Funeral & Chapel — Adrian Sarmiento</title>
-  <meta name="description" content="Velasquez Funeral & Chapel: A full-stack Vue.js funeral home website with service packages, casket gallery, admin panel. Live at velasquezfuneral.com."/>
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-<div class="cursor cursor-dot" aria-hidden="true"></div>
-<div class="cursor-ring" aria-hidden="true"></div>
-<div class="page-overlay" aria-hidden="true"></div>
-<div class="progress-bar" aria-hidden="true"></div>
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Velasquez Funeral &amp; Chapel — Adrian Sarmiento</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="cursor" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<nav class="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">A<span>.</span>SARMIENTO</a>
     <ul class="nav-links" role="list">
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="about.html" class="nav-link">About</a></li>
-      <li><a href="projects.html" class="nav-link">Work</a></li>
-      <li><a href="contact.html" class="nav-link">Contact</a></li>
+      <li><a href="index.html"    class="nav-a">Home</a></li>
+      <li><a href="about.html"    class="nav-a">About</a></li>
+      <li><a href="projects.html" class="nav-a">Work</a></li>
+      <li><a href="contact.html"  class="nav-a">Contact</a></li>
     </ul>
     <a href="contact.html" class="nav-cta">Let's Talk</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileDrawer"><span></span><span></span><span></span></button>
+    <button class="hbg" id="hbg" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
-<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-label="Mobile navigation">
+<div class="drawer" id="drw" role="dialog" aria-label="Mobile menu">
   <a href="index.html">Home</a><a href="about.html">About</a>
   <a href="projects.html">Work</a><a href="contact.html">Contact</a>
 </div>
-
-<main>
-  <div class="proj-hero-split">
-    <div class="proj-hero-meta">
-      <a href="projects.html" class="back-link">
-        <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 3L3 15M3 15h8M3 15V7"/></svg>
-        All Work
-      </a>
-      <div>
-        <p class="mono-label" style="margin-bottom:0.75rem;">Project 02 · Business Website</p>
-        <h1 class="display reveal-up" style="font-size:var(--size-xl);line-height:1;margin-bottom:var(--gap-xs);">Velasquez Funeral &amp; Chapel</h1>
-        <p class="reveal-up d1" style="font-family:var(--mono);font-size:var(--size-xs);color:var(--ash);line-height:1.8;max-width:48ch;margin-bottom:var(--gap-sm);">A comprehensive funeral home website serving families in Cabiao, Nueva Ecija since 1970 — with service packages, casket gallery, blog, and a full admin CMS panel.</p>
-        <div class="proj-tags" style="margin-bottom:var(--gap-sm);">
-          <span class="tag">Vue.js 3</span><span class="tag">Express.js</span>
-          <span class="tag">MongoDB</span><span class="tag">Cloudinary</span><span class="tag">TinyMCE</span>
-        </div>
-        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;" class="reveal-up d2">
-          <a href="https://velasquezfuneral.com" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-dark" aria-label="Visit Velasquez Funeral live site">
-            <span>Live Site</span>
-            <svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
-          </a>
-          <a href="#" class="mag-btn mag-btn-outline" aria-label="View GitHub repository">
-            <span>GitHub</span>
-            <svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
-          </a>
-        </div>
-      </div>
+<!-- HERO -->
+<header class="s-page ruled-b"><div class="c">
+  <a href="projects.html" style="display:inline-flex;align-items:center;gap:.4rem;font-family:var(--f-mono);font-size:var(--t-2xs);letter-spacing:.1em;text-transform:uppercase;color:var(--ash2);margin-bottom:var(--sp-2);transition:color var(--t1)" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ash2)'">
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2L2 14M2 14h8M2 14V6"/></svg> All Work
+  </a>
+  <div class="g2" style="align-items:end">
+    <div>
+      <p class="lbl rv" style="margin-bottom:.5rem">Project 02 · Business Website</p>
+      <h1 class="d2 rv d-1" style="margin-bottom:var(--sp-2)">Velasquez Funeral &amp; Chapel</h1>
+      <p class="body rv d-2" style="margin-bottom:var(--sp-2)">A compassionate, professional funeral home website for a family business in Cabiao, Nueva Ecija. Features a full admin CMS, service packages, casket gallery, and grief resource blog.</p>
+      <div class="tags rv d-3"><span class="tag">Vue.js 3</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB Atlas</span><span class="tag">Cloudinary</span><span class="tag">TinyMCE</span></div>
     </div>
-    <div class="proj-hero-img">
-      <div class="img-ph" role="img" aria-label="Velasquez Funeral homepage screenshot placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.15" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        [PROJECT SCREENSHOT 1]
-      </div>
+    <div class="rv d-2 g-end" style="display:flex;gap:.75rem;flex-wrap:wrap"><a href="https://velasquezfuneral.com" target="_blank" rel="noopener" class="btn btn-k"><span>Live Site</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a><a href="#" class="btn btn-o"><span>GitHub</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a></div>
+  </div>
+</div></header>
+
+<!-- BANNER -->
+<div style="padding:var(--sp-4) 0 0"><div class="c">
+  <div class="shot-wide rv"><div class="ph" style="width:100%;height:100%">[PROJECT SCREENSHOT — Main View]</div></div>
+</div></div>
+
+<!-- META BAR -->
+<div style="padding:1px 0 var(--sp-4)"><div class="c">
+  <div class="meta rv d-1"><div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">Full-Stack Business</div></div><div class="meta-c"><div class="meta-l">Frontend</div><div class="meta-v">Vue.js 3 + Router</div></div><div class="meta-c"><div class="meta-l">Backend</div><div class="meta-v">Node.js + Express</div></div><div class="meta-c"><div class="meta-l">Database</div><div class="meta-v">MongoDB Atlas</div></div><div class="meta-c"><div class="meta-l">Hosting</div><div class="meta-v">Hostinger + Render</div></div><div class="meta-c"><div class="meta-l">Live</div><div class="meta-v">velasquezfuneral.com</div></div></div>
+</div></div>
+
+<!-- CONTENT -->
+<section class="s ruled ruled-b"><div class="c">
+  <div class="g2">
+    <div>
+      <h2 class="d1 rv" style="margin-bottom:var(--sp-2)">Overview</h2>
+      <p class="body rv d-1" style="margin-bottom:var(--sp-3)">Velasquez Funeral &amp; Chapel is a long-standing family business with no prior online presence. Families relied entirely on referrals and phone calls. The goal: a professional, compassionate digital home — and a CMS the owner can manage independently.</p>
+      <h2 class="d1 rv" style="margin-bottom:var(--sp-2)">The Problem</h2>
+      <p class="body rv d-1" style="margin-bottom:var(--sp-3)">Funeral websites require extreme sensitivity in tone and design. Beyond aesthetics, the admin needed to update packages, casket listings, and blog posts without touching code — requiring a robust, intuitive CMS layer.</p>
+      <h2 class="d1 rv" style="margin-bottom:var(--sp-2)">My Role</h2>
+      <p class="body rv d-1">End-to-end development — Vue.js frontend, Node/Express API, MongoDB data models, Cloudinary image pipeline, TinyMCE blog editor, and full deployment to Hostinger (frontend) and Render (backend).</p>
+    </div>
+    <div>
+      <h2 class="d1 rv" style="margin-bottom:var(--sp-2)">Key Features</h2>
+      <div class="rv d-1"><div class="feat-item"><span class="feat-n">01</span><div><span class="feat-ttl">Service Packages</span><p class="feat-txt">Three tiers — Basic, Semi-Elegant, Elegant — with detailed casket options and transparent pricing.</p></div></div><div class="feat-item"><span class="feat-n">02</span><div><span class="feat-ttl">Casket Gallery</span><p class="feat-txt">Browse wood, metal, and imported caskets with images, specs, and payment options.</p></div></div><div class="feat-item"><span class="feat-n">03</span><div><span class="feat-ttl">Admin CMS Panel</span><p class="feat-txt">Full content management for packages, caskets, and blogs — TinyMCE rich-text editing and Cloudinary uploads.</p></div></div><div class="feat-item"><span class="feat-n">04</span><div><span class="feat-ttl">Blog / Resources</span><p class="feat-txt">Grief support articles and funeral planning guides — fully managed via the admin panel.</p></div></div><div class="feat-item"><span class="feat-n">05</span><div><span class="feat-ttl">SEO Optimization</span><p class="feat-txt">Vue Meta for per-page SEO, Google Analytics, and structured semantic content.</p></div></div><div class="feat-item"><span class="feat-n">06</span><div><span class="feat-ttl">Contact + Maps</span><p class="feat-txt">24/7 contact info, Google Maps integration, and an inquiry form with admin-side message management.</p></div></div></div>
     </div>
   </div>
 
-  <div class="proj-content">
-    <div class="proj-meta-grid reveal-up">
-      <div class="proj-meta-cell"><div class="proj-meta-label">Type</div><div class="proj-meta-val">Full-Stack Business</div></div>
-      <div class="proj-meta-cell"><div class="proj-meta-label">Frontend</div><div class="proj-meta-val">Vue.js 3 + Vue Router</div></div>
-      <div class="proj-meta-cell"><div class="proj-meta-label">Backend</div><div class="proj-meta-val">Node.js + Express</div></div>
-      <div class="proj-meta-cell"><div class="proj-meta-label">Database</div><div class="proj-meta-val">MongoDB Atlas</div></div>
-      <div class="proj-meta-cell"><div class="proj-meta-label">Hosting</div><div class="proj-meta-val">Hostinger + Render</div></div>
-      <div class="proj-meta-cell"><div class="proj-meta-label">Live</div><div class="proj-meta-val"><a href="https://velasquezfuneral.com" target="_blank" rel="noopener noreferrer" style="color:var(--accent2);">velasquezfuneral.com ↗</a></div></div>
-    </div>
-
-    <div class="screenshots-grid reveal-up d1">
-      <div class="img-ph wide" role="img" aria-label="Velasquez Funeral homepage screenshot" style="aspect-ratio:16/7;">[PROJECT SCREENSHOT 2 — Homepage]</div>
-      <div class="img-ph" role="img" aria-label="Service packages screenshot">[PROJECT SCREENSHOT 3 — Packages]</div>
-      <div class="img-ph" role="img" aria-label="Admin panel screenshot">[PROJECT SCREENSHOT — Admin]</div>
-    </div>
-
-    <h2 class="reveal-up">Overview</h2>
-    <p class="reveal-up d1">Velasquez Funeral & Chapel is a long-standing family business in Cabiao, Nueva Ecija. With no online presence, families were relying entirely on referrals and phone calls to understand available services and pricing. The goal was to build a professional, compassionate digital presence — and a CMS powerful enough for the owner to manage without touching code.</p>
-
-    <h2 class="reveal-up">Key Features</h2>
-    <div class="feature-list-proj reveal-up d1" role="list">
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num">01</div>
-        <div class="feature-text"><strong>Service Packages</strong><p>Three tiers — Basic, Semi-Elegant, Elegant — with detailed casket options and transparent pricing.</p></div>
-      </div>
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num">02</div>
-        <div class="feature-text"><strong>Casket Gallery</strong><p>Browse wood, metal, and imported caskets with images, specifications, and payment options.</p></div>
-      </div>
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num">03</div>
-        <div class="feature-text"><strong>Admin Panel + CMS</strong><p>Full content management for packages, caskets, blogs, and add-ons — with TinyMCE rich-text editing and Cloudinary image uploads.</p></div>
-      </div>
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num">04</div>
-        <div class="feature-text"><strong>SEO Optimization</strong><p>Vue Meta for per-page SEO, Google Analytics tracking, and structured semantic content hierarchy.</p></div>
-      </div>
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num">05</div>
-        <div class="feature-text"><strong>Blog / Resources</strong><p>Grief support articles, funeral planning guides, and educational content managed via admin panel.</p></div>
-      </div>
-      <div class="feature-item-proj" role="listitem">
-        <div class="feature-num">06</div>
-        <div class="feature-text"><strong>Contact + Maps</strong><p>24/7 contact info, Google Maps integration, and inquiry form with admin-side management.</p></div>
-      </div>
-    </div>
-
-    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:var(--gap-md);padding-top:var(--gap-sm);border-top:1px solid var(--line);" class="reveal-up">
-      <a href="https://velasquezfuneral.com" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-dark"><span>Live Site</span><svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg></a>
-      <a href="#" class="mag-btn mag-btn-outline"><span>GitHub</span><svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg></a>
-      <a href="projects.html" class="mag-btn mag-btn-outline"><span>← All Work</span></a>
-    </div>
+  <div class="shot-grid rv" style="margin-top:var(--sp-4)">
+  <div class="shot-full">
+    <img src="images/velasquez-1.jpg" alt="Velasquez Funeral & Chapel dashboard"
+         style="width:100%;height:100%;object-fit:cover;">
   </div>
-</main>
+  <div>
+    <img src="images/velasquez-2.jpg" alt="Velasquez Funeral & Chapel booking flow"
+         style="width:100%;height:100%;object-fit:cover;">
+  </div>
+  <div>
+    <img src="images/velasquez-3.jpg" alt="Velasquez Funeral & Chapel admin panel"
+         style="width:100%;height:100%;object-fit:cover;">
+  </div>
+</div>
 
-<footer class="site-footer" role="contentinfo">
+  <div style="display:flex;gap:.75rem;flex-wrap:wrap;padding-top:var(--sp-4);border-top:1px solid var(--line);margin-top:var(--sp-4)" class="rv">
+    <a href="https://velasquezfuneral.com" target="_blank" rel="noopener" class="btn btn-k"><span>Live Site</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a><a href="#" class="btn btn-o"><span>GitHub</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
+    <a href="projects.html" class="btn btn-o"><span>← All Work</span></a>
+  </div>
+</div></section>
+<footer class="footer"><div class="c"><div class="footer-r">
   <span class="footer-copy">© 2025 Adrian Sarmiento</span>
-  <div class="footer-links"><a href="about.html" class="footer-link">About</a><a href="projects.html" class="footer-link">Work</a><a href="contact.html" class="footer-link">Contact</a></div>
-</footer>
-<button class="back-top" id="backTop" aria-label="Scroll to top">↑ Top</button>
+  <div class="footer-links">
+    <a href="about.html"    class="footer-a">About</a>
+    <a href="projects.html" class="footer-a">Work</a>
+    <a href="contact.html"  class="footer-a">Contact</a>
+  </div>
+</div></div></footer>
+<button class="btt" id="btt" aria-label="Back to top">↑ Top</button>
 <script src="main.js"></script>
-</body>
-</html>
+</body></html>

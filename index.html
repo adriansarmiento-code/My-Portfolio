@@ -1,590 +1,188 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Adrian Sarmiento — Full-Stack Web Developer</title>
-  <meta name="description" content="Adrian Sarmiento is an IT student and full-stack web developer from Angeles City, Pampanga, crafting responsive, high-performance web applications."/>
-  <meta property="og:title" content="Adrian Sarmiento — Full-Stack Web Developer"/>
-  <meta property="og:description" content="IT student specializing in web development. Building the web of tomorrow."/>
-  <meta property="og:type" content="website"/>
-  <link rel="stylesheet" href="style.css"/>
-  <style>
-    /* ── Hero ─────────────────────────────────────────────── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 clamp(1.5rem, 5vw, 5rem);
-      padding-bottom: var(--gap-md);
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .hero-bg-text {
-      position: absolute;
-      top: 50%;
-      left: -0.02em;
-      transform: translateY(-50%);
-      font-family: var(--display);
-      font-size: clamp(22vw, 28vw, 32vw);
-      line-height: 0.85;
-      color: transparent;
-      -webkit-text-stroke: 1px var(--line);
-      pointer-events: none;
-      user-select: none;
-      white-space: nowrap;
-      letter-spacing: -0.02em;
-      z-index: 0;
-    }
-
-    .hero-top {
-      position: absolute;
-      top: calc(var(--nav-h) + var(--gap-xs));
-      left: clamp(1.5rem, 5vw, 5rem);
-      right: clamp(1.5rem, 5vw, 5rem);
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      z-index: 2;
-    }
-
-    .hero-status {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--mono);
-      font-size: var(--size-2xs);
-      letter-spacing: 0.1em;
-      color: var(--ash);
-    }
-
-    .status-dot {
-      width: 6px; height: 6px;
-      background: #00c853;
-      border-radius: 50%;
-      animation: pulse-status 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse-status {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.5; transform: scale(0.7); }
-    }
-
-    .hero-coords {
-      font-family: var(--mono);
-      font-size: var(--size-2xs);
-      color: var(--ash);
-      text-align: right;
-      letter-spacing: 0.06em;
-    }
-
-    .hero-main {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-eyebrow {
-      font-family: var(--mono);
-      font-size: var(--size-2xs);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ash);
-      margin-bottom: var(--gap-xs);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 2rem;
-      height: 1px;
-      background: var(--ash);
-    }
-
-    .hero-name {
-      font-family: var(--display);
-      font-size: var(--size-4xl);
-      line-height: 0.88;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      margin-bottom: var(--gap-xs);
-    }
-
-    .hero-name em {
-      font-style: italic;
-      font-family: var(--serif);
-      color: var(--ash);
-      font-size: 0.7em;
-      vertical-align: baseline;
-      text-transform: none;
-      letter-spacing: -0.01em;
-    }
-
-    .hero-bottom {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: var(--gap-sm);
-      position: relative;
-      z-index: 2;
-      margin-top: var(--gap-sm);
-    }
-
-    .hero-desc {
-      font-family: var(--mono);
-      font-size: var(--size-xs);
-      color: var(--ash);
-      max-width: 36ch;
-      line-height: 1.75;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: var(--gap-sm);
-      align-items: flex-end;
-    }
-
-    .stat-val {
-      font-family: var(--display);
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      line-height: 1;
-      display: block;
-    }
-
-    .stat-lbl {
-      font-family: var(--mono);
-      font-size: var(--size-2xs);
-      color: var(--ash);
-      letter-spacing: 0.08em;
-      display: block;
-      margin-top: 0.2rem;
-    }
-
-    .hero-scroll-hint {
-      position: absolute;
-      bottom: var(--gap-sm);
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.0rem;
-      z-index: 2;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, var(--ash), transparent);
-      animation: scroll-drop 2s ease-in-out infinite;
-    }
-
-    @keyframes scroll-drop {
-      0% { transform: scaleY(0); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      51% { transform: scaleY(1); transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
-    }
-
-    .scroll-label {
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ash);
-      writing-mode: horizontal-tb;
-    }
-
-    /* ── Ticker ───────────────────────────────────────────── */
-    /* (uses global .ticker-wrap styles) */
-
-    /* ── Projects Section ─────────────────────────────────── */
-    .projects-section {
-      padding: var(--gap-lg) 0;
-    }
-
-    .projects-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 0 clamp(1.5rem, 5vw, 5rem);
-      margin-bottom: var(--gap-sm);
-    }
-
-    .projects-header h2 {
-      font-family: var(--display);
-      font-size: var(--size-2xl);
-      letter-spacing: 0.02em;
-      line-height: 1;
-    }
-
-    .view-all-link {
-      font-family: var(--mono);
-      font-size: var(--size-2xs);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ash);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: color var(--dur-fast);
-    }
-
-    .view-all-link:hover { color: var(--ink); }
-
-    /* ── About teaser ─────────────────────────────────────── */
-    .about-teaser {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-top: 1px solid var(--line);
-    }
-
-    .about-left {
-      padding: var(--gap-lg) clamp(1.5rem, 5vw, 5rem);
-      border-right: 1px solid var(--line);
-    }
-
-    .about-right {
-      padding: var(--gap-lg) clamp(1.5rem, 5vw, 5rem);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .about-photo {
-      width: 100%;
-      aspect-ratio: 4/5;
-      background: var(--cream);
-      margin-bottom: var(--gap-sm);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about-photo-label {
-      position: absolute;
-      bottom: 1rem;
-      left: 1rem;
-      font-family: var(--mono);
-      font-size: var(--size-2xs);
-      color: var(--ash);
-      letter-spacing: 0.08em;
-    }
-
-    .about-big-text {
-      font-family: var(--display);
-      font-size: var(--size-2xl);
-      line-height: 1;
-      letter-spacing: 0.02em;
-      margin-bottom: var(--gap-sm);
-    }
-
-    .about-body {
-      font-family: var(--mono);
-      font-size: var(--size-xs);
-      color: var(--ash);
-      line-height: 1.85;
-      max-width: 48ch;
-      margin-bottom: var(--gap-sm);
-    }
-
-    /* ── Awards row ───────────────────────────────────────── */
-    .awards-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: var(--gap-sm) clamp(1.5rem, 5vw, 5rem);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      align-items: center;
-    }
-
-    .awards-label {
-      font-family: var(--mono);
-      font-size: var(--size-2xs);
-      color: var(--ash);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-right: 1rem;
-    }
-
-    @media (max-width: 768px) {
-      .hero-name { font-size: clamp(4rem, 18vw, 8rem); }
-      .hero-bottom { flex-direction: column; align-items: flex-start; }
-      .about-teaser { grid-template-columns: 1fr; }
-      .about-left { border-right: none; border-bottom: 1px solid var(--line); }
-      .projects-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-    }
-  </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Adrian Sarmiento — Full-Stack Web Developer</title>
+<meta name="description" content="Aspiring full-stack developer from Angeles City, PH. Building responsive, user-centered web applications.">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── Hero (home-only) ──────────────────────────────────────── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  /* top padding = nav height + breathing room */
+  padding-top:calc(var(--nav-h) + var(--sp-2));
+  padding-bottom:var(--sp-3);
+  border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;
+}
+/* Ghost watermark — absolutely positioned, purely decorative, z-index 0 */
+.hero-ghost{
+  position:absolute;
+  right:-.02em;bottom:-.05em;
+  font-family:var(--f-display);
+  font-size:clamp(25vw,32vw,38vw);
+  line-height:1;letter-spacing:-.02em;
+  color:transparent;
+  -webkit-text-stroke:1px var(--line);
+  pointer-events:none;user-select:none;
+  z-index:0;
+}
+.hero .c{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:var(--sp-3)}
+/* top meta bar */
+.hero-meta{display:flex;justify-content:space-between;align-items:center;padding-bottom:var(--sp-2);border-bottom:1px solid var(--line)}
+.hero-status{display:flex;align-items:center;gap:.5rem;font-family:var(--f-mono);font-size:var(--t-2xs);letter-spacing:.1em;color:var(--ash2)}
+.dot-live{width:6px;height:6px;background:#22c55e;border-radius:50%;animation:live 2.5s ease-in-out infinite;flex-shrink:0}
+@keyframes live{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.55)}}
+.hero-coords{font-family:var(--f-mono);font-size:var(--t-2xs);color:var(--ash2);text-align:right;letter-spacing:.06em;line-height:1.6}
+/* name */
+.hero-name{font-family:var(--f-display);font-size:var(--t-4xl);line-height:.88;letter-spacing:.01em;text-transform:uppercase}
+.hero-name em{font-family:var(--f-serif);font-style:italic;font-size:.58em;color:var(--ash2);text-transform:none;letter-spacing:0;vertical-align:.06em}
+/* bottom row */
+.hero-foot{display:grid;grid-template-columns:1fr auto auto;gap:var(--sp-3);align-items:end;padding-top:var(--sp-2);border-top:1px solid var(--line)}
+.hero-desc{font-family:var(--f-mono);font-size:var(--t-sm);color:var(--ash);line-height:1.85}
+.hero-stats{display:flex;gap:var(--sp-3);flex-shrink:0}
+.stat-n{font-family:var(--f-display);font-size:clamp(2rem,3.5vw,3rem);line-height:1;display:block}
+.stat-l{font-family:var(--f-mono);font-size:var(--t-2xs);color:var(--ash2);letter-spacing:.07em}
+/* about block (home teaser) */
+.about-block{display:grid;grid-template-columns:300px 1fr;border:1px solid var(--line)}
+.about-img-col{border-right:1px solid var(--line);padding:var(--sp-3)}
+.about-img{width:100%;aspect-ratio:3/4;background:var(--cream);border-radius:3px;position:relative;overflow:hidden}
+.about-img-lbl{position:absolute;bottom:.75rem;left:.75rem;font-family:var(--mono);font-size:var(--t-2xs);color:rgba(255,255,255,.75);letter-spacing:.06em;z-index:2;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+.about-txt-col{padding:var(--sp-3);display:flex;flex-direction:column;justify-content:space-between;gap:var(--sp-3)}
+.awards-strip{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;padding:var(--sp-2) 0;border-top:1px solid var(--line)}
+.awards-lbl{font-family:var(--f-mono);font-size:var(--t-2xs);color:var(--ash2);letter-spacing:.12em;text-transform:uppercase;margin-right:.5rem}
+@media(max-width:900px){
+  .hero-name{font-size:clamp(3.5rem,17vw,8rem)}
+  .hero-foot{grid-template-columns:1fr;gap:var(--sp-2)}
+  .about-block{grid-template-columns:1fr}
+  .about-img-col{border-right:none;border-bottom:1px solid var(--line)}
+  .about-img{aspect-ratio:16/9}
+}
+</style>
 </head>
 <body>
-
-<!-- Cursor -->
-<div class="cursor cursor-dot" id="cursorDot" aria-hidden="true"></div>
-<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
-
-<!-- Page transition overlay -->
-<div class="page-overlay" aria-hidden="true"></div>
-
-<!-- Scroll progress -->
-<div class="progress-bar" aria-hidden="true"></div>
-
-<!-- ── Navigation ─────────────────────────────────────────── -->
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<div class="cursor" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<nav class="nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="Adrian Sarmiento — Home">
-      A<span>.</span>SARMIENTO
-    </a>
-
+    <a href="index.html" class="nav-logo">A<span>.</span>SARMIENTO</a>
     <ul class="nav-links" role="list">
-      <li><a href="index.html"   class="nav-link">Home</a></li>
-      <li><a href="about.html"   class="nav-link">About</a></li>
-      <li><a href="projects.html" class="nav-link">Work</a></li>
-      <li><a href="contact.html"  class="nav-link">Contact</a></li>
+      <li><a href="index.html"    class="nav-a">Home</a></li>
+      <li><a href="about.html"    class="nav-a">About</a></li>
+      <li><a href="projects.html" class="nav-a">Work</a></li>
+      <li><a href="contact.html"  class="nav-a">Contact</a></li>
     </ul>
-
     <a href="contact.html" class="nav-cta">Let's Talk</a>
-
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileDrawer">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hbg" id="hbg" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
-
-<!-- Mobile drawer -->
-<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-label="Mobile navigation">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="projects.html">Work</a>
-  <a href="contact.html">Contact</a>
+<div class="drawer" id="drw" role="dialog" aria-label="Mobile menu">
+  <a href="index.html">Home</a><a href="about.html">About</a>
+  <a href="projects.html">Work</a><a href="contact.html">Contact</a>
 </div>
 
-<!-- ── Hero ───────────────────────────────────────────────── -->
+<!-- ── HERO ─────────────────────────────────────────────────── -->
 <section class="hero" aria-label="Introduction">
+  <div class="hero-ghost" aria-hidden="true">DEV</div>
+  <div class="c">
 
-  <div class="hero-bg-text" aria-hidden="true" data-parallax="0.15">WEB</div>
-
-  <!-- Top row -->
-  <div class="hero-top" aria-hidden="true">
-    <div class="hero-status">
-      <span class="status-dot"></span>
-      Available for opportunities
-    </div>
-    <div class="hero-coords">
-      15°8′N 120°35′E<br>
-      Angeles City, PH
-    </div>
-  </div>
-
-  <!-- Name block -->
-  <div class="hero-main">
-    <p class="hero-eyebrow">Full-Stack Web Developer · Est. 2023</p>
-    <h1 class="hero-name" aria-label="Adrian Sarmiento">
-      Adrian
-      <br>Sarmiento
-    </h1>
-  </div>
-
-  <!-- Bottom row -->
-  <div class="hero-bottom">
-    <p class="hero-desc reveal-up">
-      IT student at Holy Angel University crafting responsive, user-centered, high-performance web applications — front to back.
-    </p>
-
-    <div class="hero-stats reveal-up d2" aria-label="Quick statistics">
-      <div>
-        <span class="stat-val">2+</span>
-        <span class="stat-lbl">Years coding</span>
-      </div>
-      <div>
-        <span class="stat-val">5+</span>
-        <span class="stat-lbl">Projects shipped</span>
-      </div>
-      <div>
-        <span class="stat-val">12</span>
-        <span class="stat-lbl">Certifications</span>
-      </div>
-    </div>
-
-    <div class="reveal-up d3">
-      <a href="projects.html" class="mag-btn mag-btn-dark" aria-label="View projects">
-        <span>View Work</span>
-        <svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
-      </a>
-    </div>
-  </div>
-
-  <!-- Scroll hint -->
-  <div class="hero-scroll-hint" aria-hidden="true">
-    <span class="scroll-label">Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-
-</section>
-
-<!-- ── Ticker ──────────────────────────────────────────────── -->
-<div class="ticker-wrap" aria-hidden="true" role="presentation">
-  <div class="ticker-track">
-    <!-- items duplicated for infinite scroll -->
-    <span class="ticker-item"><span class="ticker-dot"></span>Vue.js</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Node.js</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>React</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>MongoDB</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Express</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>PHP</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>JavaScript</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Figma</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Tailwind</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>MySQL</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>JWT Auth</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>REST APIs</span>
-    <!-- duplicate -->
-    <span class="ticker-item"><span class="ticker-dot"></span>Vue.js</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Node.js</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>React</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>MongoDB</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Express</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>PHP</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>JavaScript</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Figma</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Tailwind</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>MySQL</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>JWT Auth</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>REST APIs</span>
-  </div>
-</div>
-
-<!-- ── Projects ────────────────────────────────────────────── -->
-<section class="projects-section" aria-labelledby="featured-heading">
-  <div class="projects-header">
-    <div>
-      <p class="mono-label reveal-up">Selected Work</p>
-      <h2 id="featured-heading" class="reveal-up d1">Featured<br>Projects</h2>
-    </div>
-    <a href="projects.html" class="view-all-link reveal-up d2" aria-label="View all projects">
-      All Projects
-      <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
-    </a>
-  </div>
-
-  <div class="section-line" style="margin:0"></div>
-
-  <!-- Project strips -->
-  <a href="project-fixify.html" class="proj-strip reveal-up" role="article" aria-label="Fixify project">
-    <div class="proj-num" aria-hidden="true">01</div>
-    <div class="proj-body">
-      <div class="proj-title">Fixify</div>
-      <div class="proj-tags">
-        <span class="tag">Vue.js 3</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">MongoDB</span>
-        <span class="tag">JWT</span>
-      </div>
-    </div>
-    <div class="proj-arrow" aria-hidden="true">↗</div>
-  </a>
-
-  <a href="project-velasquez.html" class="proj-strip reveal-up d1" role="article" aria-label="Velasquez Funeral and Chapel project">
-    <div class="proj-num" aria-hidden="true">02</div>
-    <div class="proj-body">
-      <div class="proj-title">Velasquez Funeral &amp; Chapel</div>
-      <div class="proj-tags">
-        <span class="tag">Vue.js 3</span>
-        <span class="tag">Express</span>
-        <span class="tag">Cloudinary</span>
-        <span class="tag">MongoDB</span>
-      </div>
-    </div>
-    <div class="proj-arrow" aria-hidden="true">↗</div>
-  </a>
-
-  <a href="project-furnishhaven.html" class="proj-strip reveal-up d2" role="article" aria-label="FurnishHaven e-commerce project">
-    <div class="proj-num" aria-hidden="true">03</div>
-    <div class="proj-body">
-      <div class="proj-title">FurnishHaven</div>
-      <div class="proj-tags">
-        <span class="tag">PHP</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">CSS</span>
-      </div>
-    </div>
-    <div class="proj-arrow" aria-hidden="true">↗</div>
-  </a>
-
-  <a href="projects.html" class="proj-strip reveal-up d3" role="article" aria-label="View all projects">
-    <div class="proj-num" aria-hidden="true" style="color:var(--ash);font-size:var(--size-lg);">+ more</div>
-    <div class="proj-body">
-      <div class="proj-title" style="color:var(--ash);">Burgify &amp; The Hustle Flow</div>
-      <div class="proj-tags">
-        <span class="tag">HTML/CSS</span>
-        <span class="tag">WordPress</span>
-      </div>
-    </div>
-    <div class="proj-arrow" aria-hidden="true" style="color:var(--ash);">↗</div>
-  </a>
-
-</section>
-
-<!-- ── About Teaser ────────────────────────────────────────── -->
-<section class="about-teaser" aria-labelledby="about-teaser-heading">
-
-  <div class="about-left">
-    <div class="about-photo parallax-wrap" aria-label="Profile photo placeholder">
-      <div class="img-ph" style="position:absolute;inset:0;">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M3 21a9 9 0 0 1 18 0"/></svg>
-        [PROFILE IMAGE]
-      </div>
-      <span class="about-photo-label">Adrian Sarmiento · 2024</span>
-    </div>
-  </div>
-
-  <div class="about-right">
-    <div>
-      <p class="mono-label reveal-up">About</p>
-      <h2 id="about-teaser-heading" class="about-big-text reveal-up d1">
-        Building with<br>
-        <span class="serif-italic">intention.</span>
-      </h2>
+    <div class="hero-meta">
+      <span class="hero-status"><span class="dot-live"></span>Available for opportunities</span>
+      <span class="hero-coords">15°8′N 120°35′E<br>Angeles City, PH</span>
     </div>
 
     <div>
-      <p class="about-body reveal-up d2">
-        IT student at Holy Angel University, majoring in Web Development. Consistent Dean's List awardee — President's List 1st Year 2nd Sem. I build full-stack applications that prioritize clean design, seamless functionality, and real-world impact.
-      </p>
-      <a href="about.html" class="mag-btn mag-btn-outline reveal-up d3" aria-label="Learn more about Adrian">
-        <span>More About Me</span>
-        <svg class="btn-arrow" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 15L15 3M15 3H7M15 3v8"/></svg>
-      </a>
+      <p class="lbl rv" style="margin-bottom:.75rem">Full-Stack Web Developer · Est. 2023</p>
+      <h1 class="hero-name rv d-1">Adrian<br>Sarmiento</h1>
+      <p class="rv d-2" style="font-family:var(--f-serif);font-style:italic;font-size:var(--t-lg);color:var(--ash2);margin-top:.75rem;">Crafting Interfaces That Perform</p>
     </div>
-  </div>
 
+    <div class="hero-foot">
+      <p class="hero-desc rv">Aspiring full-stack developer passionate about crafting responsive, user-centered web applications — from polished interfaces to reliable back-end systems.</p>
+      <div class="hero-stats rv d-2">
+        <div><span class="stat-n">2+</span><span class="stat-l">Years coding</span></div>
+        <div><span class="stat-n">5</span><span class="stat-l">Projects</span></div>
+        <div><span class="stat-n">12</span><span class="stat-l">Certs</span></div>
+      </div>
+      <div class="rv d-3">
+        <a href="projects.html" class="btn btn-k"><span>View Work</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<!-- ── Awards strip ────────────────────────────────────────── -->
-<div class="awards-row" aria-label="Academic awards">
-  <span class="awards-label">Awards</span>
-  <span class="award-tag award-tag-accent">🥇 President's List — AY 2023-24 S2</span>
-  <span class="award-tag">🏆 Dean's List — AY 2023-24 S1</span>
-  <span class="award-tag">🏆 Dean's List — AY 2024-25 S1</span>
-  <span class="award-tag">🏆 Dean's List — AY 2024-25 S2</span>
-</div>
+<!-- ── TICKER ───────────────────────────────────────────────── -->
+<div class="ticker" aria-hidden="true"><div class="ticker-t">
+  <span class="ticker-i"><span class="ticker-d"></span>Vue.js</span><span class="ticker-i"><span class="ticker-d"></span>Node.js</span><span class="ticker-i"><span class="ticker-d"></span>React</span><span class="ticker-i"><span class="ticker-d"></span>MongoDB</span><span class="ticker-i"><span class="ticker-d"></span>Express</span><span class="ticker-i"><span class="ticker-d"></span>PHP</span><span class="ticker-i"><span class="ticker-d"></span>JavaScript</span><span class="ticker-i"><span class="ticker-d"></span>Tailwind CSS</span><span class="ticker-i"><span class="ticker-d"></span>MySQL</span><span class="ticker-i"><span class="ticker-d"></span>JWT Auth</span><span class="ticker-i"><span class="ticker-d"></span>REST APIs</span><span class="ticker-i"><span class="ticker-d"></span>Figma</span>
+  <span class="ticker-i"><span class="ticker-d"></span>Vue.js</span><span class="ticker-i"><span class="ticker-d"></span>Node.js</span><span class="ticker-i"><span class="ticker-d"></span>React</span><span class="ticker-i"><span class="ticker-d"></span>MongoDB</span><span class="ticker-i"><span class="ticker-d"></span>Express</span><span class="ticker-i"><span class="ticker-d"></span>PHP</span><span class="ticker-i"><span class="ticker-d"></span>JavaScript</span><span class="ticker-i"><span class="ticker-d"></span>Tailwind CSS</span><span class="ticker-i"><span class="ticker-d"></span>MySQL</span><span class="ticker-i"><span class="ticker-d"></span>JWT Auth</span><span class="ticker-i"><span class="ticker-d"></span>REST APIs</span><span class="ticker-i"><span class="ticker-d"></span>Figma</span>
+</div></div>
 
-<!-- ── Footer ──────────────────────────────────────────────── -->
-<footer class="site-footer" role="contentinfo">
+<!-- ── FEATURED PROJECTS ────────────────────────────────────── -->
+<section class="s ruled-b"><div class="c">
+  <div class="sh">
+    <div><p class="lbl rv" style="margin-bottom:.4rem">Selected Work</p><h2 class="d2 rv d-1">Featured Projects</h2></div>
+    <a href="projects.html" class="btn btn-o rv d-1"><span>All Projects</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
+  </div>
+  <a href="project-fixify.html" class="prow rv"><span class="pn">01</span><div class="ptmb">
+  <img src="images/thumb-fixify.jpg" alt="Fixify" 
+       style="width:100%;height:100%;object-fit:cover;">
+</div><div class="pi"><div class="ptitle">Fixify</div><p class="pdesc">Service marketplace connecting customers with verified local providers — real-time booking, JWT auth, in-app notifications.</p><div class="tags"><span class="tag">Vue.js 3</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">JWT</span></div></div><span class="parr">↗</span></a>
+  <a href="project-velasquez.html" class="prow rv d-1"><span class="pn">02</span><div class="ptmb">
+  <img src="images/thumb-velasquez.jpg" alt="Velasquez Funeral &amp; Chapel" 
+       style="width:100%;height:100%;object-fit:cover;">
+</div><div class="pi"><div class="ptitle">Velasquez Funeral &amp; Chapel</div><p class="pdesc">Live full-stack funeral home site with service packages, casket gallery, blog, and a full admin CMS.</p><div class="tags"><span class="tag">Vue.js 3</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">Cloudinary</span></div></div><span class="parr">↗</span></a>
+  <a href="project-furnishhaven.html" class="prow rv d-2"><span class="pn">03</span><div class="ptmb">
+  <img src="images/thumb-furnishhaven.jpg" alt="FurnishHaven" 
+       style="width:100%;height:100%;object-fit:cover;">
+</div><div class="pi"><div class="ptitle">FurnishHaven</div><p class="pdesc">Furniture e-commerce platform — product catalog, cart, checkout flow built in PHP with MySQL.</p><div class="tags"><span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag">MySQL</span></div></div><span class="parr">↗</span></a>
+  <a href="projects.html" class="prow rv d-3"><span class="pn" style="font-size:var(--t-lg);color:var(--ash2)">+2</span><div class="ptmb" style="background:var(--ghost)"><div class="ph" style="background:transparent;color:var(--ash2)">More →</div></div><div class="pi"><div class="ptitle" style="color:var(--ash2)">Burgify &amp; The Hustle Flow</div><p class="pdesc" style="color:var(--ash2)">Pure HTML/CSS e-commerce and a WordPress self-improvement blog — front-end fundamentals and CMS skills.</p><div class="tags"><span class="tag">HTML/CSS</span><span class="tag">WordPress</span><span class="tag">SEO</span></div></div><span class="parr" style="color:var(--ash2)">↗</span></a>
+</div></section>
+
+<!-- ── ABOUT TEASER ─────────────────────────────────────────── -->
+<section class="s"><div class="c">
+  <div class="about-block">
+    <div class="about-img-col">
+      <div class="about-img" role="img" aria-label="Profile photo of Adrian Sarmiento">
+        <!-- Replace the img tag below with your photo -->
+        <img src="images/profile.jpg" alt="Adrian Sarmiento"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"
+             onerror="this.style.display='none'">
+        <!-- Fallback shown only if image is missing -->
+        <div class="ph" style="position:absolute;inset:0;z-index:-1">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"><circle cx="12" cy="8" r="5"/><path d="M3 21a9 9 0 0 1 18 0"/></svg>
+          Add profile.jpg to images/
+        </div>
+      </div>
+    </div>
+    <div class="about-txt-col">
+      <div>
+        <p class="lbl rv" style="margin-bottom:.5rem">About Me</p>
+        <h2 class="d2 rv d-1" style="margin-bottom:var(--sp-2)">Building with<br><span style="font-family:var(--f-serif);font-style:italic;text-transform:none;font-size:.62em;letter-spacing:0">intention.</span></h2>
+        <p class="body rv d-2">Aspiring full-stack developer passionate about creating seamless digital experiences — from intuitive front-end interfaces to reliable, scalable back-end systems. Consistently recognized on the Dean's and President's List.</p>
+      </div>
+      <div class="rv d-3"><a href="about.html" class="btn btn-o"><span>More About Me</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a></div>
+    </div>
+  </div>
+  <div class="awards-strip rv">
+    <span class="awards-lbl">Awards</span>
+    <span class="aw aw-hi">🥇 President's List — SY 2023-24 S2</span>
+    <span class="aw">🏆 Dean's List — SY 2023-24 S1</span>
+    <span class="aw">🏆 Dean's List — SY 2024-25 S1</span>
+    <span class="aw">🏆 Dean's List — SY 2024-25 S2</span>
+    <span class="aw">🏆 Dean's List — SY 2025-26 S1</span>
+  </div>
+</div></section>
+
+<footer class="footer"><div class="c"><div class="footer-r">
   <span class="footer-copy">© 2025 Adrian Sarmiento</span>
   <div class="footer-links">
-    <a href="about.html"   class="footer-link">About</a>
-    <a href="projects.html" class="footer-link">Work</a>
-    <a href="contact.html"  class="footer-link">Contact</a>
+    <a href="about.html"    class="footer-a">About</a>
+    <a href="projects.html" class="footer-a">Work</a>
+    <a href="contact.html"  class="footer-a">Contact</a>
   </div>
-</footer>
-
-<button class="back-top" id="backTop" aria-label="Scroll to top">↑ Top</button>
-
+</div></div></footer>
+<button class="btt" id="btt" aria-label="Back to top">↑ Top</button>
 <script src="main.js"></script>
-</body>
-</html>
+</body></html>

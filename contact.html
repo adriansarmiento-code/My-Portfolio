@@ -1,272 +1,136 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact — Adrian Sarmiento</title>
-  <meta name="description" content="Get in touch with Adrian Sarmiento — web developer available for collaborations, freelance, and full-time opportunities."/>
-  <link rel="stylesheet" href="style.css"/>
-  <style>
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: calc(100vh - var(--nav-h) - 60px);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .contact-left {
-      padding: calc(var(--nav-h) + var(--gap-lg)) clamp(1.5rem, 5vw, 5rem) var(--gap-md);
-      border-right: 1px solid var(--line);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .contact-headline {
-      font-family: var(--display);
-      font-size: var(--size-3xl);
-      line-height: 0.9;
-      text-transform: uppercase;
-    }
-
-    .contact-headline em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--ash);
-      font-size: 0.55em;
-      text-transform: none;
-      display: block;
-      letter-spacing: 0;
-    }
-
-    .contact-info-block {
-      margin-top: var(--gap-md);
-    }
-
-    .contact-info-row {
-      padding: var(--gap-xs) 0;
-      border-top: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
-
-    .ci-label {
-      font-family: var(--mono);
-      font-size: var(--size-2xs);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ash);
-      padding-top: 0.15em;
-    }
-
-    .ci-value {
-      font-family: var(--serif);
-      font-size: var(--size-md);
-      font-style: italic;
-    }
-
-    .ci-value a {
-      transition: color var(--dur-fast);
-    }
-
-    .ci-value a:hover { color: var(--ash); }
-
-    .social-row-contact {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: var(--gap-sm);
-    }
-
-    .soc-link {
-      font-family: var(--mono);
-      font-size: var(--size-2xs);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ash);
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--line);
-      border-radius: 100px;
-      transition: all var(--dur-mid);
-    }
-
-    .soc-link:hover {
-      background: var(--ink);
-      color: var(--paper);
-      border-color: var(--ink);
-    }
-
-    /* ── Right side: form ─────────────────────────────────── */
-    .contact-right {
-      padding: calc(var(--nav-h) + var(--gap-lg)) clamp(1.5rem, 5vw, 5rem) var(--gap-md);
-    }
-
-    .form-title {
-      font-family: var(--display);
-      font-size: var(--size-xl);
-      line-height: 1;
-      letter-spacing: 0.02em;
-      margin-bottom: var(--gap-md);
-    }
-
-    .submit-btn {
-      margin-top: var(--gap-sm);
-      font-family: var(--mono);
-      font-size: var(--size-xs);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 1rem 2rem;
-      background: var(--ink);
-      color: var(--paper);
-      cursor: none;
-      transition: all var(--dur-mid) var(--ease-out);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .submit-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform var(--dur-mid) var(--ease-out);
-    }
-
-    .submit-btn:hover { color: var(--ink); }
-    .submit-btn:hover::before { transform: scaleX(1); }
-    .submit-btn span { position: relative; z-index: 1; }
-    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    @media (max-width: 900px) {
-      .contact-layout { grid-template-columns: 1fr; }
-      .contact-left { border-right: none; border-bottom: 1px solid var(--line); padding-top: calc(var(--nav-h) + var(--gap-md)); }
-      .contact-headline { font-size: var(--size-2xl); }
-    }
-  </style>
-</head>
-<body>
-
-<div class="cursor cursor-dot" aria-hidden="true"></div>
-<div class="cursor-ring" aria-hidden="true"></div>
-<div class="page-overlay" aria-hidden="true"></div>
-<div class="progress-bar" aria-hidden="true"></div>
-
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact — Adrian Sarmiento</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="cursor" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<nav class="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">A<span>.</span>SARMIENTO</a>
     <ul class="nav-links" role="list">
-      <li><a href="index.html"    class="nav-link">Home</a></li>
-      <li><a href="about.html"    class="nav-link">About</a></li>
-      <li><a href="projects.html" class="nav-link">Work</a></li>
-      <li><a href="contact.html"  class="nav-link">Contact</a></li>
+      <li><a href="index.html"    class="nav-a">Home</a></li>
+      <li><a href="about.html"    class="nav-a">About</a></li>
+      <li><a href="projects.html" class="nav-a">Work</a></li>
+      <li><a href="contact.html"  class="nav-a">Contact</a></li>
     </ul>
     <a href="contact.html" class="nav-cta">Let's Talk</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileDrawer">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hbg" id="hbg" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
-<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-label="Mobile navigation">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="projects.html">Work</a>
-  <a href="contact.html">Contact</a>
+<div class="drawer" id="drw" role="dialog" aria-label="Mobile menu">
+  <a href="index.html">Home</a><a href="about.html">About</a>
+  <a href="projects.html">Work</a><a href="contact.html">Contact</a>
 </div>
 
-<main class="contact-layout">
+<!-- ── PAGE HERO ─────────────────────────────────────────────── -->
+<header class="s-page ruled-b">
+  <div class="c">
+    <p class="lbl rv" style="margin-bottom:.6rem">Let's Connect</p>
+    <h1 class="d3 rv d-1" style="margin-bottom:.3rem">Get In<br>Touch<span style="font-family:var(--f-serif);font-style:italic;text-transform:none;font-size:.38em;color:var(--ash2);letter-spacing:0;vertical-align:.12em;margin-left:.4rem">— I respond within 48 hours</span></h1>
+  </div>
+</header>
 
-  <!-- Left panel -->
-  <div class="contact-left">
-    <div>
-      <p class="mono-label reveal-up">Let's Connect</p>
-      <h1 class="contact-headline reveal-up d1">
-        Get In<br>Touch
-        <em>I respond within 48hrs</em>
-      </h1>
-    </div>
+<!-- ── MAIN CONTENT ──────────────────────────────────────────── -->
+<section class="s">
+  <div class="c">
+    <div class="g2-r" style="gap:var(--sp-4)">
 
-    <div class="contact-info-block">
-      <div class="contact-info-row reveal-up">
-        <span class="ci-label">Email</span>
-        <span class="ci-value"><a href="mailto:adriansarmiento@email.com" aria-label="Email Adrian Sarmiento">adriansarmiento@email.com</a></span>
-      </div>
-      <div class="contact-info-row reveal-up d1">
-        <span class="ci-label">Location</span>
-        <span class="ci-value">Angeles City, Pampanga, Philippines</span>
-      </div>
-      <div class="contact-info-row reveal-up d2">
-        <span class="ci-label">Status</span>
-        <span class="ci-value" style="color:#00c853;font-style:normal;font-family:var(--mono);font-size:var(--size-xs);">● Available</span>
-      </div>
-      <div class="contact-info-row reveal-up d3">
-        <span class="ci-label">Currently</span>
-        <span class="ci-value">BS IT · Holy Angel University</span>
+      <!-- LEFT: info ─────────────────────────────────────────── -->
+      <div style="display:flex;flex-direction:column;gap:var(--sp-3)">
+
+        <!-- availability -->
+        <div style="display:flex;align-items:center;gap:.85rem;padding:var(--sp-2) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+          <span style="display:block;width:9px;height:9px;background:#22c55e;border-radius:50%;flex-shrink:0;animation:alive 2.5s ease-in-out infinite"></span>
+          <span style="font-family:var(--f-serif);font-style:italic;font-size:var(--t-lg);color:var(--ash)">Currently available for freelance &amp; full-time</span>
+        </div>
+        <style>@keyframes alive{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.55)}}</style>
+
+        <!-- contact details -->
+        <div>
+          <div class="rv" style="display:grid;grid-template-columns:6rem 1fr;gap:.5rem var(--sp-2);align-items:baseline;padding:var(--sp-1) 0;border-bottom:1px solid var(--line)">
+            <span class="lbl">Email</span>
+            <a href="mailto:sarmientoadrian941@gmail.com" style="font-family:var(--f-serif);font-style:italic;font-size:var(--t-lg);transition:color var(--t1)" onmouseover="this.style.color='var(--accent2)'" onmouseout="this.style.color=''">sarmientoadrian941@gmail.com</a>
+          </div>
+          <div class="rv d-1" style="display:grid;grid-template-columns:6rem 1fr;gap:.5rem var(--sp-2);align-items:baseline;padding:var(--sp-1) 0;border-bottom:1px solid var(--line)">
+            <span class="lbl">Location</span>
+            <span style="font-family:var(--f-serif);font-style:italic;font-size:var(--t-lg)">Angeles City, Pampanga, PH</span>
+          </div>
+          <div class="rv d-2" style="display:grid;grid-template-columns:6rem 1fr;gap:.5rem var(--sp-2);align-items:baseline;padding:var(--sp-1) 0;border-bottom:1px solid var(--line)">
+            <span class="lbl">Education</span>
+            <span style="font-family:var(--f-mono);font-size:var(--t-sm);color:var(--ash)">BS Information Technology · Holy Angel University</span>
+          </div>
+          <div class="rv d-3" style="display:grid;grid-template-columns:6rem 1fr;gap:.5rem var(--sp-2);align-items:center;padding:var(--sp-1) 0;border-bottom:1px solid var(--line)">
+            <span class="lbl">Status</span>
+            <span style="font-family:var(--f-mono);font-size:var(--t-sm);color:#22c55e;display:flex;align-items:center;gap:.4rem">● Open to work</span>
+          </div>
+        </div>
+
+        <!-- social links -->
+        <div class="rv d-4" style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <a href="https://github.com/adriansarmiento-code" target="_blank" rel="noopener" class="btn btn-o" style="padding:.55rem 1.1rem;font-size:var(--t-2xs)"><span>GitHub ↗</span></a>
+          <a href="https://www.linkedin.com/in/adrian-sarmiento-168700282" target="_blank" rel="noopener" class="btn btn-o" style="padding:.55rem 1.1rem;font-size:var(--t-2xs)"><span>LinkedIn ↗</span></a>
+          <a href="https://www.facebook.com/adrian.sarmiento.718" target="_blank" rel="noopener" class="btn btn-o" style="padding:.55rem 1.1rem;font-size:var(--t-2xs)"><span>Facebook ↗</span></a>
+        </div>
+
+        <!-- quick nav cards -->
+        <div class="rv d-5" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:auto">
+          <a href="projects.html" style="background:var(--paper);padding:1.25rem 1.4rem;display:flex;flex-direction:column;gap:.3rem;transition:background var(--t2),color var(--t2);cursor:crosshair" onmouseover="this.style.background='var(--ink)';this.style.color='var(--paper)'" onmouseout="this.style.background='var(--paper)';this.style.color=''">
+            <span class="lbl" style="transition:color var(--t2)">Explore</span>
+            <span style="font-family:var(--f-serif);font-style:italic;font-size:var(--t-lg)">My Work</span>
+            <span style="font-family:var(--f-mono);font-size:var(--t-2xs);color:var(--ash2)">5 projects</span>
+          </a>
+          <a href="about.html" style="background:var(--paper);padding:1.25rem 1.4rem;display:flex;flex-direction:column;gap:.3rem;border-left:1px solid var(--line);transition:background var(--t2),color var(--t2);cursor:crosshair" onmouseover="this.style.background='var(--ink)';this.style.color='var(--paper)'" onmouseout="this.style.background='var(--paper)';this.style.color=''">
+            <span class="lbl" style="transition:color var(--t2)">Learn More</span>
+            <span style="font-family:var(--f-serif);font-style:italic;font-size:var(--t-lg)">About Me</span>
+            <span style="font-family:var(--f-mono);font-size:var(--t-2xs);color:var(--ash2)">12 certifications</span>
+          </a>
+        </div>
+
       </div>
 
-      <div class="social-row-contact reveal-up d4" role="list" aria-label="Social media links">
-        <a href="#" class="soc-link" role="listitem" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub</a>
-        <a href="#" class="soc-link" role="listitem" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">LinkedIn</a>
-        <a href="#" class="soc-link" role="listitem" target="_blank" rel="noopener noreferrer" aria-label="Facebook profile">Facebook</a>
+      <!-- RIGHT: form ─────────────────────────────────────────── -->
+      <div>
+        <p class="lbl rv" style="margin-bottom:var(--sp-2)">Send a Message</p>
+        <form id="cf" novalidate>
+
+          <div class="field rv d-1">
+            <label class="f-lbl" for="cn">Full Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="cn" name="name" class="f-in" placeholder="Your full name" autocomplete="name" aria-required="true">
+            <span class="f-msg" id="cne" role="alert">Please enter your name.</span>
+          </div>
+
+          <div class="field rv d-2">
+            <label class="f-lbl" for="ce">Email Address <span aria-hidden="true">*</span></label>
+            <input type="email" id="ce" name="email" class="f-in" placeholder="your@email.com" autocomplete="email" aria-required="true">
+            <span class="f-msg" id="cee" role="alert">Please enter a valid email.</span>
+          </div>
+
+          <div class="field rv d-2">
+            <label class="f-lbl" for="cs">Subject</label>
+            <input type="text" id="cs" name="subject" class="f-in" placeholder="What's this about?" autocomplete="off">
+          </div>
+
+          <div class="field rv d-3">
+            <label class="f-lbl" for="cm">Message <span aria-hidden="true">*</span></label>
+            <textarea id="cm" name="message" class="f-tx" rows="5" placeholder="Tell me about your project, opportunity, or just say hello…" aria-required="true"></textarea>
+            <span class="f-msg" id="cme" role="alert">Please write a message (min. 10 characters).</span>
+          </div>
+
+          <button type="submit" class="f-sub rv d-4" id="csub"><span>Send Message →</span></button>
+          <div class="f-ok" id="cok" role="status" aria-live="polite">✓ Message sent — I'll get back to you within 48 hours.</div>
+
+        </form>
       </div>
+
     </div>
   </div>
+</section>
 
-  <!-- Right panel: form -->
-  <div class="contact-right">
-    <h2 class="form-title reveal-up">Send a<br>Message</h2>
-
-    <form id="contactForm" novalidate aria-label="Contact form">
-
-      <div class="field reveal-up d1">
-        <label class="field-label" for="cName">Full Name <span aria-hidden="true">*</span></label>
-        <input type="text" id="cName" name="name" class="field-input" placeholder="Your full name" autocomplete="name" aria-required="true" aria-describedby="cNameErr"/>
-        <span class="field-error" id="cNameErr" role="alert" aria-live="polite">Please enter your name.</span>
-      </div>
-
-      <div class="field reveal-up d2">
-        <label class="field-label" for="cEmail">Email Address <span aria-hidden="true">*</span></label>
-        <input type="email" id="cEmail" name="email" class="field-input" placeholder="your@email.com" autocomplete="email" aria-required="true" aria-describedby="cEmailErr"/>
-        <span class="field-error" id="cEmailErr" role="alert" aria-live="polite">Please enter a valid email.</span>
-      </div>
-
-      <div class="field reveal-up d3">
-        <label class="field-label" for="cSubject">Subject</label>
-        <input type="text" id="cSubject" name="subject" class="field-input" placeholder="What's this about?" autocomplete="off"/>
-      </div>
-
-      <div class="field reveal-up d4">
-        <label class="field-label" for="cMsg">Message <span aria-hidden="true">*</span></label>
-        <textarea id="cMsg" name="message" class="field-textarea" rows="5" placeholder="Tell me about your project or opportunity..." aria-required="true" aria-describedby="cMsgErr"></textarea>
-        <span class="field-error" id="cMsgErr" role="alert" aria-live="polite">Please enter a message (min. 10 characters).</span>
-      </div>
-
-      <button type="submit" class="submit-btn reveal-up d5" id="submitBtn" aria-label="Send message">
-        <span>Send Message →</span>
-      </button>
-
-      <div class="form-success-msg" id="formSuccess" role="status" aria-live="polite">
-        ✓ Message sent — I'll get back to you soon.
-      </div>
-
-    </form>
-  </div>
-</main>
-
-<footer class="site-footer" role="contentinfo">
+<footer class="footer"><div class="c"><div class="footer-r">
   <span class="footer-copy">© 2025 Adrian Sarmiento</span>
   <div class="footer-links">
-    <a href="about.html"    class="footer-link">About</a>
-    <a href="projects.html" class="footer-link">Work</a>
-    <a href="contact.html"  class="footer-link">Contact</a>
+    <a href="about.html"    class="footer-a">About</a>
+    <a href="projects.html" class="footer-a">Work</a>
+    <a href="contact.html"  class="footer-a">Contact</a>
   </div>
-</footer>
-
-<button class="back-top" id="backTop" aria-label="Scroll to top">↑ Top</button>
-
+</div></div></footer>
+<button class="btt" id="btt" aria-label="Back to top">↑ Top</button>
 <script src="main.js"></script>
-</body>
-</html>
+</body></html>
