@@ -14,7 +14,8 @@
     <ul class="nav-links" role="list">
       <li><a href="index.html"    class="nav-a">Home</a></li>
       <li><a href="about.html"    class="nav-a">About</a></li>
-      <li><a href="projects.html" class="nav-a">Work</a></li>
+      <li><a href="projects.html" class="nav-a">Project</a></li>
+      <li><a href="resume.html"   class="nav-a">Resume</a></li>
       <li><a href="contact.html"  class="nav-a">Contact</a></li>
     </ul>
     <a href="contact.html" class="nav-cta">Let's Talk</a>
@@ -23,140 +24,215 @@
 </nav>
 <div class="drawer" id="drw" role="dialog" aria-label="Mobile menu">
   <a href="index.html">Home</a><a href="about.html">About</a>
-  <a href="projects.html">Work</a><a href="contact.html">Contact</a>
+  <a href="projects.html">Project</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a>
 </div>
 
 <!-- ── PAGE HERO ────────────────────────────────────────────── -->
 <header class="s-page ruled-b">
   <div class="c">
-    <div class="g2-l" style="align-items:stretch;gap:var(--sp-3)">
-      <!-- Photo: stretches to match text column height -->
-      <div style="width:100%;height:100%;min-height:420px;background:var(--cream);border-radius:4px;overflow:hidden;position:relative;" role="img" aria-label="Profile photo of Adrian Sarmiento">
-        <img src="images/profile.jpg" alt="Adrian Sarmiento"
-             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;">
-        <!-- Fallback shown only when image is missing -->
+    <div class="about-hero">
+      <!-- Photo -->
+      <div class="about-photo rv" role="img" aria-label="Profile photo of Adrian Sarmiento">
+        <img src="images/profile.jpg" alt="Adrian Sarmiento">
         <div class="ph" style="position:absolute;inset:0;z-index:-1">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"><circle cx="12" cy="8" r="5"/><path d="M3 21a9 9 0 0 1 18 0"/></svg>
           Add profile.jpg to images/
         </div>
       </div>
-      <!-- Text: fills remaining space, anchored to bottom -->
-      <div style="display:flex;flex-direction:column;gap:var(--sp-2)">
-        <div>
-          <p class="lbl rv" style="margin-bottom:.6rem">About Me</p>
-          <h1 class="d2 rv d-1" style="margin-bottom:.4rem">Adrian Sarmiento</h1>
-          <p class="rv d-2" style="font-family:var(--f-serif);font-style:italic;font-size:var(--t-lg);color:var(--ash2);margin-bottom:var(--sp-2)">Aspiring Full-Stack Developer</p>
-          <p class="body rv d-3">Passionate about building seamless digital products — from clean, intuitive interfaces to reliable back-end systems that scale.</p>
-        </div>
-        <div class="rv d-4" style="display:flex;gap:.75rem;flex-wrap:wrap">
+      <!-- Intro text -->
+      <div class="about-intro">
+        <p class="lbl rv" style="margin-bottom:.6rem">About Me</p>
+        <h1 class="d2 rv d-1" style="margin-bottom:.4rem">Hey, I'm Adrian.</h1>
+        <p class="rv d-2" style="font-family:var(--f-serif);font-style:italic;font-size:var(--t-lg);color:var(--ash2);margin-bottom:var(--sp-2)">Full-Stack Developer · Designer · Problem-Solver</p>
+        <p class="body rv d-3" style="margin-bottom:var(--sp-2)">I'm a web developer based in Angeles City, Philippines — currently pursuing a BS in Information Technology at Holy Angel University with a focus on Web Development. I love turning ideas into real, usable products that people actually enjoy using.</p>
+        <p class="body rv d-4">When I'm not coding, you'll find me organizing computing events, helping out at the school library, or experimenting with new UI patterns in Figma. I believe great software starts with empathy — understanding the people who will use it.</p>
+        <div class="rv d-5" style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:var(--sp-2)">
           <a href="contact.html" class="btn btn-k"><span>Get In Touch</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
-          <a href="projects.html" class="btn btn-o"><span>View Work</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
+          <a href="resume.html" class="btn btn-o"><span>View Resume</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
         </div>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ── BIO + EXPERIENCE ──────────────────────────────────────── -->
+<!-- ── MY STORY ───────────────────────────────────────────────── -->
 <section class="s ruled-b"><div class="c">
   <div class="g2">
     <div>
-      <p class="lbl rv" style="margin-bottom:var(--sp-2)">Background</p>
-      <p class="body rv d-1" style="margin-bottom:var(--sp-2)">I'm an Information Technology student at Holy Angel University in Angeles City, Pampanga, specializing in Web Development. Consistently recognized on the Dean's List — and President's List in my second semester — I approach both academics and projects with the same care.</p>
-      <p class="body rv d-2" style="margin-bottom:var(--sp-2)">My approach goes beyond writing code. I care about the experience a product creates — how fast it loads, how easy it is to navigate, and how well it communicates its purpose. Every project is an opportunity to balance engineering precision with thoughtful design.</p>
-      <p class="body rv d-3">Outside of projects, I've served as School of Computing staff, a student library assistant, and a logistics coordinator for computing events — experiences that sharpened my communication, leadership, and teamwork.</p>
+      <p class="lbl rv" style="margin-bottom:var(--sp-2)">My Story</p>
+      <h2 class="d1 rv d-1" style="margin-bottom:var(--sp-2)">From Curiosity to Code</h2>
+      <p class="body rv d-2" style="margin-bottom:var(--sp-2)">I didn't start out knowing I wanted to be a developer. What drew me in was the idea that you could build something from nothing — type a few lines of code and suddenly there's a working app in front of you. That moment of creation is what keeps me going.</p>
+      <p class="body rv d-3" style="margin-bottom:var(--sp-2)">My journey started with HTML and CSS, just building simple pages for fun. It quickly grew into JavaScript, then full-stack development. Today, I work with Vue.js, React, Node.js, and MongoDB — and I'm always picking up new tools and frameworks.</p>
+      <p class="body rv d-4">What matters most to me isn't just making things work — it's making them work <em>well</em>. Fast load times, intuitive navigation, clean code, and thoughtful design are things I genuinely care about in every project I take on.</p>
     </div>
     <div>
-      <p class="lbl rv" style="margin-bottom:var(--sp-2)">Experience</p>
-      <div class="tl rv d-1">
-        <span class="tl-yr">2024 – Present</span>
-        <div><div class="tl-role">Staff — School of Computing</div><div class="tl-org">Holy Angel University</div><p class="tl-txt">Supported organization and management of internal activities, promoting efficient staff coordination and successful execution of office initiatives.</p></div>
-      </div>
-      <div class="tl rv d-2">
-        <span class="tl-yr">2023 – Present</span>
-        <div><div class="tl-role">Student Assistant</div><div class="tl-org">High School Library · Holy Angel University</div><p class="tl-txt">Supported daily library operations — organizing materials, maintaining records, and assisting students and faculty with resource needs.</p></div>
-      </div>
-      <div class="tl rv d-3">
-        <span class="tl-yr">2023</span>
-        <div><div class="tl-role">Logistics Staff — Code Geeks</div><div class="tl-org">School of Computing · Holy Angel University</div><p class="tl-txt">Coordinated materials, reservations, and on-site logistics for computing activities and events.</p></div>
-      </div>
+      <p class="lbl rv" style="margin-bottom:var(--sp-2)">Beyond the Code</p>
+      <h2 class="d1 rv d-1" style="margin-bottom:var(--sp-2)">Real-World Experience</h2>
+      <p class="body rv d-2" style="margin-bottom:var(--sp-2)">Outside of personal projects, I've taken on roles that have shaped who I am as much as coding has. Serving as staff for the School of Computing taught me how to coordinate teams and manage operations under pressure.</p>
+      <p class="body rv d-3" style="margin-bottom:var(--sp-2)">Working as a student library assistant gave me a deeper appreciation for systems and order. And leading logistics for Code Geeks — our computing events — sharpened my ability to plan, communicate, and keep things running smoothly.</p>
+      <p class="body rv d-4">These experiences have given me soft skills that complement my technical abilities: leadership, clear communication, adaptability, and a genuine love for teamwork.</p>
     </div>
   </div>
 </div></section>
 
-<!-- ── SKILLS ────────────────────────────────────────────────── -->
+<!-- ── PHILOSOPHY ─────────────────────────────────────────────── -->
 <section class="s ruled-b"><div class="c">
-  <div class="sh"><div><p class="lbl rv" style="margin-bottom:.4rem">Technical Skills</p><h2 class="d2 rv d-1">Capabilities</h2></div></div>
-  <div class="skills-wrap">
-    <div class="skill rv"><span class="skill-n">HTML &amp; CSS / Tailwind</span><div class="skill-t"><div class="skill-f" data-w="92"></div></div><span class="skill-p">92%</span></div>
-    <div class="skill rv d-1"><span class="skill-n">JavaScript</span><div class="skill-t"><div class="skill-f" data-w="90"></div></div><span class="skill-p">90%</span></div>
-    <div class="skill rv d-2"><span class="skill-n">Vue.js 3</span><div class="skill-t"><div class="skill-f" data-w="85"></div></div><span class="skill-p">85%</span></div>
-    <div class="skill rv d-3"><span class="skill-n">Node.js / Express</span><div class="skill-t"><div class="skill-f" data-w="83"></div></div><span class="skill-p">83%</span></div>
-    <div class="skill rv d-1"><span class="skill-n">MongoDB Atlas</span><div class="skill-t"><div class="skill-f" data-w="82"></div></div><span class="skill-p">82%</span></div>
-    <div class="skill rv d-2"><span class="skill-n">React</span><div class="skill-t"><div class="skill-f" data-w="80"></div></div><span class="skill-p">80%</span></div>
-    <div class="skill rv d-3"><span class="skill-n">MySQL</span><div class="skill-t"><div class="skill-f" data-w="78"></div></div><span class="skill-p">78%</span></div>
-    <div class="skill rv d-1"><span class="skill-n">PHP</span><div class="skill-t"><div class="skill-f" data-w="75"></div></div><span class="skill-p">75%</span></div>
-    <div class="skill rv d-2"><span class="skill-n">Figma / UI Design</span><div class="skill-t"><div class="skill-f" data-w="75"></div></div><span class="skill-p">75%</span></div>
-    <div class="skill rv d-3"><span class="skill-n">Python / Java</span><div class="skill-t"><div class="skill-f" data-w="65"></div></div><span class="skill-p">65%</span></div>
+  <div class="sh"><div><p class="lbl rv" style="margin-bottom:.4rem">What Drives Me</p><h2 class="d2 rv d-1">My Philosophy</h2></div></div>
+  <div class="about-philosophy">
+    <div class="philosophy-card rv d-1">
+      <span class="philosophy-icon">01</span>
+      <h3 class="philosophy-title">User-First Thinking</h3>
+      <p class="philosophy-text">Every pixel, every interaction, every millisecond of load time matters. I build with the end user in mind — because software exists to serve people, not the other way around.</p>
+    </div>
+    <div class="philosophy-card rv d-2">
+      <span class="philosophy-icon">02</span>
+      <h3 class="philosophy-title">Clean, Maintainable Code</h3>
+      <p class="philosophy-text">Code is read far more often than it's written. I strive for clarity, consistency, and simplicity — so the next developer (or future me) can pick up where I left off without guesswork.</p>
+    </div>
+    <div class="philosophy-card rv d-3">
+      <span class="philosophy-icon">03</span>
+      <h3 class="philosophy-title">Always Learning</h3>
+      <p class="philosophy-text">Technology moves fast, and I move with it. Whether it's a new framework, a design pattern, or a soft skill — I'm always looking for what I can improve next.</p>
+    </div>
+    <div class="philosophy-card rv d-4">
+      <span class="philosophy-icon">04</span>
+      <h3 class="philosophy-title">Collaboration Over Competition</h3>
+      <p class="philosophy-text">The best products are built by teams, not individuals. I value open communication, shared ownership, and the kind of feedback that makes everyone's work stronger.</p>
+    </div>
   </div>
 </div></section>
 
-<!-- ── EDUCATION ─────────────────────────────────────────────── -->
+<!-- ── SKILLS OVERVIEW ───────────────────────────────────────── -->
 <section class="s ruled-b"><div class="c">
-  <div class="sh"><div><p class="lbl rv" style="margin-bottom:.4rem">Education</p><h2 class="d2 rv d-1">Academic Background</h2></div></div>
+  <div class="sh"><div><p class="lbl rv" style="margin-bottom:.4rem">What I Work With</p><h2 class="d2 rv d-1">Skills Overview</h2></div></div>
   <div class="g2">
+    <!-- Technical Skills -->
     <div>
-      <div class="tl rv d-1" style="border-top:1px solid var(--line)">
-        <span class="tl-yr">2023 – Present</span>
-        <div>
-          <div class="tl-role">BS Information Technology</div>
-          <div class="tl-org">Major in Web Development · Holy Angel University</div>
-          <div class="awards" style="margin-top:.65rem">
-            <span class="aw aw-hi">🥇 President's List S2 SY 23-24</span>
-            <span class="aw">🏆 Dean's List S1 SY 23-24</span>
-            <span class="aw">🏆 Dean's List S1 SY 24-25</span>
-            <span class="aw">🏆 Dean's List S2 SY 24-25</span>
-            <span class="aw">🏆 Dean's List S1 SY 25-26</span>
+      <p class="lbl rv" style="margin-bottom:var(--sp-2)">Technical Skills</p>
+      <div class="about-skills-group rv d-1">
+        <div class="about-skill-cat">
+          <span class="about-skill-cat-label">Front-End</span>
+          <div class="skill-pills">
+            <span class="skill-pill">HTML / CSS</span>
+            <span class="skill-pill">Tailwind CSS</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Vue.js 3</span>
+            <span class="skill-pill">React</span>
+          </div>
+        </div>
+        <div class="about-skill-cat">
+          <span class="about-skill-cat-label">Back-End</span>
+          <div class="skill-pills">
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">Express</span>
+            <span class="skill-pill">PHP</span>
+            <span class="skill-pill">REST APIs</span>
+            <span class="skill-pill">JWT Auth</span>
+          </div>
+        </div>
+        <div class="about-skill-cat">
+          <span class="about-skill-cat-label">Database</span>
+          <div class="skill-pills">
+            <span class="skill-pill">MongoDB Atlas</span>
+            <span class="skill-pill">MySQL</span>
+          </div>
+        </div>
+        <div class="about-skill-cat">
+          <span class="about-skill-cat-label">Design &amp; Tools</span>
+          <div class="skill-pills">
+            <span class="skill-pill">Figma</span>
+            <span class="skill-pill">UI/UX Design</span>
+            <span class="skill-pill">WordPress</span>
+            <span class="skill-pill">Git</span>
+          </div>
+        </div>
+        <div class="about-skill-cat">
+          <span class="about-skill-cat-label">Other Languages</span>
+          <div class="skill-pills">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">Java</span>
           </div>
         </div>
       </div>
-      <div class="tl rv d-2">
-        <span class="tl-yr">2017 – 2022</span>
-        <div><div class="tl-role">High School Diploma</div><div class="tl-org">Holy Angel University · Angeles City, PH</div></div>
-      </div>
     </div>
+    <!-- Soft Skills -->
     <div>
-      <p class="lbl rv" style="margin-bottom:var(--sp-2)">Areas of Focus</p>
-      <div class="tl rv d-1"><span class="tl-yr" style="font-size:var(--t-2xs)">01</span><div><div class="tl-role">Full-Stack Development</div><p class="tl-txt">Building complete web applications — from database design and API architecture to responsive UI and deployment.</p></div></div>
-      <div class="tl rv d-2"><span class="tl-yr" style="font-size:var(--t-2xs)">02</span><div><div class="tl-role">UI/UX Design</div><p class="tl-txt">Applying user-centered design thinking to create interfaces that are both refined and highly functional.</p></div></div>
-      <div class="tl rv d-3"><span class="tl-yr" style="font-size:var(--t-2xs)">03</span><div><div class="tl-role">SEO &amp; Digital Marketing</div><p class="tl-txt">Understanding how visibility, content strategy, and analytics translate developer work into real-world impact.</p></div></div>
+      <p class="lbl rv" style="margin-bottom:var(--sp-2)">Soft Skills</p>
+      <div class="about-soft-skills rv d-2">
+        <div class="soft-skill-item">
+          <div class="soft-skill-icon">01</div>
+          <div>
+            <div class="soft-skill-name">Creative Problem-Solving</div>
+            <p class="soft-skill-text">I enjoy breaking down complex challenges into manageable steps and finding elegant solutions.</p>
+          </div>
+        </div>
+        <div class="soft-skill-item">
+          <div class="soft-skill-icon">02</div>
+          <div>
+            <div class="soft-skill-name">Communication</div>
+            <p class="soft-skill-text">Clear and honest communication is central to how I work — with teammates, clients, and stakeholders.</p>
+          </div>
+        </div>
+        <div class="soft-skill-item">
+          <div class="soft-skill-icon">03</div>
+          <div>
+            <div class="soft-skill-name">Leadership &amp; Teamwork</div>
+            <p class="soft-skill-text">From coordinating events to leading project teams, I know how to bring people together and get things done.</p>
+          </div>
+        </div>
+        <div class="soft-skill-item">
+          <div class="soft-skill-icon">04</div>
+          <div>
+            <div class="soft-skill-name">Adaptability</div>
+            <p class="soft-skill-text">I thrive in changing environments and enjoy learning new technologies, tools, and workflows on the fly.</p>
+          </div>
+        </div>
+        <div class="soft-skill-item">
+          <div class="soft-skill-icon">05</div>
+          <div>
+            <div class="soft-skill-name">Time Management</div>
+            <p class="soft-skill-text">Juggling academics, projects, and extracurriculars has taught me to prioritize effectively and deliver on time.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div></section>
 
-<!-- ── CERTIFICATIONS ────────────────────────────────────────── -->
+<!-- ── FUN FACTS / PERSONAL TOUCH ────────────────────────────── -->
 <section class="s"><div class="c">
-  <div class="sh"><div><p class="lbl rv" style="margin-bottom:.4rem">Credentials</p><h2 class="d2 rv d-1">Certifications <span style="font-family:var(--f-serif);font-style:italic;text-transform:none;font-size:.5em;color:var(--ash2);letter-spacing:0">— 12 and counting</span></h2></div></div>
-  <div class="cert-grid rv d-2">
-    <div class="cert"><div class="cert-by">CompTIA</div><div class="cert-nm">IT Fundamentals (ITF+)</div><div class="cert-dt">Nov 2023</div><a href="https://www.credly.com/badges/c2936a01-9c4c-4c45-a500-fea7def320b3/linked_in_profile" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
-    <div class="cert"><div class="cert-by">freeCodeCamp</div><div class="cert-nm">Responsive Web Design</div><div class="cert-dt">Sep 2024</div><a href="https://www.freecodecamp.org/certification/sarmientoadrian/responsive-web-design" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
-    <div class="cert"><div class="cert-by">Cisco</div><div class="cert-nm">JavaScript Essentials 1</div><div class="cert-dt">Oct 2024</div><a href="https://www.credly.com/badges/a8ba36a8-8bf2-4f9b-9793-1a59a035a5bb/linked_in_profile" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
-    <div class="cert"><div class="cert-by">Simplilearn</div><div class="cert-nm">Introduction to PHP</div><div class="cert-dt">Feb 2025</div><a href="https://simpli-web.app.link/e/qxMBG6KPV0b" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
-    <div class="cert"><div class="cert-by">Simplilearn</div><div class="cert-nm">Design Thinking for Beginners</div><div class="cert-dt">Jul 2025</div><a href="https://simpli-web.app.link/e/HqZeXRwPV0b" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
-    <div class="cert"><div class="cert-by">HubSpot Academy</div><div class="cert-nm">Digital Marketing Certified</div><div class="cert-dt">Feb 2026</div><a href="https://app-na2.hubspot.com/academy/achievements/7bgwhykz/en/1/adrian-sarmiento/digital-marketing" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
-    <div class="cert"><div class="cert-by">Simplilearn</div><div class="cert-nm">Graphic Design &amp; UI/UX</div><div class="cert-dt">Aug 2025</div><a href="https://simpli-web.app.link/e/tNCEBeuPV0b" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
-    <div class="cert"><div class="cert-by">Simplilearn</div><div class="cert-nm">UI/UX Designing with ChatGPT</div><div class="cert-dt">Aug 2025</div><a href="https://simpli-web.app.link/e/NwKjfcsPV0b" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
-    <div class="cert"><div class="cert-by">freeCodeCamp</div><div class="cert-nm">Legacy JS Algorithms &amp; Data Structures</div><div class="cert-dt">Sep 2025</div><a href="https://www.freecodecamp.org/certification/sarmientoadrian/javascript-algorithms-and-data-structures" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
-    <div class="cert"><div class="cert-by">freeCodeCamp</div><div class="cert-nm">Back End Development &amp; APIs</div><div class="cert-dt">Sep 2025</div><a href="https://www.freecodecamp.org/certification/sarmientoadrian/back-end-development-and-apis" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
-    <div class="cert"><div class="cert-by">HubSpot Academy</div><div class="cert-nm">SEO</div><div class="cert-dt">Jan 2026</div><a href="https://app-na2.hubspot.com/academy/achievements/gbr6sh0r/en/1/adrian-sarmiento/seo" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
-    <div class="cert"><div class="cert-by">HubSpot Academy</div><div class="cert-nm">SEO II</div><div class="cert-dt">Feb 2026</div><a href="https://app-na2.hubspot.com/academy/achievements/h3d6v7dn/en/1/adrian-sarmiento/seo-ii" target="_blank" rel="noopener" class="cert-lnk">View Credential ↗</a></div>
+  <div class="sh"><div><p class="lbl rv" style="margin-bottom:.4rem">A Bit More About Me</p><h2 class="d2 rv d-1">Quick Facts</h2></div></div>
+  <div class="about-facts rv d-2">
+    <div class="about-fact">
+      <span class="about-fact-num">12+</span>
+      <span class="about-fact-label">Certifications Earned</span>
+    </div>
+    <div class="about-fact">
+      <span class="about-fact-num">5</span>
+      <span class="about-fact-label">Full Projects Built</span>
+    </div>
+    <div class="about-fact">
+      <span class="about-fact-num">4×</span>
+      <span class="about-fact-label">Dean's &amp; President's List</span>
+    </div>
+    <div class="about-fact">
+      <span class="about-fact-num">∞</span>
+      <span class="about-fact-label">Cups of Coffee</span>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:var(--sp-3)">
+    <p class="si rv d-3" style="max-width:640px;margin:0 auto var(--sp-2)">"I don't just want to write code — I want to build things that matter, for people who matter."</p>
+    <div class="rv d-4" style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center">
+      <a href="projects.html" class="btn btn-k"><span>See My Work</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
+      <a href="contact.html" class="btn btn-o"><span>Let's Connect</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
+    </div>
   </div>
 </div></section>
 <footer class="footer"><div class="c"><div class="footer-r">
   <span class="footer-copy">© 2025 Adrian Sarmiento</span>
   <div class="footer-links">
     <a href="about.html"    class="footer-a">About</a>
-    <a href="projects.html" class="footer-a">Work</a>
+    <a href="projects.html" class="footer-a">Project</a>
     <a href="contact.html"  class="footer-a">Contact</a>
   </div>
 </div></div></footer>

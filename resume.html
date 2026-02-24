@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resume — Adrian Sarmiento</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ── Resume-specific layout ──────────────────────────────────── */
+
+/* Sticky download bar at top of content */
+.dl-bar {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: .75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.dl-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+.dl-bar-note {
+  font-family: var(--f-mono);
+  font-size: var(--t-2xs);
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.5);
+}
+.dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .55rem 1.25rem;
+  background: var(--accent);
+  color: var(--ink);
+  font-family: var(--f-mono);
+  font-size: var(--t-2xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  font-weight: 500;
+  transition: opacity var(--t1);
+  cursor: crosshair;
+}
+.dl-btn:hover { opacity: .85; }
+.dl-btn svg { flex-shrink: 0; }
+
+/* Resume section block */
+.resume-section {
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+.resume-section:last-child { border-bottom: none; }
+.resume-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--sp-2);
+  padding-bottom: var(--sp-1);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Experience timeline card */
+.exp-card {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: var(--sp-1) var(--sp-2);
+  padding: var(--sp-2) 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+.exp-card:first-of-type { border-top: none; }
+.exp-date {
+  font-family: var(--f-mono);
+  font-size: var(--t-2xs);
+  color: var(--ash2);
+  letter-spacing: .06em;
+  padding-top: .3em;
+  line-height: 1.5;
+}
+.exp-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  margin-right: .5rem;
+  vertical-align: middle;
+}
+.exp-role {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: var(--t-lg);
+  margin-bottom: .2rem;
+}
+.exp-org {
+  font-family: var(--f-mono);
+  font-size: var(--t-2xs);
+  color: var(--ash2);
+  letter-spacing: .06em;
+  margin-bottom: .5rem;
+}
+.exp-desc {
+  font-family: var(--f-mono);
+  font-size: var(--t-sm);
+  color: var(--ash);
+  line-height: 1.8;
+}
+.exp-highlights {
+  list-style: none;
+  padding: 0;
+  margin-top: .5rem;
+}
+.exp-highlights li {
+  font-family: var(--f-mono);
+  font-size: var(--t-sm);
+  color: var(--ash);
+  line-height: 1.8;
+  padding-left: 1rem;
+  position: relative;
+}
+.exp-highlights li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent2);
+}
+
+/* Education card */
+.edu-card {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: var(--sp-1) var(--sp-2);
+  padding: var(--sp-2) 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+.edu-card:first-of-type { border-top: none; }
+.edu-degree {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: var(--t-lg);
+  margin-bottom: .2rem;
+}
+.edu-school {
+  font-family: var(--f-mono);
+  font-size: var(--t-2xs);
+  color: var(--ash2);
+  letter-spacing: .06em;
+  margin-bottom: .5rem;
+}
+
+/* Skills section in resume */
+.resume-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-2);
+}
+.resume-skill-group {
+  padding: var(--sp-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  transition: background var(--t2);
+}
+.resume-skill-group:hover {
+  background: var(--cream);
+}
+.resume-skill-group-label {
+  font-family: var(--f-mono);
+  font-size: var(--t-2xs);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ash2);
+  margin-bottom: var(--sp-1);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.resume-skill-group-label::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Achievement items */
+.achievement-item {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: .75rem;
+  padding: var(--sp-1) 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+.achievement-item:first-of-type { border-top: none; }
+.achievement-icon {
+  font-size: 1.5rem;
+  text-align: center;
+  padding-top: .15em;
+}
+.achievement-title {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: var(--t-md);
+  margin-bottom: .15rem;
+}
+.achievement-detail {
+  font-family: var(--f-mono);
+  font-size: var(--t-2xs);
+  color: var(--ash2);
+  letter-spacing: .04em;
+}
+
+/* Cert grid in resume */
+.r-cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.r-cert {
+  background: var(--paper);
+  padding: .85rem 1rem;
+  transition: background var(--t2), color var(--t2);
+}
+.r-cert:hover { background: var(--ink); color: var(--paper); }
+.r-cert:hover .r-cert-by, .r-cert:hover .r-cert-lnk { color: var(--accent); }
+.r-cert-by  { font-family: var(--f-mono); font-size: var(--t-2xs); letter-spacing: .08em; text-transform: uppercase; color: var(--ash2); margin-bottom: .25rem; transition: color var(--t2); }
+.r-cert-nm  { font-family: var(--f-serif); font-style: italic; font-size: var(--t-sm); line-height: 1.3; margin-bottom: .2rem; }
+.r-cert-dt  { font-family: var(--f-mono); font-size: var(--t-2xs); color: var(--ash2); margin-bottom: .4rem; }
+.r-cert-lnk { font-family: var(--f-mono); font-size: var(--t-2xs); color: var(--ash2); text-decoration: underline; text-underline-offset: 3px; transition: color var(--t2); }
+
+@media(max-width:900px){
+  .exp-card, .edu-card { grid-template-columns: 120px 1fr; }
+  .resume-skills-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:600px){
+  .dl-bar-note { display: none; }
+  .exp-card, .edu-card { grid-template-columns: 1fr; }
+  .exp-date { padding-top: 0; padding-bottom: .2rem; }
+  .resume-skills-grid { grid-template-columns: 1fr; }
+  .r-cert-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="cursor" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">A<span>.</span>SARMIENTO</a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html"    class="nav-a">Home</a></li>
+      <li><a href="about.html"    class="nav-a">About</a></li>
+      <li><a href="projects.html" class="nav-a">Project</a></li>
+      <li><a href="resume.html"   class="nav-a">Resume</a></li>
+      <li><a href="contact.html"  class="nav-a">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Let's Talk</a>
+    <button class="hbg" id="hbg" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="drw" role="dialog" aria-label="Mobile menu">
+  <a href="index.html">Home</a><a href="about.html">About</a>
+  <a href="projects.html">Project</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a>
+</div>
+
+<!-- ── PAGE HEADER ──────────────────────────────────────────── -->
+<header class="s-page ruled-b">
+  <div class="c">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-2)">
+      <div>
+        <p class="lbl rv" style="margin-bottom:.6rem">Professional Timeline</p>
+        <h1 class="d3 rv d-1">Resume</h1>
+        <p class="rv d-2" style="font-family:var(--f-serif);font-style:italic;font-size:var(--t-lg);color:var(--ash2);margin-top:.5rem">A structured overview of my journey so far.</p>
+      </div>
+      <!-- Download button -->
+      <a href="resume.pdf" download="Adrian_Sarmiento_Resume.pdf" class="btn btn-k rv d-2">
+        <span>Download PDF</span>
+        <svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 2v9M4 8l4 4 4-4M2 14h12"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ── STICKY DOWNLOAD BAR ───────────────────────────────────── -->
+<div class="dl-bar">
+  <div class="c">
+    <div class="dl-bar-inner">
+      <span class="dl-bar-note">Adrian Sarmiento · Full-Stack Web Developer · Angeles City, PH</span>
+      <a href="resume.pdf" download="Adrian_Sarmiento_Resume.pdf" class="dl-btn">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v9M4 8l4 4 4-4M2 14h12"/></svg>
+        Download PDF
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROFILE SUMMARY ───────────────────────────────────────── -->
+<div class="c">
+  <div class="resume-section rv">
+    <div class="resume-section-header">
+      <div><p class="lbl" style="margin-bottom:.4rem">01</p><h2 class="d1">Profile</h2></div>
+    </div>
+    <div class="g2">
+      <p class="body rv d-1">Aspiring full-stack developer passionate about crafting responsive, user-centered web applications — from polished interfaces to reliable back-end systems. Consistently recognized on the Dean's and President's List at Holy Angel University.</p>
+      <p class="body rv d-2">Experienced in building production-ready web apps using Vue.js, Node.js, MongoDB, and PHP. Strong communicator and team collaborator with hands-on experience in event logistics, library operations, and academic leadership.</p>
+    </div>
+  </div>
+
+  <!-- ── EXPERIENCE ────────────────────────────────────────────── -->
+  <div class="resume-section">
+    <div class="resume-section-header rv">
+      <div><p class="lbl" style="margin-bottom:.4rem">02</p><h2 class="d1">Experience</h2></div>
+    </div>
+    <div class="exp-card rv d-1">
+      <span class="exp-date"><span class="exp-dot"></span>2024 – 2025</span>
+      <div>
+        <div class="exp-role">Staff — School of Computing</div>
+        <div class="exp-org">Holy Angel University · Angeles City, PH</div>
+        <p class="exp-desc">Supported organization and management of internal activities, promoting efficient staff coordination and successful execution of office initiatives.</p>
+        <ul class="exp-highlights">
+          <li>Coordinated with faculty for seamless event execution</li>
+          <li>Managed documentation and internal communications</li>
+          <li>Streamlined administrative workflows for the department</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card rv d-2">
+      <span class="exp-date"><span class="exp-dot"></span>2023 – 2025</span>
+      <div>
+        <div class="exp-role">Student Assistant</div>
+        <div class="exp-org">High School Library · Holy Angel University</div>
+        <p class="exp-desc">Supported daily library operations — organizing materials, maintaining records, and assisting students and faculty with resource needs.</p>
+        <ul class="exp-highlights">
+          <li>Maintained organized cataloging and resource management systems</li>
+          <li>Assisted students and faculty with research and material access</li>
+          <li>Ensured a productive and well-maintained learning environment</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card rv d-3">
+      <span class="exp-date"><span class="exp-dot"></span>2025 - Present</span>
+      <div>
+        <div class="exp-role">Logistics Staff — Code Geeks</div>
+        <div class="exp-org">School of Computing · Holy Angel University</div>
+        <p class="exp-desc">Coordinated materials, reservations, and on-site logistics for computing activities and events.</p>
+        <ul class="exp-highlights">
+          <li>Managed venue setup, materials preparation, and scheduling</li>
+          <li>Collaborated with teams to ensure event success</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EDUCATION ──────────────────────────────────────────────── -->
+  <div class="resume-section">
+    <div class="resume-section-header rv">
+      <div><p class="lbl" style="margin-bottom:.4rem">03</p><h2 class="d1">Education</h2></div>
+    </div>
+    <div class="edu-card rv d-1">
+      <span class="exp-date"><span class="exp-dot"></span>2023 – Present</span>
+      <div>
+        <div class="edu-degree">BS Information Technology</div>
+        <div class="edu-school">Major in Web Development · Holy Angel University</div>
+        <div class="awards" style="margin-top:.5rem">
+          <span class="aw aw-hi">President's List S2 AY 23-24</span>
+          <span class="aw">Dean's List S1 SY 23-24</span>
+          <span class="aw">Dean's List S1 SY 24-25</span>
+          <span class="aw">Dean's List S2 SY 24-25</span>
+          <span class="aw">Dean's List S1 SY 25-26</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-card rv d-2">
+      <span class="exp-date"><span class="exp-dot"></span>2017 – 2022</span>
+      <div>
+        <div class="edu-degree">High School Diploma</div>
+        <div class="edu-school">Holy Angel University · Angeles City, PH</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TECHNICAL SKILLS ──────────────────────────────────────── -->
+  <div class="resume-section">
+    <div class="resume-section-header rv">
+      <div><p class="lbl" style="margin-bottom:.4rem">04</p><h2 class="d1">Technical Skills</h2></div>
+    </div>
+    <div class="resume-skills-grid">
+      <div class="resume-skill-group rv d-1">
+        <div class="resume-skill-group-label">Front-End Development</div>
+        <div class="skills-wrap" style="border:none">
+          <div class="skill"><span class="skill-n">HTML &amp; CSS / Tailwind</span><div class="skill-t"><div class="skill-f" data-w="92"></div></div><span class="skill-p">92%</span></div>
+          <div class="skill"><span class="skill-n">JavaScript</span><div class="skill-t"><div class="skill-f" data-w="90"></div></div><span class="skill-p">90%</span></div>
+          <div class="skill"><span class="skill-n">Vue.js 3</span><div class="skill-t"><div class="skill-f" data-w="85"></div></div><span class="skill-p">85%</span></div>
+          <div class="skill"><span class="skill-n">React</span><div class="skill-t"><div class="skill-f" data-w="80"></div></div><span class="skill-p">80%</span></div>
+        </div>
+      </div>
+      <div class="resume-skill-group rv d-2">
+        <div class="resume-skill-group-label">Back-End Development</div>
+        <div class="skills-wrap" style="border:none">
+          <div class="skill"><span class="skill-n">Node.js / Express</span><div class="skill-t"><div class="skill-f" data-w="83"></div></div><span class="skill-p">83%</span></div>
+          <div class="skill"><span class="skill-n">MongoDB Atlas</span><div class="skill-t"><div class="skill-f" data-w="82"></div></div><span class="skill-p">82%</span></div>
+          <div class="skill"><span class="skill-n">MySQL</span><div class="skill-t"><div class="skill-f" data-w="78"></div></div><span class="skill-p">78%</span></div>
+          <div class="skill"><span class="skill-n">PHP</span><div class="skill-t"><div class="skill-f" data-w="75"></div></div><span class="skill-p">75%</span></div>
+        </div>
+      </div>
+      <div class="resume-skill-group rv d-3">
+        <div class="resume-skill-group-label">Design &amp; Other</div>
+        <div class="skills-wrap" style="border:none">
+          <div class="skill"><span class="skill-n">Figma / UI Design</span><div class="skill-t"><div class="skill-f" data-w="75"></div></div><span class="skill-p">75%</span></div>
+          <div class="skill"><span class="skill-n">Python / Java</span><div class="skill-t"><div class="skill-f" data-w="65"></div></div><span class="skill-p">65%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ACHIEVEMENTS ──────────────────────────────────────────── -->
+  <div class="resume-section">
+    <div class="resume-section-header rv">
+      <div><p class="lbl" style="margin-bottom:.4rem">05</p><h2 class="d1">Achievements</h2></div>
+    </div>
+    <div class="g2">
+      <div>
+        <p class="lbl rv" style="margin-bottom:var(--sp-1)">Academic Honors</p>
+        <div class="achievement-item rv d-1">
+          <div class="achievement-icon">*</div>
+          <div>
+            <div class="achievement-title">President's List</div>
+            <div class="achievement-detail">Semester 2, AY 2023–2024 · Holy Angel University</div>
+          </div>
+        </div>
+        <div class="achievement-item rv d-2">
+          <div class="achievement-icon">*</div>
+          <div>
+            <div class="achievement-title">Dean's List (×3)</div>
+            <div class="achievement-detail">S1 AY 23-24 · S1 AY 24-25 · S2 AY 24-25</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="lbl rv" style="margin-bottom:var(--sp-1)">Completed Projects</p>
+        <div class="achievement-item rv d-1">
+          <div class="achievement-icon">*</div>
+          <div>
+            <div class="achievement-title">5 Full-Stack Web Applications</div>
+            <div class="achievement-detail">Including Burgify, Fixify, FurnishHaven, HustleFlow &amp; Velasquez</div>
+          </div>
+        </div>
+        <div class="achievement-item rv d-2">
+          <div class="achievement-icon">*</div>
+          <div>
+            <div class="achievement-title">12+ Industry Certifications</div>
+            <div class="achievement-detail">CompTIA, Cisco, freeCodeCamp, HubSpot, Simplilearn</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CERTIFICATIONS ─────────────────────────────────────────── -->
+  <div class="resume-section" style="border-bottom:none">
+    <div class="resume-section-header rv">
+      <div><p class="lbl" style="margin-bottom:.4rem">06</p><h2 class="d1">Certifications <span style="font-family:var(--f-serif);font-style:italic;text-transform:none;font-size:.5em;color:var(--ash2);letter-spacing:0">— 12 and counting</span></h2></div>
+    </div>
+    <div class="r-cert-grid rv d-1">
+      <div class="r-cert"><div class="r-cert-by">CompTIA</div><div class="r-cert-nm">IT Fundamentals (ITF+)</div><div class="r-cert-dt">Nov 2023</div><a href="https://www.credly.com/badges/c2936a01-9c4c-4c45-a500-fea7def320b3/linked_in_profile" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+      <div class="r-cert"><div class="r-cert-by">freeCodeCamp</div><div class="r-cert-nm">Responsive Web Design</div><div class="r-cert-dt">Sep 2024</div><a href="https://www.freecodecamp.org/certification/sarmientoadrian/responsive-web-design" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+      <div class="r-cert"><div class="r-cert-by">Cisco</div><div class="r-cert-nm">JavaScript Essentials 1</div><div class="r-cert-dt">Oct 2024</div><a href="https://www.credly.com/badges/a8ba36a8-8bf2-4f9b-9793-1a59a035a5bb/linked_in_profile" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+      <div class="r-cert"><div class="r-cert-by">Simplilearn</div><div class="r-cert-nm">Introduction to PHP</div><div class="r-cert-dt">Feb 2025</div><a href="https://simpli-web.app.link/e/qxMBG6KPV0b" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+      <div class="r-cert"><div class="r-cert-by">Simplilearn</div><div class="r-cert-nm">Design Thinking for Beginners</div><div class="r-cert-dt">Jul 2025</div><a href="https://simpli-web.app.link/e/HqZeXRwPV0b" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+      <div class="r-cert"><div class="r-cert-by">HubSpot Academy</div><div class="r-cert-nm">Digital Marketing Certified</div><div class="r-cert-dt">Feb 2026</div><a href="https://app-na2.hubspot.com/academy/achievements/7bgwhykz/en/1/adrian-sarmiento/digital-marketing" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+      <div class="r-cert"><div class="r-cert-by">Simplilearn</div><div class="r-cert-nm">Graphic Design &amp; UI/UX</div><div class="r-cert-dt">Aug 2025</div><a href="https://simpli-web.app.link/e/tNCEBeuPV0b" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+      <div class="r-cert"><div class="r-cert-by">Simplilearn</div><div class="r-cert-nm">UI/UX Designing with ChatGPT</div><div class="r-cert-dt">Aug 2025</div><a href="https://simpli-web.app.link/e/NwKjfcsPV0b" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+      <div class="r-cert"><div class="r-cert-by">freeCodeCamp</div><div class="r-cert-nm">JS Algorithms &amp; Data Structures</div><div class="r-cert-dt">Sep 2025</div><a href="https://www.freecodecamp.org/certification/sarmientoadrian/javascript-algorithms-and-data-structures" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+      <div class="r-cert"><div class="r-cert-by">freeCodeCamp</div><div class="r-cert-nm">Back End Development &amp; APIs</div><div class="r-cert-dt">Sep 2025</div><a href="https://www.freecodecamp.org/certification/sarmientoadrian/back-end-development-and-apis" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+      <div class="r-cert"><div class="r-cert-by">HubSpot Academy</div><div class="r-cert-nm">SEO</div><div class="r-cert-dt">Jan 2026</div><a href="https://app-na2.hubspot.com/academy/achievements/gbr6sh0r/en/1/adrian-sarmiento/seo" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+      <div class="r-cert"><div class="r-cert-by">HubSpot Academy</div><div class="r-cert-nm">SEO II</div><div class="r-cert-dt">Feb 2026</div><a href="https://app-na2.hubspot.com/academy/achievements/h3d6v7dn/en/1/adrian-sarmiento/seo-ii" target="_blank" rel="noopener" class="r-cert-lnk">View ↗</a></div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:var(--sp-3) 0"></div>
+
+<footer class="footer"><div class="c"><div class="footer-r">
+  <span class="footer-copy">© 2025 Adrian Sarmiento</span>
+  <div class="footer-links">
+    <a href="about.html"    class="footer-a">About</a>
+    <a href="projects.html" class="footer-a">Project</a>
+    <a href="resume.html"   class="footer-a">Resume</a>
+    <a href="contact.html"  class="footer-a">Contact</a>
+  </div>
+</div></div></footer>
+
+<button class="btt" id="btt" aria-label="Back to top">↑ Top</button>
+<script src="main.js"></script>
+</body>
+</html>

@@ -57,12 +57,20 @@
       if(m.length<10){se('cm','cme',true);ok=false;}else se('cm','cme',false);
       if(!ok)return;
       if(sub){sub.querySelector('span').textContent='Sending…';sub.disabled=true;}
-      setTimeout(()=>{
+      emailjs.send('service_m15nugn','template_srz6x8p',{
+        from_name:  n,
+        from_email: em,
+        subject:    document.getElementById('cs')?.value.trim()||'(No subject)',
+        message:    m,
+      }).then(()=>{
         document.getElementById('cok')?.classList.add('on');
         if(sub){sub.querySelector('span').textContent='Send Message';sub.disabled=false;}
         form.reset();
         setTimeout(()=>document.getElementById('cok')?.classList.remove('on'),5000);
-      },1400);
+      }).catch(err=>{
+        console.error('EmailJS error:',err);
+        if(sub){sub.querySelector('span').textContent='Failed — try again';sub.disabled=false;}
+      });
     });
   }
 })();
