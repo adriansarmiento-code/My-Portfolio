@@ -5,60 +5,155 @@
 <title>Work — Adrian Sarmiento</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.proj-block { padding:var(--sp-4) 0; border-bottom:1px solid var(--line); scroll-margin-top: calc(var(--nav-h) + 1rem); }
-.proj-block:last-child { border-bottom:none; }
 
-.pb-head {
-  display:grid;
-  grid-template-columns:4rem 1fr auto;
-  gap:var(--sp-2);
-  align-items:start;
-  padding-bottom:var(--sp-2);
-  border-bottom:1px solid var(--line);
-  margin-bottom:var(--sp-3);
+/* ── PROJECT BLOCK ───────────────────────────────────────── */
+.proj-block {
+  padding: var(--sp-5) 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
 }
-.pb-num { font-family:var(--f-display); font-size:var(--t-2xl); line-height:1; color:var(--cream); }
-.pb-title { font-family:var(--f-display); font-size:clamp(2.2rem,4.5vw,4rem); line-height:.92; letter-spacing:.01em; text-transform:uppercase; margin-bottom:.5rem; }
-.pb-cat { font-family:var(--f-mono); font-size:var(--t-2xs); color:var(--ash2); letter-spacing:.1em; text-transform:uppercase; margin-bottom:.65rem; }
-.pb-btns { display:flex; gap:.5rem; flex-shrink:0; padding-top:.3rem; }
+.proj-block:last-child { border-bottom: none; }
 
-.pb-body {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:var(--sp-3);
-  margin-bottom:var(--sp-3);
-  align-items:start;
+/* alternating bg */
+.proj-block.alt { background: var(--cream); margin: 0 calc(-1 * var(--pad)); padding-left: var(--pad); padding-right: var(--pad); }
+
+/* ── SPLIT LAYOUT ────────────────────────────────────────── */
+.pb-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  align-items: start;
 }
-.pb-desc { font-family:var(--f-mono); font-size:var(--t-sm); color:var(--ash); line-height:1.85; }
+/* odd = info left, shots right (default) */
+/* even = shots left, info right */
+.pb-split.flip { direction: rtl; }
+.pb-split.flip > * { direction: ltr; }
 
+/* ── INFO SIDE ───────────────────────────────────────────── */
+.pb-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  position: sticky;
+  top: calc(var(--nav-h) + var(--sp-2));
+}
+.pb-num {
+  font-family: var(--f-display);
+  font-size: var(--t-2xl); line-height: 1;
+  color: var(--line);
+}
+.pb-cat {
+  font-family: var(--f-mono); font-size: var(--t-2xs);
+  color: var(--ash2); letter-spacing: .1em; text-transform: uppercase;
+}
+.pb-title {
+  font-family: var(--f-display);
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  line-height: .92; letter-spacing: .01em; text-transform: uppercase;
+}
+.pb-desc {
+  font-family: var(--f-mono); font-size: var(--t-sm);
+  color: var(--ash); line-height: 1.85;
+}
+.pb-btns { display: flex; gap: .5rem; flex-wrap: wrap; }
+
+/* ── SHOTS SIDE ──────────────────────────────────────────── */
 .pb-shots {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1px;
-  background:var(--line);
-  border:1px solid var(--line);
-  border-radius:4px;
-  overflow:hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
 }
-.pb-shots img { width:100%; height:100%; object-fit:cover; display:block; }
-.pb-shots .ph { width:100%; }
-.pb-shot-wide { grid-column:1/-1; }
-.pb-shot-wide .ph { aspect-ratio:21/8; }
-.pb-shots > div:not(.pb-shot-wide) .ph { aspect-ratio:16/10; }
 
+/* Every shot cell has a FIXED aspect ratio — image fills it */
+.pb-shot {
+  position: relative;
+  overflow: hidden;
+}
+/* Wide shots span both columns */
+.pb-shot-wide {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 7;
+}
+/* Regular shots */
+.pb-shot-sm {
+  aspect-ratio: 4 / 3;
+}
+/* All images fill their container */
+.pb-shot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s var(--ease);
+}
+.pb-shot:hover img { transform: scale(1.03); }
+
+/* Fallback placeholder */
+.pb-shot .ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--f-mono);
+  font-size: var(--t-2xs);
+  color: var(--ash2);
+  background: var(--cream);
+}
+
+/* ── META GRID ───────────────────────────────────────────── */
+.pb-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.pb-meta-c { background: var(--paper); padding: .75rem 1rem; }
+.alt .pb-meta-c { background: var(--cream); }
+.pb-meta-l {
+  font-family: var(--f-mono); font-size: var(--t-2xs);
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ash2); margin-bottom: .2rem;
+}
+.pb-meta-v {
+  font-family: var(--f-serif); font-style: italic;
+  font-size: var(--t-sm);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media(max-width:1024px){
+  .pb-info { position: static; }
+}
 @media(max-width:900px){
-  .pb-head { grid-template-columns:3rem 1fr; }
-  .pb-btns { grid-column:1/-1; }
-  .pb-body { grid-template-columns:1fr; }
-  .pb-shots { grid-template-columns:1fr; }
-  .pb-shot-wide { grid-column:1; }
-  .pb-shot-wide .ph { aspect-ratio:16/9; }
+  .pb-split, .pb-split.flip {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  /* on mobile always show info first, then shots */
+  .pb-split.flip { display: flex; flex-direction: column; }
+  .pb-split.flip .pb-shots { order: 2; }
+  .pb-split.flip .pb-info  { order: 1; }
+  .pb-shot-wide { aspect-ratio: 16/9; }
+  .pb-shot-sm   { aspect-ratio: 16/9; }
+  .pb-shots { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:600px){
+  .pb-shots { grid-template-columns: 1fr; }
+  .pb-shot-wide { grid-column: 1; }
 }
 </style>
 </head>
 <body>
 <div class="cursor" aria-hidden="true"></div>
 <div class="progress" aria-hidden="true"></div>
+
 <nav class="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">A<span>.</span>SARMIENTO</a>
@@ -75,9 +170,12 @@
 </nav>
 <div class="drawer" id="drw" role="dialog" aria-label="Mobile menu">
   <a href="index.html">Home</a><a href="about.html">About</a>
-  <a href="projects.html">Projects</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a>
+  <a href="projects.html">Projects</a>
+  <a href="resume.html">Resume</a>
+  <a href="contact.html">Contact</a>
 </div>
 
+<!-- PAGE HEADER -->
 <header class="s-page ruled-b"><div class="c">
   <p class="lbl rv" style="margin-bottom:.6rem">Portfolio</p>
   <h1 class="d3 rv d-1" style="margin-bottom:var(--sp-2)">Selected<br>Work</h1>
@@ -86,155 +184,210 @@
 
 <section style="padding-bottom:var(--sp-5)"><div class="c">
 
-  <!-- 01 FIXIFY -->
+  <!-- ── 01 FIXIFY · info LEFT, shots RIGHT ───────────────── -->
   <div class="proj-block" id="fixify">
-    <div class="pb-head rv">
-      <span class="pb-num">01</span>
-      <div>
+    <div class="pb-split rv">
+
+      <div class="pb-info">
+        <span class="pb-num">01</span>
         <p class="pb-cat">Service Marketplace · Full-Stack</p>
         <div class="pb-title">Fixify</div>
-        <div class="tags"><span class="tag">Vue.js 3</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">JWT Auth</span></div>
+        <div class="tags" style="margin-top:.25rem">
+          <span class="tag">Vue.js 3</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">JWT Auth</span>
+        </div>
+        <p class="pb-desc">Web-based service marketplace connecting customers with verified local providers in Angeles City — covering plumbing, electrical, and cleaning. Features real-time booking, role-based JWT authentication, and in-app notifications.</p>
+        <div class="pb-meta">
+          <div class="pb-meta-c"><div class="pb-meta-l">Type</div><div class="pb-meta-v">Full-Stack App</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Frontend</div><div class="pb-meta-v">Vue.js 3</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Backend</div><div class="pb-meta-v">Node + Express</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Database</div><div class="pb-meta-v">MongoDB Atlas</div></div>
+        </div>
+        <div class="pb-btns">
+          <a href="https://github.com/adriansarmiento-code/6WCSERVER-Final-Project.git" target="_blank" rel="noopener" class="btn btn-o"><span>GitHub</span></a>
+        </div>
       </div>
-      <div class="pb-btns">
-        <a href="#" class="btn btn-k"><span>Live Demo</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
-        <a href="https://github.com/adriansarmiento-code/6WCSERVER-Final-Project.git" class="btn btn-o"><span>GitHub</span></a>
+
+      <div class="pb-shots">
+        <div class="pb-shot pb-shot-wide">
+          <img src="images/fixify-banner.jpg" alt="Fixify main view">
+        </div>
+        <div class="pb-shot pb-shot-sm">
+          <img src="images/fixify-1.jpg" alt="Fixify view 2">
+        </div>
+        <div class="pb-shot pb-shot-sm">
+          <img src="images/fixify-2.jpg" alt="Fixify view 3">
+        </div>
+        <div class="pb-shot pb-shot-wide">
+          <img src="images/fixify-3.jpg" alt="Fixify view 4">
+        </div>
       </div>
-    </div>
-    <div class="pb-body rv d-1">
-      <p class="pb-desc">Web-based service marketplace connecting customers with verified local providers in Angeles City — covering plumbing, electrical, and cleaning. Features real-time booking, role-based JWT authentication, and in-app notifications.</p>
-      <div class="meta">
-        <div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">Full-Stack App</div></div>
-        <div class="meta-c"><div class="meta-l">Frontend</div><div class="meta-v">Vue.js 3</div></div>
-        <div class="meta-c"><div class="meta-l">Backend</div><div class="meta-v">Node + Express</div></div>
-        <div class="meta-c"><div class="meta-l">Database</div><div class="meta-v">MongoDB Atlas</div></div>
-      </div>
-    </div>
-    <div class="pb-shots rv d-2">
-      <div class="pb-shot-wide"><img src="images/fixify-banner.jpg" alt="Fixify main view" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:21/8;width:100%\'>[fixify-banner.jpg]</div>'"></div>
-      <div><img src="images/fixify-1.jpg" alt="Fixify view 2" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:16/10;width:100%\'>[fixify-1.jpg]</div>'"></div>
-      <div><img src="images/fixify-2.jpg" alt="Fixify view 3" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:16/10;width:100%\'>[fixify-2.jpg]</div>'"></div>
-      <div class="pb-shot-wide"><img src="images/fixify-3.jpg" alt="Fixify view 4" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:21/8;width:100%\'>[fixify-3.jpg]</div>'"></div>
+
     </div>
   </div>
 
-  <!-- 02 VELASQUEZ -->
-  <div class="proj-block" id="velasquez">
-    <div class="pb-head rv">
-      <span class="pb-num">02</span>
-      <div>
+  <!-- ── 02 VELASQUEZ · shots LEFT, info RIGHT ────────────── -->
+  <div class="proj-block alt" id="velasquez">
+    <div class="pb-split flip rv">
+
+      <div class="pb-info">
+        <span class="pb-num">02</span>
         <p class="pb-cat">Business Website · Live</p>
         <div class="pb-title">Velasquez Funeral &amp; Chapel</div>
-        <div class="tags"><span class="tag">Vue.js 3</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">Cloudinary</span><span class="tag">TinyMCE</span></div>
+        <div class="tags" style="margin-top:.25rem">
+          <span class="tag">Vue.js 3</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">Cloudinary</span><span class="tag">TinyMCE</span>
+        </div>
+        <p class="pb-desc">Full-stack funeral home website for a family business in Cabiao, Nueva Ecija — service packages, casket gallery, grief resource blog, and a full admin CMS with TinyMCE rich-text editing and Cloudinary image uploads. Deployed on Hostinger and Render.</p>
+        <div class="pb-meta">
+          <div class="pb-meta-c"><div class="pb-meta-l">Type</div><div class="pb-meta-v">Business Website</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Frontend</div><div class="pb-meta-v">Vue.js 3</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Backend</div><div class="pb-meta-v">Node + Express</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Live</div><div class="pb-meta-v">velasquezfuneral.com</div></div>
+        </div>
+        <div class="pb-btns">
+          <a href="https://velasquezfuneral.com" target="_blank" rel="noopener" class="btn btn-k"><span>Live Site</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
+          <a href="https://github.com/adriansarmiento-code/velasquezfuneral.git" target="_blank" rel="noopener" class="btn btn-o"><span>GitHub</span></a>
+        </div>
       </div>
-      <div class="pb-btns">
-        <a href="https://velasquezfuneral.com" target="_blank" rel="noopener" class="btn btn-k"><span>Live Site</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
-        <a href="#" class="btn btn-o"><span>GitHub</span></a>
+
+      <div class="pb-shots">
+        <div class="pb-shot pb-shot-wide">
+          <img src="images/velasquez-banner.png" alt="Velasquez main view">
+        </div>
+        <div class="pb-shot pb-shot-sm">
+          <img src="images/velasquez-1.png" alt="Velasquez view 2">
+        </div>
+        <div class="pb-shot pb-shot-sm">
+          <img src="images/velasquez-2.png" alt="Velasquez view 3">
+        </div>
+        <div class="pb-shot pb-shot-wide">
+          <img src="images/velasquez-3.png" alt="Velasquez view 4">
+        </div>
       </div>
-    </div>
-    <div class="pb-body rv d-1">
-      <p class="pb-desc">Full-stack funeral home website for a family business in Cabiao, Nueva Ecija — service packages, casket gallery, grief resource blog, and a full admin CMS with TinyMCE rich-text editing and Cloudinary image uploads. Deployed on Hostinger and Render.</p>
-      <div class="meta">
-        <div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">Business Website</div></div>
-        <div class="meta-c"><div class="meta-l">Frontend</div><div class="meta-v">Vue.js 3</div></div>
-        <div class="meta-c"><div class="meta-l">Backend</div><div class="meta-v">Node + Express</div></div>
-        <div class="meta-c"><div class="meta-l">Live</div><div class="meta-v">velasquezfuneral.com</div></div>
-      </div>
-    </div>
-    <div class="pb-shots rv d-2">
-      <div class="pb-shot-wide"><img src="images/velasquez-banner.png" alt="Velasquez main view" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:21/8;width:100%\'>[velasquez-banner.jpg]</div>'"></div>
-      <div><img src="images/velasquez-1.png" alt="Velasquez view 2" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:16/10;width:100%\'>[velasquez-1.jpg]</div>'"></div>
-      <div><img src="images/velasquez-2.png" alt="Velasquez view 3" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:16/10;width:100%\'>[velasquez-2.jpg]</div>'"></div>
-      <div class="pb-shot-wide"><img src="images/velasquez-3.png" alt="Velasquez view 4" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:21/8;width:100%\'>[velasquez-3.jpg]</div>'"></div>
+
     </div>
   </div>
 
-  <!-- 03 FURNISHHAVEN -->
+  <!-- ── 03 FURNISHHAVEN · info LEFT, shots RIGHT ─────────── -->
   <div class="proj-block" id="furnishhaven">
-    <div class="pb-head rv">
-      <span class="pb-num">03</span>
-      <div>
+    <div class="pb-split rv">
+
+      <div class="pb-info">
+        <span class="pb-num">03</span>
         <p class="pb-cat">E-Commerce Platform · PHP</p>
         <div class="pb-title">FurnishHaven</div>
-        <div class="tags"><span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag">CSS3</span><span class="tag">MySQL</span></div>
+        <div class="tags" style="margin-top:.25rem">
+          <span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag">CSS3</span><span class="tag">MySQL</span>
+        </div>
+        <p class="pb-desc">Furniture e-commerce platform built in PHP — product catalog with categories and search, session-based cart, secure user authentication, and a clean multi-step checkout flow backed by MySQL.</p>
+        <div class="pb-meta">
+          <div class="pb-meta-c"><div class="pb-meta-l">Type</div><div class="pb-meta-v">E-Commerce</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Backend</div><div class="pb-meta-v">PHP</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Frontend</div><div class="pb-meta-v">HTML / CSS / JS</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Database</div><div class="pb-meta-v">MySQL</div></div>
+        </div>
+        <div class="pb-btns">
+          <a href="https://github.com/adriansarmiento-code/furnishhaven.git" target="_blank" rel="noopener" class="btn btn-o"><span>GitHub</span></a>
+        </div>
       </div>
-      <div class="pb-btns">
-        <a href="#" class="btn btn-o"><span>GitHub</span></a>
+
+      <div class="pb-shots">
+        <div class="pb-shot pb-shot-wide">
+          <img src="images/furnishhaven-banner.jpg" alt="FurnishHaven main view">
+        </div>
+        <div class="pb-shot pb-shot-sm">
+          <img src="images/furnishhaven-1.png" alt="FurnishHaven view 2">
+        </div>
+        <div class="pb-shot pb-shot-sm">
+          <img src="images/furnishhaven-2.png" alt="FurnishHaven view 3">
+        </div>
+        <div class="pb-shot pb-shot-wide">
+          <img src="images/furnishhaven-3.png" alt="FurnishHaven view 4">
+        </div>
       </div>
-    </div>
-    <div class="pb-body rv d-1">
-      <p class="pb-desc">Furniture e-commerce platform built in PHP — product catalog with categories and search, session-based cart, secure user authentication, and a clean multi-step checkout flow backed by MySQL.</p>
-      <div class="meta">
-        <div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">E-Commerce</div></div>
-        <div class="meta-c"><div class="meta-l">Backend</div><div class="meta-v">PHP</div></div>
-        <div class="meta-c"><div class="meta-l">Frontend</div><div class="meta-v">HTML / CSS / JS</div></div>
-        <div class="meta-c"><div class="meta-l">Database</div><div class="meta-v">MySQL</div></div>
-      </div>
-    </div>
-    <div class="pb-shots rv d-2">
-      <div class="pb-shot-wide"><img src="images/furnishhaven-banner.jpg" alt="FurnishHaven main view" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:21/8;width:100%\'>[furnishhaven-banner.jpg]</div>'"></div>
-      <div><img src="images/furnishhaven-1.jpg" alt="FurnishHaven view 2" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:16/10;width:100%\'>[furnishhaven-1.jpg]</div>'"></div>
-      <div><img src="images/furnishhaven-2.jpg" alt="FurnishHaven view 3" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:16/10;width:100%\'>[furnishhaven-2.jpg]</div>'"></div>
-      <div class="pb-shot-wide"><img src="images/furnishhaven-3.jpg" alt="FurnishHaven view 4" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:21/8;width:100%\'>[furnishhaven-3.jpg]</div>'"></div>
+
     </div>
   </div>
 
-  <!-- 04 BURGIFY -->
-  <div class="proj-block" id="burgify">
-    <div class="pb-head rv">
-      <span class="pb-num">04</span>
-      <div>
+  <!-- ── 04 BURGIFY · shots LEFT, info RIGHT ──────────────── -->
+  <div class="proj-block alt" id="burgify">
+    <div class="pb-split flip rv">
+
+      <div class="pb-info">
+        <span class="pb-num">04</span>
         <p class="pb-cat">Front-End Static · HTML &amp; CSS</p>
         <div class="pb-title">Burgify</div>
-        <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Flexbox</span><span class="tag">CSS Grid</span></div>
+        <div class="tags" style="margin-top:.25rem">
+          <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Flexbox</span><span class="tag">CSS Grid</span>
+        </div>
+        <p class="pb-desc">Burger e-commerce site built entirely from scratch — pure HTML5 and CSS3 with zero frameworks. Demonstrates solid command of semantic markup, Flexbox, Grid, CSS custom properties, and fully hand-coded responsive design.</p>
+        <div class="pb-meta">
+          <div class="pb-meta-c"><div class="pb-meta-l">Type</div><div class="pb-meta-v">Static Front-End</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Markup</div><div class="pb-meta-v">HTML5 Semantic</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Styling</div><div class="pb-meta-v">CSS3 / Flexbox / Grid</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Responsive</div><div class="pb-meta-v">Yes — no framework</div></div>
+        </div>
+        <div class="pb-btns">
+          <a href="https://burgifybusiness.netlify.app/" target="_blank" rel="noopener" class="btn btn-k"><span>Live Site</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
+          <a href="https://github.com/adriansarmiento-code/Burger-Business-Website.git" target="_blank" rel="noopener" class="btn btn-o"><span>GitHub</span></a>
+        </div>
       </div>
-      <div class="pb-btns">
-        <a href="#" class="btn btn-o"><span>GitHub</span></a>
+
+      <div class="pb-shots">
+        <div class="pb-shot pb-shot-wide">
+          <img src="images/burgify-banner.png" alt="Burgify main view">
+        </div>
+        <div class="pb-shot pb-shot-sm">
+          <img src="images/burgify-1.png" alt="Burgify view 2">
+        </div>
+        <div class="pb-shot pb-shot-sm">
+          <img src="images/burgify-2.png" alt="Burgify view 3">
+        </div>
+        <div class="pb-shot pb-shot-wide">
+          <img src="images/burgify-3.png" alt="Burgify view 4">
+        </div>
       </div>
-    </div>
-    <div class="pb-body rv d-1">
-      <p class="pb-desc">Burger e-commerce site built entirely from scratch — pure HTML5 and CSS3 with zero frameworks. Demonstrates solid command of semantic markup, Flexbox, Grid, CSS custom properties, and fully hand-coded responsive design.</p>
-      <div class="meta">
-        <div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">Static Front-End</div></div>
-        <div class="meta-c"><div class="meta-l">Markup</div><div class="meta-v">HTML5 Semantic</div></div>
-        <div class="meta-c"><div class="meta-l">Styling</div><div class="meta-v">CSS3 / Flexbox / Grid</div></div>
-        <div class="meta-c"><div class="meta-l">Responsive</div><div class="meta-v">Yes — no framework</div></div>
-      </div>
-    </div>
-    <div class="pb-shots rv d-2">
-      <div class="pb-shot-wide"><img src="images/burgify-banner.jpg" alt="Burgify main view" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:21/8;width:100%\'>[burgify-banner.jpg]</div>'"></div>
-      <div><img src="images/burgify-1.jpg" alt="Burgify view 2" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:16/10;width:100%\'>[burgify-1.jpg]</div>'"></div>
-      <div><img src="images/burgify-2.jpg" alt="Burgify view 3" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:16/10;width:100%\'>[burgify-2.jpg]</div>'"></div>
-      <div class="pb-shot-wide"><img src="images/burgify-3.jpg" alt="Burgify view 4" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:21/8;width:100%\'>[burgify-3.jpg]</div>'"></div>
+
     </div>
   </div>
 
-  <!-- 05 THE HUSTLE FLOW -->
+  <!-- ── 05 THE HUSTLE FLOW · info LEFT, shots RIGHT ──────── -->
   <div class="proj-block" id="hustleflow">
-    <div class="pb-head rv">
-      <span class="pb-num">05</span>
-      <div>
+    <div class="pb-split rv">
+
+      <div class="pb-info">
+        <span class="pb-num">05</span>
         <p class="pb-cat">Blog · WordPress · Content Strategy</p>
         <div class="pb-title">The Hustle Flow</div>
-        <div class="tags"><span class="tag">WordPress</span><span class="tag">Yoast SEO</span><span class="tag">Content Strategy</span><span class="tag">Google Analytics</span></div>
+        <div class="tags" style="margin-top:.25rem">
+          <span class="tag">WordPress</span><span class="tag">Yoast SEO</span><span class="tag">Content Strategy</span><span class="tag">Google Analytics</span>
+        </div>
+        <p class="pb-desc">Self-improvement and growth blog built and managed end-to-end on WordPress — covering productivity, mindset, and career development. Configured with Yoast SEO, per-page meta, XML sitemaps, and Google Analytics for traffic tracking.</p>
+        <div class="pb-meta">
+          <div class="pb-meta-c"><div class="pb-meta-l">Type</div><div class="pb-meta-v">Blog / CMS</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Platform</div><div class="pb-meta-v">WordPress</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">SEO</div><div class="pb-meta-v">Yoast SEO</div></div>
+          <div class="pb-meta-c"><div class="pb-meta-l">Analytics</div><div class="pb-meta-v">Google Analytics</div></div>
+        </div>
+        <div class="pb-btns">
+          <a href="https://thehustleflow.wordpress.com/" target="_blank" rel="noopener" class="btn btn-k"><span>Visit Blog</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
+        </div>
       </div>
-      <div class="pb-btns">
-        <a href="#" class="btn btn-k"><span>Visit Blog</span><svg class="ic" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L14 2M14 2H6M14 2v8"/></svg></a>
+
+      <div class="pb-shots">
+        <div class="pb-shot pb-shot-wide">
+          <img src="images/hustleflow-banner.png" alt="The Hustle Flow main view">
+        </div>
+        <div class="pb-shot pb-shot-sm">
+          <img src="images/hustleflow-1.jpg" alt="The Hustle Flow view 2">
+        </div>
+        <div class="pb-shot pb-shot-sm">
+          <img src="images/hustleflow-2.jpg" alt="The Hustle Flow view 3">
+        </div>
+        <div class="pb-shot pb-shot-wide">
+          <img src="images/hustleflow-3.jpg" alt="The Hustle Flow view 4">
+        </div>
       </div>
-    </div>
-    <div class="pb-body rv d-1">
-      <p class="pb-desc">Self-improvement and growth blog built and managed end-to-end on WordPress — covering productivity, mindset, and career development. Configured with Yoast SEO, per-page meta, XML sitemaps, and Google Analytics for traffic tracking.</p>
-      <div class="meta">
-        <div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">Blog / CMS</div></div>
-        <div class="meta-c"><div class="meta-l">Platform</div><div class="meta-v">WordPress</div></div>
-        <div class="meta-c"><div class="meta-l">SEO</div><div class="meta-v">Yoast SEO</div></div>
-        <div class="meta-c"><div class="meta-l">Analytics</div><div class="meta-v">Google Analytics</div></div>
-      </div>
-    </div>
-    <div class="pb-shots rv d-2">
-      <div class="pb-shot-wide"><img src="images/hustleflow-banner.png" alt="The Hustle Flow main view" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:21/8;width:100%\'>[hustleflow-banner.jpg]</div>'"></div>
-      <div><img src="images/hustleflow-1.jpg" alt="The Hustle Flow view 2" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:16/10;width:100%\'>[hustleflow-1.jpg]</div>'"></div>
-      <div><img src="images/hustleflow-2.jpg" alt="The Hustle Flow view 3" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:16/10;width:100%\'>[hustleflow-2.jpg]</div>'"></div>
-      <div class="pb-shot-wide"><img src="images/hustleflow-3.jpg" alt="The Hustle Flow view 4" onerror="this.outerHTML='<div class=\'ph\' style=\'aspect-ratio:21/8;width:100%\'>[hustleflow-3.jpg]</div>'"></div>
+
     </div>
   </div>
 
